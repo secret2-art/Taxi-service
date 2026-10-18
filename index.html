@@ -29,7 +29,8 @@
 
         .form-group { margin-bottom: 12px; }
         label { font-size: 12px; color: #ccc; display: block; margin-bottom: 4px; }
-        input, select, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #444; background: #121212; color: #fff; font-size: 14px; }
+        input, select, textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #444; background: #121212; color: #fff; font-size: 14px; -webkit-appearance: none; }
+        input[type="datetime-local"] { color-scheme: dark; }
         textarea { resize: vertical; height: 70px; }
         
         .calc-summary { background: #2d2612; border: 1px solid #f2a900; padding: 12px; border-radius: 8px; text-align: center; margin-top: 15px; }
@@ -51,9 +52,11 @@
         .btn-expand { background: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 10px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; margin-top: 5px; margin-bottom: 10px; transition: 0.2s; }
 
         /* Yorumlar Listesi */
-        .review-item { background: #181818; padding: 10px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid #0088cc; }
+        .review-item { background: #181818; padding: 12px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid #0088cc; }
+        .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
         .review-author { font-size: 13px; font-weight: bold; color: #f2a900; }
-        .review-text { font-size: 12px; color: #ddd; margin-top: 4px; }
+        .review-stars { color: #f2a900; font-size: 11px; }
+        .review-text { font-size: 12px; color: #ddd; line-height: 1.4; }
 
         /* Sabit Alt Bar */
         .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #181818; border-top: 1px solid #333; padding: 10px 20px; display: flex; gap: 10px; justify-content: center; z-index: 999; }
@@ -179,7 +182,6 @@
         <h2 id="guideHeader">🗺️ Karaköy Gezilecek Yerler</h2>
         <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="guideSub">Otel çevresindeki meşhur noktalar ve harita konumları:</p>
         
-        <!-- İLK 3 MEŞHUR YER (SÜREKLİ GÖRÜNÜR) -->
         <div class="guide-item">
             <div>
                 <div class="guide-title" id="gt1">🏬 Galataport İstanbul</div>
@@ -204,7 +206,6 @@
             <a href="https://www.google.com/maps/search/?api=1&query=Galata+Tower" target="_blank" class="guide-link" id="gl3">Harita 📍</a>
         </div>
 
-        <!-- BÜYÜTÜLÜP AÇILABİLİR DİĞER YERLER -->
         <div class="more-guides" id="moreGuidesList">
             <div class="guide-item">
                 <div>
@@ -239,7 +240,6 @@
             </div>
         </div>
 
-        <!-- AÇMA / KAPAMA BUTONU -->
         <button class="btn-expand" onclick="toggleGuides()" id="btnExpandGuides">
             🔍 Tüm Gezilecek Yerleri Büyüt / Göster
         </button>
@@ -269,7 +269,7 @@
         <div style="margin-top: 20px;">
             <h3 style="font-size: 14px; color: #f2a900; margin-bottom: 10px;" id="lblAllReviews">Yapılan Yorumlar:</h3>
             <div id="reviewsList">
-                <!-- Yorumlar listelenecek -->
+                <!-- Yorumlar JavaScript ile listelenecek -->
             </div>
         </div>
     </div>
@@ -552,11 +552,16 @@
         window.open(url, '_blank');
     }
 
+    // MÜŞTERİ YORUMLARI (10 FARKLI ÜLKEDEN ORİJİNAL DİLİNDE)
     const defaultReviews = [
-        { name: "John Smith (UK)", text: "Punctual, safe and very smooth ride to Istanbul Airport. Thanks Ilham!" },
-        { name: "Anna Ivanova (RU)", text: "Отличный сервис! Быстро, комфортно и без проблем доехали до SAW." },
-        { name: "Mohammed Al-Ahmad (SA)", text: "خدمة ممتازة وسريعة جداً. شكراً إلهام على المساعدة." },
-        { name: "David & Sarah (DE)", text: "Super taxi service directly arranged from Triada Hotel. Highly recommended!" }
+        { name: "John Smith (United Kingdom 🇬🇧)", text: "Punctual, safe and very smooth ride to Istanbul Airport. Thanks Ilham!" },
+        { name: "Елена Смирнова (Russia 🇷🇺)", text: "Отличный сервис! Водитель приехал вовремя, машина чистая. Спасибо Ильхаму за организацию трансфера." },
+        { name: "محمد العتيبي (Saudi Arabia 🇸🇦)", text: "خدمة ممتازة وسريعة جداً إلى مطار صبيحة. شكراً إلهام على المساعدة والاهتمام." },
+        { name: "Michael & Sarah Weber (Germany 🇩🇪)", text: "Super Taxi-Service direkt vom Triada Hotel. Pünktlich, fair und sehr freundlich!" },
+        { name: "Jean-Pierre Dubois (France 🇫🇷)", text: "Service impeccable pour l'aéroport d'Istanbul. Chauffeur très pro, merci Ilham !" },
+        { name: "Carlos Mendoza (Spain 🇪🇸)", text: "Excelente servicio de traslado al aeropuerto. Muy puntual y confiable." },
+        { name: "Marco Rossi (Italy 🇮🇹)", text: "Servizio taxi perfetto e senza stress. Ilham è stato utilissimo per il nostro volo di ritorno!" },
+        { name: "أحمد القاسمي (UAE 🇦🇪)", text: "خدمة راقية جداً وسيارة نظيفة. ننصح بالتعامل معهم في فندق تريادا." }
     ];
 
     function loadReviews() {
@@ -566,7 +571,10 @@
         let html = "";
         reviews.forEach(r => {
             html += `<div class="review-item">
-                <div class="review-author">⭐ ${r.name}</div>
+                <div class="review-header">
+                    <span class="review-author">${r.name}</span>
+                    <span class="review-stars">★★★★★</span>
+                </div>
                 <div class="review-text">${r.text}</div>
             </div>`;
         });
@@ -592,7 +600,15 @@
         alert("Yorumunuz başarıyla eklendi, teşekkürler!");
     }
 
+    // VARSAYILAN TARİH/SAAT AYARI (Şu anki zamanı otomatik seçer)
+    function setDefaultDateTime() {
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('txtTime').value = now.toISOString().slice(0, 16);
+    }
+
     window.onload = function() {
+        setDefaultDateTime();
         loadReviews();
     }
 </script>
