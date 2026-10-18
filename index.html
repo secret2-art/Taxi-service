@@ -47,8 +47,8 @@
         .guide-desc { font-size: 11px; color: #aaa; margin-top: 2px; }
         .guide-link { color: #f2a900; font-size: 12px; text-decoration: none; font-weight: bold; }
         
-        /* Genişletme/Büyütme Kutusu */
-        .more-guides { display: none; }
+        /* Genişletme/Büyütme Kutuları */
+        .more-guides, .more-reviews { display: none; }
         .btn-expand { background: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 10px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; margin-top: 5px; margin-bottom: 10px; transition: 0.2s; }
 
         /* Yorumlar Listesi */
@@ -90,7 +90,7 @@
     <!-- GÜVEN KUTUSU -->
     <div class="trust-box" id="trustBox">
         🛡️ %100 Güvenli & Sorunsuz Ulaşım Garantisi<br>
-        Ödemenizi İster Taksiciye İster Otelde Yapabilirsiniz!
+        Ödemenizi İster Nakit İster Kartla Taksicide Yapabilirsiniz!
     </div>
 
     <!-- ARAÇ KAPASİTE BİLGİSİ -->
@@ -162,7 +162,6 @@
                 <option value="Driver-Cash" id="optPy1">Araçta Nakit (Taksiciye)</option>
                 <option value="Driver-Card" id="optPy2">Araçta Kredi Kartı (+%10)</option>
                 <option value="Hotel-Cash" id="optPy3">Otelde Nakit Ödeme</option>
-                <option value="Hotel-Card" id="optPy4">Otelde Kredi Kartı Ödeme (+%10)</option>
             </select>
         </div>
 
@@ -268,9 +267,13 @@
 
         <div style="margin-top: 20px;">
             <h3 style="font-size: 14px; color: #f2a900; margin-bottom: 10px;" id="lblAllReviews">Yapılan Yorumlar:</h3>
-            <div id="reviewsList">
-                <!-- Yorumlar JavaScript ile listelenecek -->
-            </div>
+            
+            <div id="firstReviewsList"></div>
+            <div class="more-reviews" id="moreReviewsList"></div>
+
+            <button class="btn-expand" onclick="toggleReviews()" id="btnExpandReviews" style="border-color:#0088cc; color:#0088cc; margin-top:10px;">
+                🔍 Tüm Misafir Yorumlarını Büyüt / Göster
+            </button>
         </div>
     </div>
 
@@ -289,7 +292,7 @@
     const translations = {
         tr: {
             subTitle: "7/24 Sarı Taksi Çağırma Hizmeti",
-            trustBox: "🛡️ %100 Güvenli & Sorunsuz Ulaşım Garantisi<br>Ödemenizi İster Taksiciye İster Otelde Yapabilirsiniz!",
+            trustBox: "🛡️ %100 Güvenli & Sorunsuz Ulaşım Garantisi<br>Ödemenizi İster Nakit İster Kartla Taksicide Yapabilirsiniz!",
             capBox: "🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>• Maksimum 4 Yolcu<br>• 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.",
             titleIst: "✈️ İstanbul Havalimanı (IST)",
             istInfo: "• Ulaşım süresi: Yaklaşık 45 - 60 dakika.<br>• Uçuştan <strong>en geç 3.5 saat önce</strong> taksi ayarlanmalıdır.",
@@ -311,7 +314,6 @@
             optPy1: "Araçta Nakit (Taksiciye)",
             optPy2: "Araçta Kredi Kartı (+%10)",
             optPy3: "Otelde Nakit Ödeme",
-            optPy4: "Otelde Kredi Kartı Ödeme (+%10)",
             lblTotalTitle: "Ödenecek Net Fiyat:",
             btnWsSend: "💬 WhatsApp ile Talebi Gönder",
             guideHeader: "🗺️ Karaköy Gezilecek Yerler",
@@ -329,13 +331,16 @@
             reviewSub: "Deneyiminizi bizimle paylaşın:",
             lblReviewerName: "Adınız / Ülkeniz:",
             lblReviewText: "Yorumunuz:",
+            phReviewer: "Örn: David (UK)",
+            phComment: "Harika bir hizmetti, teşekkürler İlham!",
             btnSendReview: "Yorumu Gönder",
             lblAllReviews: "Yapılan Yorumlar:",
+            btnExpandReviews: "🔍 Tüm Misafir Yorumlarını Büyüt / Göster",
             btnCallCall: "📞 Hemen Ara"
         },
         en: {
             subTitle: "24/7 Yellow Taxi Request Service",
-            trustBox: "🛡️ 100% Safe & Hassle-Free Transfer Guarantee<br>Pay either to the taxi driver or at the hotel reception!",
+            trustBox: "🛡️ 100% Safe & Hassle-Free Transfer Guarantee<br>Pay either in Cash or by Credit Card to the driver!",
             capBox: "🚖 <strong>Yellow Taxi Capacity:</strong><br>• Maximum 4 Passengers<br>• Fits 4-5 Large Suitcases / 3-4 Hand Luggage.",
             titleIst: "✈️ Istanbul Airport (IST)",
             istInfo: "• Travel time: Approx. 45 - 60 mins.<br>• Taxi must be arranged <strong>at least 3.5 hours before</strong> flight.",
@@ -357,7 +362,6 @@
             optPy1: "Cash in Taxi (to Driver)",
             optPy2: "Credit Card in Taxi (+10%)",
             optPy3: "Cash at Hotel Reception",
-            optPy4: "Credit Card at Hotel (+10%)",
             lblTotalTitle: "Fixed Price To Pay:",
             btnWsSend: "💬 Send Request via WhatsApp",
             guideHeader: "🗺️ Karaköy Attractions & Places",
@@ -375,13 +379,16 @@
             reviewSub: "Share your experience with us:",
             lblReviewerName: "Your Name / Country:",
             lblReviewText: "Your Comment:",
+            phReviewer: "e.g. David (UK)",
+            phComment: "Great service, thank you Ilham!",
             btnSendReview: "Submit Review",
             lblAllReviews: "All Guest Reviews:",
+            btnExpandReviews: "🔍 Expand All Guest Reviews",
             btnCallCall: "📞 Call Now"
         },
         ru: {
             subTitle: "24/7 Заказ Желтого Такси",
-            trustBox: "🛡️ 100% Гарантия Безопасной Поездки<br>Оплачивайте водителю такси или на ресепшн отеля!",
+            trustBox: "🛡️ 100% Гарантия Безопасной Поездки<br>Оплачивайте наличными или картой водителю такси!",
             capBox: "🚖 <strong>Вместимость Желтого Такси:</strong><br>• Максимум 4 Пассажира<br>• Вмещает 4-5 больших чемоданов / 3-4 ручные клади.",
             titleIst: "✈️ Аэропорт Стамбула (IST)",
             istInfo: "• Время в пути: около 45-60 минут.<br>• Такси необходимо заказать <strong>минимум за 3.5 часа</strong> до вылета.",
@@ -403,7 +410,6 @@
             optPy1: "Наличными водителю",
             optPy2: "Картой в такси (+10%)",
             optPy3: "Наличными в отеле",
-            optPy4: "Картой в отеле (+10%)",
             lblTotalTitle: "Фиксированная цена:",
             btnWsSend: "💬 Отправить запрос в WhatsApp",
             guideHeader: "🗺️ Достопримечательности Каракёй",
@@ -421,13 +427,16 @@
             reviewSub: "Поделитесь своим опытом:",
             lblReviewerName: "Ваше имя / Страна:",
             lblReviewText: "Ваш комментарий:",
+            phReviewer: "например: Джон (UK)",
+            phComment: "Отличный сервис, спасибо Ильхам!",
             btnSendReview: "Отправить отзыв",
             lblAllReviews: "Все отзывы:",
+            btnExpandReviews: "🔍 Показать все отзывы гостей",
             btnCallCall: "📞 Позвонить"
         },
         ar: {
             subTitle: "خدمة طلب التاكسي الأصفر 24/7",
-            trustBox: "🛡️ ضمان نقل آمن وسلس 100%<br>ادفع إما لسيارة التاكسي أو في الفندق!",
+            trustBox: "🛡️ ضمان نقل آمن وسلس 100%<br>ادفع إما نقداً أو بالبطاقة للسائق!",
             capBox: "🚖 <strong>سعة التاكسي الأصفر:</strong><br>• 4 ركاب كحد أقصى<br>• يتسع لـ 4-5 حقائب كبيرة / 3-4 حقائب يد.",
             titleIst: "✈️ مطار إسطنبول (IST)",
             istInfo: "• مدة الرحلة: حوالي 45 - 60 دقيقة.<br>• يجب حجز التاكسي <strong>قبل 3.5 ساعة على الأقل</strong> من موعد الطيران.",
@@ -449,7 +458,6 @@
             optPy1: "نقداً في التاكسي",
             optPy2: "بطاقة في التاكسي (+10%)",
             optPy3: "نقداً في الفندق",
-            optPy4: "بطاقة في الفندق (+10%)",
             lblTotalTitle: "السعر الثابت المقدر:",
             btnWsSend: "💬 إرسال الطلب عبر WhatsApp",
             guideHeader: "🗺️ الأماكن السياحية في كراكوي",
@@ -467,26 +475,46 @@
             reviewSub: "شاركنا تجربتك:",
             lblReviewerName: "الاسم / البلد:",
             lblReviewText: "تعليقك:",
+            phReviewer: "مثال: أحمد (بريطانيا)",
+            phComment: "خدمة رائعة جداً، شكراً لك!",
             btnSendReview: "إرسال التقييم",
             lblAllReviews: "جميع التقييمات:",
+            btnExpandReviews: "🔍 عرض جميع تقييمات الضيوف",
             btnCallCall: "📞 اتصل الآن"
         }
     };
 
-    let isExpanded = false;
+    let isExpandedGuides = false;
     function toggleGuides() {
         const list = document.getElementById('moreGuidesList');
         const btn = document.getElementById('btnExpandGuides');
         const lang = document.querySelector('.lang-btn.active').innerText.toLowerCase();
 
-        if(isExpanded) {
+        if(isExpandedGuides) {
             list.style.display = "none";
-            isExpanded = false;
+            isExpandedGuides = false;
             btn.innerText = (lang === 'en') ? "🔍 Expand All Places To Visit" : (lang === 'ru') ? "🔍 Показать все места на карте" : (lang === 'ar') ? "🔍 عرض جميع الأماكن السياحية" : "🔍 Tüm Gezilecek Yerleri Büyüt / Göster";
         } else {
             list.style.display = "block";
-            isExpanded = true;
+            isExpandedGuides = true;
             btn.innerText = (lang === 'en') ? "▲ Show Less" : (lang === 'ru') ? "▲ Свернуть" : (lang === 'ar') ? "▲ إخفاء الأماكن" : "▲ Daha Az Göster / Küçült";
+        }
+    }
+
+    let isExpandedReviews = false;
+    function toggleReviews() {
+        const list = document.getElementById('moreReviewsList');
+        const btn = document.getElementById('btnExpandReviews');
+        const lang = document.querySelector('.lang-btn.active').innerText.toLowerCase();
+
+        if(isExpandedReviews) {
+            list.style.display = "none";
+            isExpandedReviews = false;
+            btn.innerText = (lang === 'en') ? "🔍 Expand All Guest Reviews" : (lang === 'ru') ? "🔍 Показать все отзывы гостей" : (lang === 'ar') ? "🔍 عرض جميع تقييمات الضيوف" : "🔍 Tüm Misafir Yorumlarını Büyüt / Göster";
+        } else {
+            list.style.display = "block";
+            isExpandedReviews = true;
+            btn.innerText = (lang === 'en') ? "▲ Show Less Reviews" : (lang === 'ru') ? "▲ Свернуть отзывы" : (lang === 'ar') ? "▲ إخفاء التقييمات" : "▲ Daha Az Yorum Göster / Küçült";
         }
     }
 
@@ -512,6 +540,10 @@
                 }
             }
         }
+
+        // Placeholder çevirileri
+        document.getElementById('txtReviewer').placeholder = t.phReviewer;
+        document.getElementById('txtComment').placeholder = t.phComment;
     }
 
     function updateCalc() {
@@ -552,7 +584,6 @@
         window.open(url, '_blank');
     }
 
-    // MÜŞTERİ YORUMLARI (10 FARKLI ÜLKEDEN ORİJİNAL DİLİNDE)
     const defaultReviews = [
         { name: "John Smith (United Kingdom 🇬🇧)", text: "Punctual, safe and very smooth ride to Istanbul Airport. Thanks Ilham!" },
         { name: "Елена Смирнова (Russia 🇷🇺)", text: "Отличный сервис! Водитель приехал вовремя, машина чистая. Спасибо Ильхаму за организацию трансфера." },
@@ -568,17 +599,27 @@
         let saved = JSON.parse(localStorage.getItem('taxi_reviews')) || [];
         let reviews = [...saved, ...defaultReviews];
         
-        let html = "";
-        reviews.forEach(r => {
-            html += `<div class="review-item">
+        let firstHtml = "";
+        let moreHtml = "";
+
+        reviews.forEach((r, index) => {
+            let itemHtml = `<div class="review-item">
                 <div class="review-header">
                     <span class="review-author">${r.name}</span>
                     <span class="review-stars">★★★★★</span>
                 </div>
                 <div class="review-text">${r.text}</div>
             </div>`;
+
+            if(index < 3) {
+                firstHtml += itemHtml;
+            } else {
+                moreHtml += itemHtml;
+            }
         });
-        document.getElementById('reviewsList').innerHTML = html;
+
+        document.getElementById('firstReviewsList').innerHTML = firstHtml;
+        document.getElementById('moreReviewsList').innerHTML = moreHtml;
     }
 
     function addReview() {
@@ -600,7 +641,6 @@
         alert("Yorumunuz başarıyla eklendi, teşekkürler!");
     }
 
-    // VARSAYILAN TARİH/SAAT AYARI (Şu anki zamanı otomatik seçer)
     function setDefaultDateTime() {
         const now = new Date();
         now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
