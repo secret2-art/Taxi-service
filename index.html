@@ -68,8 +68,9 @@
 </head>
 <body>
 
-<!-- ARKA PLAN MÜZİK KAYNAĞI (Telifmeyen Sakin İstanbul / Caz Melodisi) -->
+<!-- STROMAE - PAPAOUTAI INSTRUMENTAL KAYNAĞI -->
 <audio id="bgMusic" loop>
+    <source src="https://cdns.freetousesound.com/tracks-samples/Stromae_Papaoutai_Instrumental.mp3" onerror="this.src='https://dl.dropboxusercontent.com/scl/fi/v62334m04l95a1p53moxq/Stromae-Papaoutai-Instrumental.mp3?rlkey=9p0t8k0l2g9l3n1k2l3m4n5o6'" type="audio/mpeg">
     <source src="https://actions.google.com/sounds/v1/ambiences/coffee_shop.ogg" type="audio/ogg">
 </audio>
 
@@ -84,7 +85,7 @@
             <button class="lang-btn" onclick="setLang('ar')">AR</button>
         </div>
         <button class="music-btn" id="musicToggleBtn" onclick="toggleMusic()">
-            🎵 <span id="musicText">Müziği Aç</span>
+            🎵 <span id="musicText">Stromae Müziği Aç</span>
         </button>
     </div>
 
@@ -291,7 +292,7 @@
     const translations = {
         tr: {
             subTitle: "7/24 Sarı Taksi Çağırma Hizmeti",
-            musicText: "Müziği Aç",
+            musicText: "Stromae Müziği Aç",
             trustBox: "🛡️ %100 Güvenli & Sorunsuz Ulaşım Garantisi<br>Ödemenizi İster Taksiciye İster Otelde Yapabilirsiniz!",
             capBox: "🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>• Maksimum 4 Yolcu<br>• 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.",
             titleIst: "✈️ İstanbul Havalimanı (IST)",
@@ -337,7 +338,7 @@
         },
         en: {
             subTitle: "24/7 Yellow Taxi Request Service",
-            musicText: "Play Music",
+            musicText: "Play Stromae Music",
             trustBox: "🛡️ 100% Safe & Hassle-Free Transfer Guarantee<br>Pay either to the taxi driver or at the hotel reception!",
             capBox: "🚖 <strong>Yellow Taxi Capacity:</strong><br>• Maximum 4 Passengers<br>• Fits 4-5 Large Suitcases / 3-4 Hand Luggage.",
             titleIst: "✈️ Istanbul Airport (IST)",
@@ -383,7 +384,7 @@
         },
         ru: {
             subTitle: "24/7 Заказ Желтого Такси",
-            musicText: "Музыка",
+            musicText: "Музыка Stromae",
             trustBox: "🛡️ 100% Гарантия Безопасной Поездки<br>Оплачивайте водителю такси или на ресепшн отеля!",
             capBox: "🚖 <strong>Вместимость Желтого Такси:</strong><br>• Максимум 4 Пассажира<br>• Вмещает 4-5 больших чемоданов / 3-4 ручные клади.",
             titleIst: "✈️ Аэропорт Стамбула (IST)",
@@ -429,7 +430,7 @@
         },
         ar: {
             subTitle: "خدمة طلب التاكسي الأصفر 24/7",
-            musicText: "تشغيل الموسيقى",
+            musicText: "موسيقى Stromae",
             trustBox: "🛡️ ضمان نقل آمن وسلس 100%<br>ادفع إما لسيارة التاكسي أو في الفندق!",
             capBox: "🚖 <strong>سعة التاكسي الأصفر:</strong><br>• 4 ركاب كحد أقصى<br>• يتسع لـ 4-5 حقائب كبيرة / 3-4 حقائب يد.",
             titleIst: "✈️ مطار إسطنبول (IST)",
@@ -485,14 +486,14 @@
             audio.pause();
             isPlaying = false;
             btn.classList.remove('playing');
-            document.getElementById('musicText').innerText = (lang === 'en') ? "Play Music" : (lang === 'ru') ? "Музыка" : (lang === 'ar') ? "تشغيل الموسيقى" : "Müziği Aç";
+            document.getElementById('musicText').innerText = (lang === 'en') ? "Play Stromae Music" : (lang === 'ru') ? "Музыка Stromae" : (lang === 'ar') ? "موسيقى Stromae" : "Stromae Müziği Aç";
         } else {
             audio.play().then(() => {
                 isPlaying = true;
                 btn.classList.add('playing');
                 document.getElementById('musicText').innerText = (lang === 'en') ? "Pause Music" : (lang === 'ru') ? "Пауза" : (lang === 'ar') ? "إيقاف الموسيقى" : "Müziği Kapat";
             }).catch(e => {
-                alert("Müzik çalınamadı.");
+                alert("Müzik çalınamadı. Tarayıcınız ses oynatmayı engelliyor olabilir.");
             });
         }
     }
