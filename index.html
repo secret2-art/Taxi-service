@@ -3,88 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taxi Service - İlham</title>
+    <title>Triada Hotel Karaköy - VIP Taxi & Shuttle</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #121212;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .card {
-            background: #1e1e1e;
-            border: 2px solid #f2a900;
-            border-radius: 20px;
-            padding: 40px 30px;
-            text-align: center;
-            max-width: 400px;
-            width: 100%;
-            box-shadow: 0 10px 30px rgba(242, 169, 0, 0.2);
-        }
-        .icon {
-            font-size: 60px;
-            margin-bottom: 10px;
-        }
-        h1 {
-            color: #f2a900;
-            font-size: 28px;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .driver-name {
-            font-size: 20px;
-            color: #dddddd;
-            margin-bottom: 25px;
-            font-weight: 500;
-        }
-        .btn-call {
-            display: inline-block;
-            background-color: #f2a900;
-            color: #000000;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: bold;
-            padding: 15px 25px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(242, 169, 0, 0.4);
-            width: 100%;
-        }
-        .btn-call:hover {
-            background-color: #ffc107;
-            transform: translateY(-2px);
-        }
-        .info {
-            mt: 20px;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #888888;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #121212; color: #f5f5f5; padding: 15px; display: flex; justify-content: center; }
+        .container { max-width: 480px; width: 100%; background: #1e1e1e; border-radius: 16px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #333; }
+        .header { text-align: center; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 15px; }
+        .header h1 { font-size: 20px; color: #f2a900; margin-bottom: 5px; }
+        .header p { font-size: 13px; color: #aaa; }
+        
+        /* Dil Seçici */
+        .lang-picker { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; }
+        .lang-btn { background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 12px; transition: 0.2s; }
+        .lang-btn.active { background: #f2a900; color: #000; font-weight: bold; border-color: #f2a900; }
+        
+        /* Fiyat Kartları */
+        .card { background: #262626; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 4px solid #f2a900; }
+        .card h2 { font-size: 16px; color: #f2a900; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+        .price { font-size: 18px; font-weight: bold; color: #fff; margin: 5px 0; }
+        .card-info { font-size: 12px; color: #bbb; line-height: 1.5; margin-top: 8px; }
+        
+        /* Form */
+        .form-group { margin-bottom: 12px; }
+        label { font-size: 12px; color: #ccc; display: block; margin-bottom: 4px; }
+        input, select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #444; background: #121212; color: #fff; font-size: 14px; }
+        
+        /* Butonlar */
+        .btn-ws { background-color: #25D366; color: white; border: none; width: 100%; padding: 14px; border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); }
+        .btn-map { background-color: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 10px; border-radius: 30px; font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; text-decoration: none; }
+        
+        .footer { text-align: center; margin-top: 20px; font-size: 11px; color: #666; }
+        [dir="rtl"] { text-align: right; }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="icon">🚖</div>
-        <h1>Taxi Service</h1>
-        <div class="driver-name">İlham</div>
-        
-        <a href="tel:+905014712020" class="btn-call">
-            📞 +90 501 471 20 20
-        </a>
-
-        <p class="info">7/24 Hızlı ve Güvenli Ulaşım</p>
+<div class="container" id="mainContainer">
+    
+    <!-- DİL SEÇİMİ -->
+    <div class="lang-picker">
+        <button class="lang-btn active" onclick="setLang('tr')">TR</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('ru')">RU</button>
+        <button class="lang-btn" onclick="setLang('ar')">AR</button>
     </div>
+
+    <!-- BAŞLIK -->
+    <div class="header">
+        <h1>Triada Hotel Karaköy</h1>
+        <p id="subTitle">7/24 Özel Taksi & Transfer Hizmeti</p>
+    </div>
+
+    <!-- İSTANBUL HAVALİMANI -->
+    <div class="card">
+        <h2><span>✈️ İstanbul Havalimanı (IST)</span></h2>
+        <div class="price">35 € / 2.000 ₺ <small style="font-size:11px; font-weight:normal; color:#aaa;">(Nakit)</small></div>
+        <div class="card-info" id="istInfo">
+            • Kredi kartı ile ödemede +%10 komisyon uygulanır.<br>
+            • Ulaşım süresi: Yaklaşık 45 - 60 dakika.<br>
+            • Uçuştan <strong>en geç 3.5 saat önce</strong> taksi ayarlanmalıdır.
+        </div>
+        <a href="https://maps.app.goo.gl/343R8nToKzZ47w248" target="_blank" class="btn-map">📍 IST Konumu</a>
+    </div>
+
+    <!-- SABİHA GÖKÇEN HAVALİMANI -->
+    <div class="card">
+        <h2><span>✈️ Sabiha Gökçen Havalimanı (SAW)</span></h2>
+        <div class="price">40 € / 2.200 ₺ <small style="font-size:11px; font-weight:normal; color:#aaa;">(Nakit)</small></div>
+        <div class="card-info" id="sawInfo">
+            • Kredi kartı ile ödemede +%10 komisyon uygulanır.<br>
+            • Ulaşım süresi: Yaklaşık 60 - 90 dakika.<br>
+            • Uçuştan <strong>en geç 4 saat önce</strong> taksi ayarlanmalıdır.
+        </div>
+        <a href="https://maps.app.goo.gl/o19mZg1e83A4XmAn8" target="_blank" class="btn-map">📍 SAW Konumu</a>
+    </div>
+
+    <!-- OTEL YOL TARİFİ BİLGİSİ -->
+    <a href="https://maps.app.goo.gl/4itJiowA8djsCk8X9" target="_blank" class="btn-map" style="background:#222; color:#fff; border-color:#555;">
+        🏨 Triada Hotel Karaköy Konumu (Otele Dönüş)
+    </a>
+
+    <br>
+
+    <!-- REZERVALSYON FORMU -->
+    <div class="card" style="border-left-color: #25D366;">
+        <h2 style="color: #25D366;" id="formTitle">🚕 Taksi Rezervasyonu Al</h2>
+        
+        <div class="form-group">
+            <label id="lblNa">Adınız Soyadınız:</label>
+            <input type="text" id="txtName" placeholder="Örn: John Doe">
+        </div>
+
+        <div class="form-group">
+            <label id="lblRm">Oda Numaranız:</label>
+            <input type="text" id="txtRoom" placeholder="Örn: 204">
+        </div>
+
+        <div class="form-group">
+            <label id="lblAp">Havalimanı Seçin:</label>
+            <select id="selAirport">
+                <option value="İstanbul Havalimanı (IST)">İstanbul Havalimanı (IST)</option>
+                <option value="Sabiha Gökçen (SAW)">Sabiha Gökçen Havalimanı (SAW)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label id="lblDt">Taksi İstediğiniz Tarih ve Saat:</label>
+            <input type="datetime-local" id="txtTime">
+        </div>
+
+        <div class="form-group">
+            <label id="lblPy">Ödeme Şekli:</label>
+            <select id="selPay">
+                <option value="Nakit (Cash)">Nakit / Cash</option>
+                <option value="Kredi Kartı (+%10)">Kredi Kartı / Credit Card (+%10)</option>
+            </select>
+        </div>
+
+        <button class="btn-ws" onclick="sendWhatsApp()">
+            💬 WhatsApp ile Talebi Gönder
+        </button>
+    </div>
+
+    <div class="footer">
+        Resepsiyon & Bellboy Destek Service - İlham Bekmetov
+    </div>
+</div>
+
+<script>
+    const translations = {
+        tr: {
+            subTitle: "7/24 Özel Taksi & Transfer Hizmeti",
+            istInfo: "• Kredi kartı ile ödemede +%10 komisyon uygulanır.<br>• Ulaşım süresi: Yaklaşık 45 - 60 dakika.<br>• Uçuştan <strong>en geç 3.5 saat önce</strong> taksi ayarlanmalıdır.",
+            sawInfo: "• Kredi kartı ile ödemede +%10 komisyon uygulanır.<br>• Ulaşım süresi: Yaklaşık 60 - 90 dakika.<br>• Uçuştan <strong>en geç 4 saat önce</strong> taksi ayarlanmalıdır.",
+            formTitle: "🚕 Taksi Rezervasyonu Yap",
+            lblNa: "Adınız Soyadınız:",
+            lblRm: "Oda Numaranız:",
+            lblAp: "Havalimanı Seçin:",
+            lblDt: "Taksi İstediğiniz Tarih ve Saat:",
+            lblPy: "Ödeme Şekli:",
+            btnSend: "💬 WhatsApp ile Talebi Gönder"
+        },
+        en: {
+            subTitle: "24/7 Private Taxi & Airport Transfer",
+            istInfo: "• +10% commission applies for credit card payments.<br>• Travel time: Approx. 45 - 60 mins.<br>• Taxi must be arranged <strong>at least 3.5 hours before</strong> flight.",
+            sawInfo: "• +10% commission applies for credit card payments.<br>• Travel time: Approx. 60 - 90 mins.<br>• Taxi must be arranged <strong>at least 4 hours before</strong> flight.",
+            formTitle: "🚕 Book Taxi Service",
+            lblNa: "Full Name:",
+            lblRm: "Room Number:",
+            lblAp: "Select Airport:",
+            lblDt: "Taxi Pickup Date & Time:",
+            lblPy: "Payment Method:",
+            btnSend: "💬 Send Request via WhatsApp"
+        },
+        ru: {
+            subTitle: "24/7 Частное Такси и Трансфер",
+            istInfo: "• При оплате картой взимается комиссия +10%.<br>• Время в пути: около 45-60 минут.<br>• Такси необходимо заказать <strong>минимум за 3.5 часа</strong> до вылета.",
+            sawInfo: "• При оплате картой взимается комиссия +10%.<br>• Время в пути: около 60-90 минут.<br>• Такси необходимо заказать <strong>минимум за 4 часа</strong> до вылета.",
+            formTitle: "🚕 Заказать Такси",
+            lblNa: "Имя и Фамилия:",
+            lblRm: "Номер комнаты:",
+            lblAp: "Выберите аэропорт:",
+            lblDt: "Дата и время подачи такси:",
+            lblPy: "Способ оплаты:",
+            btnSend: "💬 Отправить в WhatsApp"
+        },
+        ar: {
+            subTitle: "خدمة التاكسي والنقل الخاص على مدار 24/7",
+            istInfo: "• تضاف عمولة +10% عند الدفع بالبطاقة الائتمانية.<br>• مدة الرحلة: حوالي 45 - 60 دقيقة.<br>• يجب حجز التاكسي <strong>قبل 3.5 ساعة على الأقل</strong> من موعد الطيران.",
+            sawInfo: "• تضاف عمولة +10% عند الدفع بالبطاقة الائتمانية.<br>• مدة الرحلة: حوالي 60 - 90 دقيقة.<br>• يجب حجز التاكسي <strong>قبل 4 ساعات على الأقل</strong> من موعد الطيران.",
+            formTitle: "🚕 حجز تاكسي",
+            lblNa: "الاسم الكامل:",
+            lblRm: "رقم الغرفة:",
+            lblAp: "اختر المطار:",
+            lblDt: "تاريخ ووقت طلب التاكسي:",
+            lblPy: "طريقة الدفع:",
+            btnSend: "💬 إرسال الطلب عبر WhatsApp"
+        }
+    };
+
+    function setLang(lang) {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        const container = document.getElementById('mainContainer');
+        if(lang === 'ar') {
+            container.setAttribute('dir', 'rtl');
+        } else {
+            container.removeAttribute('dir');
+        }
+
+        const t = translations[lang];
+        document.getElementById('subTitle').innerText = t.subTitle;
+        document.getElementById('istInfo').innerHTML = t.istInfo;
+        document.getElementById('sawInfo').innerHTML = t.sawInfo;
+        document.getElementById('formTitle').innerText = t.formTitle;
+        document.getElementById('lblNa').innerText = t.lblNa;
+        document.getElementById('lblRm').innerText = t.lblRm;
+        document.getElementById('lblAp').innerText = t.lblAp;
+        document.getElementById('lblDt').innerText = t.lblDt;
+        document.getElementById('lblPy').innerText = t.lblPy;
+    }
+
+    function sendWhatsApp() {
+        const name = document.getElementById('txtName').value;
+        const room = document.getElementById('txtRoom').value;
+        const airport = document.getElementById('selAirport').value;
+        const time = document.getElementById('txtTime').value;
+        const pay = document.getElementById('selPay').value;
+
+        if(!name || !room || !time) {
+            alert("Lütfen isim, oda numarası ve tarih/saat alanlarını doldurun.");
+            return;
+        }
+
+        const msg = `Merhaba İlham (Triada Hotel Karaköy),\n\nTaksi Rezervasyon Talebi:\n👤 İsim: ${name}\n🔑 Oda No: ${room}\n✈️ Havalimanı: ${airport}\n📅 Tarih/Saat: ${time}\n💳 Ödeme: ${pay}`;
+        
+        // Sizin WhatsApp Linkiniz: https://wa.me/qr/ZGEMKGJIYQ2XA1
+        // Doğrudan telefon numaranızla otomatik yönlendirme:
+        const waNumber = "905014712020"; 
+        const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
+        
+        window.open(url, '_blank');
+    }
+</script>
 
 </body>
 </html>
