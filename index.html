@@ -154,6 +154,15 @@
         </a>
     </div>
 
+    <!-- MÜŞTERİ YORUMLARI BÖLÜMÜ -->
+    <div class="card" style="border-left-color: #0088cc;">
+        <h2 style="color: #0088cc;" id="reviewTitle">💬 Müşteri Yorumları & Değerlendirmeler</h2>
+        <p style="font-size: 12px; color: #aaa; margin-bottom: 15px;" id="reviewSub">Daha önceki misafirlerimizin yorumlarını okuyabilir veya kendi deneyiminizi paylaşabilirsiniz.</p>
+        
+        <!-- DISQUS YORUM ALANI -->
+        <div id="disqus_thread"></div>
+    </div>
+
     <div class="footer">
         Bellboy Support Service - İlham Bekmetov
     </div>
@@ -178,7 +187,9 @@
             lblFlight: "Uçuş Kodu (İsteğe Bağlı):",
             lblDt: "Taksi İstediğiniz Tarih ve Saat:",
             lblPy: "Ödeme Şekli:",
-            lblTotalTitle: "Tahmini Ödenecek Tutar:"
+            lblTotalTitle: "Tahmini Ödenecek Tutar:",
+            reviewTitle: "💬 Müşteri Yorumları & Değerlendirmeler",
+            reviewSub: "Daha önceki misafirlerimizin yorumlarını okuyabilir veya kendi deneyiminizi paylaşabilirsiniz."
         },
         en: {
             subTitle: "24/7 Yellow Taxi Request Service",
@@ -191,7 +202,9 @@
             lblFlight: "Flight Code (Optional):",
             lblDt: "Taxi Pickup Date & Time:",
             lblPy: "Payment Method:",
-            lblTotalTitle: "Estimated Total Price:"
+            lblTotalTitle: "Estimated Total Price:",
+            reviewTitle: "💬 Guest Reviews & Feedback",
+            reviewSub: "Read reviews from previous guests or leave your own feedback."
         },
         ru: {
             subTitle: "24/7 Заказ Желтого Такси",
@@ -204,7 +217,9 @@
             lblFlight: "Номер рейса (необязательно):",
             lblDt: "Дата и время подачи такси:",
             lblPy: "Способ оплаты:",
-            lblTotalTitle: "Итоговая стоимость:"
+            lblTotalTitle: "Итоговая стоимость:",
+            reviewTitle: "💬 Отзывы Гостей",
+            reviewSub: "Вы можете прочитать отзывы предыдущих гостей или оставить свой отзыв."
         },
         ar: {
             subTitle: "خدمة طلب التاكسي الأصفر 24/7",
@@ -217,7 +232,9 @@
             lblFlight: "رمز الطيران (اختياري):",
             lblDt: "تاريخ ووقت طلب التاكسي:",
             lblPy: "طريقة الدفع:",
-            lblTotalTitle: "المبلغ الإجمالي المقدر:"
+            lblTotalTitle: "المبلغ الإجمالي المقدر:",
+            reviewTitle: "💬 آراء وتقييمات الضيوف",
+            reviewSub: "يمكنك قراءة آراء الضيوف السابقين أو ترك تقييمك الخاص."
         }
     };
 
@@ -244,6 +261,8 @@
         document.getElementById('lblDt').innerText = t.lblDt;
         document.getElementById('lblPy').innerText = t.lblPy;
         document.getElementById('lblTotalTitle').innerText = t.lblTotalTitle;
+        document.getElementById('reviewTitle').innerText = t.reviewTitle;
+        document.getElementById('reviewSub').innerText = t.reviewSub;
     }
 
     function updateCalc() {
@@ -281,6 +300,18 @@
         
         window.open(url, '_blank');
     }
+
+    // DISQUS YORUM ENTEGRASYONU
+    var disqus_config = function () {
+        this.page.url = "https://secret2-art.github.io/Taxi-service/";
+        this.page.identifier = "triada-taxi-service";
+    };
+    (function() {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://triada-taxi.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
 
 </body>
