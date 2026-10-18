@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triada Hotel Karaköy - Sarı Taksi Hizmeti</title>
+    <title>Triada Hotel Karaköy - Sarı Taksi & Şehir Rehberi</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #121212; color: #f5f5f5; padding: 15px; padding-bottom: 90px; display: flex; justify-content: center; }
@@ -20,22 +20,29 @@
         
         .card { background: #262626; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 4px solid #f2a900; }
         .card h2 { font-size: 16px; color: #f2a900; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
-        .price { font-size: 18px; font-weight: bold; color: #fff; margin: 5px 0; }
+        .price { font-size: 20px; font-weight: bold; color: #fff; margin: 5px 0; }
         .card-info { font-size: 12px; color: #bbb; line-height: 1.5; margin-top: 8px; }
         
-        .capacity-box { background: #1a1a1a; padding: 10px; border-radius: 8px; font-size: 12px; color: #ddd; margin-top: 10px; border: 1px dashed #555; }
+        .capacity-box { background: #1a1a1a; padding: 12px; border-radius: 8px; font-size: 12px; color: #ddd; margin-bottom: 15px; border: 1px dashed #f2a900; line-height: 1.5; }
 
         .form-group { margin-bottom: 12px; }
         label { font-size: 12px; color: #ccc; display: block; margin-bottom: 4px; }
         input, select, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #444; background: #121212; color: #fff; font-size: 14px; }
-        textarea { resize: vertical; height: 80px; }
+        textarea { resize: vertical; height: 70px; }
         
         .calc-summary { background: #2d2612; border: 1px solid #f2a900; padding: 12px; border-radius: 8px; text-align: center; margin-top: 15px; }
         .calc-summary h3 { font-size: 13px; color: #aaa; font-weight: normal; }
         .calc-summary .total-price { font-size: 22px; color: #f2a900; font-weight: bold; margin-top: 4px; }
 
-        .btn-ws { background-color: #25D366; color: white; border: none; width: 100%; padding: 14px; border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); }
-        .btn-map { background-color: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 10px; border-radius: 30px; font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; text-decoration: none; }
+        .btn-ws { background-color: #25D366; color: white; border: none; width: 100%; padding: 14px; border-radius: 30px; font-size: 15px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); }
+        .btn-map { background-color: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 10px; border-radius: 30px; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; text-decoration: none; }
+        .btn-yt { background-color: #bb0000; color: #fff; border: none; width: 100%; padding: 9px; border-radius: 30px; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px; text-decoration: none; }
+
+        /* Rehber Liste Stili */
+        .guide-item { background: #1a1a1a; padding: 10px; border-radius: 8px; margin-bottom: 8px; border-left: 3px solid #f2a900; display: flex; justify-content: space-between; align-items: center; }
+        .guide-title { font-size: 13px; font-weight: bold; color: #fff; }
+        .guide-desc { font-size: 11px; color: #aaa; margin-top: 2px; }
+        .guide-link { color: #f2a900; font-size: 12px; text-decoration: none; font-weight: bold; }
         
         /* Yorumlar Listesi */
         .review-item { background: #181818; padding: 10px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid #0088cc; }
@@ -72,33 +79,34 @@
     </div>
 
     <!-- ARAÇ KAPASİTE BİLGİSİ -->
-    <div class="capacity-box">
-        🚖 <strong>Sarı Taksi Kapasitesi:</strong> Maksimum 4 Yolcu + 3 Standart Valiz
+    <div class="capacity-box" id="capBox">
+        🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>
+        • Maksimum 4 Yolcu<br>
+        • 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.
     </div>
-    <br>
 
     <!-- İSTANBUL HAVALİMANI -->
     <div class="card">
         <h2><span>✈️ İstanbul Havalimanı (IST)</span></h2>
-        <div class="price">35 € / 2.000 ₺ <small style="font-size:11px; font-weight:normal; color:#aaa;">(Nakit)</small></div>
+        <div class="price">35 € / 2.000 ₺</div>
         <div class="card-info" id="istInfo">
-            • Kredi kartı ile ödemede +%10 komisyon uygulanır.<br>
             • Ulaşım süresi: Yaklaşık 45 - 60 dakika.<br>
             • Uçuştan <strong>en geç 3.5 saat önce</strong> taksi ayarlanmalıdır.
         </div>
-        <a href="https://maps.app.goo.gl/343R8nToKzZ47w248" target="_blank" class="btn-map">📍 IST Harita Konumu</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Istanbul+Airport" target="_blank" class="btn-map">📍 IST Harita Konumu</a>
+        <a href="https://www.youtube.com/results?search_query=istanbul+airport+terminal+guide" target="_blank" class="btn-yt">▶ IST Yolcu Video Rehberi</a>
     </div>
 
     <!-- SABİHA GÖKÇEN HAVALİMANI -->
     <div class="card">
         <h2><span>✈️ Sabiha Gökçen Havalimanı (SAW)</span></h2>
-        <div class="price">40 € / 2.200 ₺ <small style="font-size:11px; font-weight:normal; color:#aaa;">(Nakit)</small></div>
+        <div class="price">40 € / 2.200 ₺</div>
         <div class="card-info" id="sawInfo">
-            • Kredi kartı ile ödemede +%10 komisyon uygulanır.<br>
             • Ulaşım süresi: Yaklaşık 60 - 90 dakika.<br>
             • Uçuştan <strong>en geç 4 saat önce</strong> taksi ayarlanmalıdır.
         </div>
-        <a href="https://maps.app.goo.gl/o19mZg1e83A4XmAn8" target="_blank" class="btn-map">📍 SAW Harita Konumu</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Sabiha+Gokcen+Airport" target="_blank" class="btn-map">📍 SAW Harita Konumu</a>
+        <a href="https://www.youtube.com/results?search_query=sabiha+gokcen+airport+terminal+guide" target="_blank" class="btn-yt">▶ SAW Yolcu Video Rehberi</a>
     </div>
 
     <!-- REZERVALSYON FORMU -->
@@ -152,10 +160,52 @@
         </button>
     </div>
 
-    <!-- OTEL KONUMU & REHBER -->
+    <!-- KARAKÖY & İSTANBUL GEZİ REHBERİ -->
     <div class="card" style="border-left-color: #f2a900;">
-        <h2><span>🗺️ Otel Konumu & Çevre</span></h2>
-        <a href="https://maps.app.goo.gl/4itJiowA8djsCk8X9" target="_blank" class="btn-map" style="background:#222; color:#fff; border-color:#555;">
+        <h2 id="guideHeader">🗺️ Karaköy & Gezi Rehberi</h2>
+        <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="guideSub">Otel çevresinde gezilecek yerler ve lezzet durakları:</p>
+        
+        <div class="guide-item">
+            <div>
+                <div class="guide-title">🏬 Galataport İstanbul</div>
+                <div class="guide-desc">Sahil yürüyüşü, alışveriş & Boğaz manzarası (🚶 5 Dk)</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Galataport+Istanbul" target="_blank" class="guide-link">Harita 📍</a>
+        </div>
+
+        <div class="guide-item">
+            <div>
+                <div class="guide-title">🥐 Karaköy Güllüoğlu</div>
+                <div class="guide-desc">Dünyaca ünlü tarihi baklavacı (🚶 2 Dk)</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Gulluoglu" target="_blank" class="guide-link">Harita 📍</a>
+        </div>
+
+        <div class="guide-item">
+            <div>
+                <div class="guide-title">🏰 Galata Kulesi</div>
+                <div class="guide-desc">Tarihi kule & panoramik İstanbul manzarası (🚶 10 Dk)</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Galata+Tower" target="_blank" class="guide-link">Harita 📍</a>
+        </div>
+
+        <div class="guide-item">
+            <div>
+                <div class="guide-title">☕ Fransız Geçidi & Kafeler</div>
+                <div class="guide-desc">Tarihi pasaj & nezih kafeler bölgesi (🚶 3 Dk)</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=French+Passage+Karakoy" target="_blank" class="guide-link">Harita 📍</a>
+        </div>
+
+        <div class="guide-item" style="border-left-color: #25D366;">
+            <div>
+                <div class="guide-title">🚃 T1 Karaköy Tramvay Durağı</div>
+                <div class="guide-desc">Sultanahmet, Ayasofya & Kapalıçarşı'ya kolay ulaşım (🚶 3 Dk)</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Tram+Station" target="_blank" class="guide-link">Harita 📍</a>
+        </div>
+
+        <a href="https://www.google.com/maps/search/?api=1&query=Triada+Hotel+Karakoy" target="_blank" class="btn-map" style="background:#222; color:#fff; border-color:#555; margin-top:10px;">
             🏨 Triada Hotel Karaköy Yol Tarifi
         </a>
     </div>
@@ -180,7 +230,7 @@
         <div style="margin-top: 20px;">
             <h3 style="font-size: 14px; color: #f2a900; margin-bottom: 10px;" id="lblAllReviews">Yapılan Yorumlar:</h3>
             <div id="reviewsList">
-                <!-- Yorumlar burada listelenecek -->
+                <!-- Yorumlar JavaScript ile buraya eklenecek -->
             </div>
         </div>
     </div>
@@ -200,8 +250,9 @@
     const translations = {
         tr: {
             subTitle: "7/24 Sarı Taksi Çağırma Hizmeti",
-            istInfo: "• Kredi kartı ile ödemede +%10 komisyon uygulanır.<br>• Ulaşım süresi: Yaklaşık 45 - 60 dakika.<br>• Uçuştan <strong>en geç 3.5 saat önce</strong> taksi ayarlanmalıdır.",
-            sawInfo: "• Kredi kartı ile ödemede +%10 komisyon uygulanır.<br>• Ulaşım süresi: Yaklaşık 60 - 90 dakika.<br>• Uçuştan <strong>en geç 4 saat önce</strong> taksi ayarlanmalıdır.",
+            capBox: "🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>• Maksimum 4 Yolcu<br>• 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.",
+            istInfo: "• Ulaşım süresi: Yaklaşık 45 - 60 dakika.<br>• Uçuştan <strong>en geç 3.5 saat önce</strong> taksi ayarlanmalıdır.",
+            sawInfo: "• Ulaşım süresi: Yaklaşık 60 - 90 dakika.<br>• Uçuştan <strong>en geç 4 saat önce</strong> taksi ayarlanmalıdır.",
             formTitle: "🚕 Sarı Taksi Çağır",
             lblNa: "Adınız Soyadınız:",
             lblRm: "Oda Numaranız:",
@@ -210,6 +261,8 @@
             lblDt: "Taksi İstediğiniz Tarih ve Saat:",
             lblPy: "Ödeme Şekli:",
             lblTotalTitle: "Tahmini Ödenecek Tutar:",
+            guideHeader: "🗺️ Karaköy & Gezi Rehberi",
+            guideSub: "Otel çevresinde gezilecek yerler ve lezzet durakları:",
             reviewTitle: "💬 Misafir Yorumları",
             reviewSub: "Deneyiminizi bizimle paylaşın:",
             lblReviewerName: "Adınız / Ülkeniz:",
@@ -219,8 +272,9 @@
         },
         en: {
             subTitle: "24/7 Yellow Taxi Request Service",
-            istInfo: "• +10% commission applies for credit card payments.<br>• Travel time: Approx. 45 - 60 mins.<br>• Taxi must be arranged <strong>at least 3.5 hours before</strong> flight.",
-            sawInfo: "• +10% commission applies for credit card payments.<br>• Travel time: Approx. 60 - 90 mins.<br>• Taxi must be arranged <strong>at least 4 hours before</strong> flight.",
+            capBox: "🚖 <strong>Yellow Taxi Capacity:</strong><br>• Maximum 4 Passengers<br>• Fits 4-5 Large Suitcases / 3-4 Hand Luggage.",
+            istInfo: "• Travel time: Approx. 45 - 60 mins.<br>• Taxi must be arranged <strong>at least 3.5 hours before</strong> flight.",
+            sawInfo: "• Travel time: Approx. 60 - 90 mins.<br>• Taxi must be arranged <strong>at least 4 hours before</strong> flight.",
             formTitle: "🚕 Order Yellow Taxi",
             lblNa: "Full Name:",
             lblRm: "Room Number:",
@@ -229,6 +283,8 @@
             lblDt: "Taxi Pickup Date & Time:",
             lblPy: "Payment Method:",
             lblTotalTitle: "Estimated Total Price:",
+            guideHeader: "🗺️ Karaköy & City Guide",
+            guideSub: "Places to visit and local tastes around hotel:",
             reviewTitle: "💬 Guest Reviews",
             reviewSub: "Share your experience with us:",
             lblReviewerName: "Your Name / Country:",
@@ -238,8 +294,9 @@
         },
         ru: {
             subTitle: "24/7 Заказ Желтого Такси",
-            istInfo: "• При оплате картой взимается комиссия +10%.<br>• Время в пути: около 45-60 минут.<br>• Такси необходимо заказать <strong>минимум за 3.5 часа</strong> до вылета.",
-            sawInfo: "• При оплате картой взимается комиссия +10%.<br>• Время в пути: около 60-90 минут.<br>• Такси необходимо заказать <strong>минимум за 4 часа</strong> до вылета.",
+            capBox: "🚖 <strong>Вместимость Желтого Такси:</strong><br>• Максимум 4 Пассажира<br>• Вмещает 4-5 больших чемоданов / 3-4 ручные клади.",
+            istInfo: "• Время в пути: около 45-60 минут.<br>• Такси необходимо заказать <strong>минимум за 3.5 часа</strong> до вылета.",
+            sawInfo: "• Время в пути: около 60-90 минут.<br>• Такси необходимо заказать <strong>минимум за 4 часа</strong> до вылета.",
             formTitle: "🚕 Заказать Желтое Такси",
             lblNa: "Имя и Фамилия:",
             lblRm: "Номер комнаты:",
@@ -248,6 +305,8 @@
             lblDt: "Дата и время подачи такси:",
             lblPy: "Способ оплаты:",
             lblTotalTitle: "Итоговая стоимость:",
+            guideHeader: "🗺️ Каракёй и Путеводитель",
+            guideSub: "Места для посещения рядом с отелем:",
             reviewTitle: "💬 Отзывы Гостей",
             reviewSub: "Поделитесь своим опытом:",
             lblReviewerName: "Ваше имя / Страна:",
@@ -257,8 +316,9 @@
         },
         ar: {
             subTitle: "خدمة طلب التاكسي الأصفر 24/7",
-            istInfo: "• تضاف عمولة +10% عند الدفع بالبطاقة الائتمانية.<br>• مدة الرحلة: حوالي 45 - 60 دقيقة.<br>• يجب حجز التاكسي <strong>قبل 3.5 ساعة على الأقل</strong> من موعد الطيران.",
-            sawInfo: "• تضاف عمولة +10% عند الدفع بالبطاقة الائتمانية.<br>• مدة الرحلة: حوالي 60 - 90 دقيقة.<br>• يجب حجز التاكسي <strong>قبل 4 ساعات على الأقل</strong> من موعد الطيران.",
+            capBox: "🚖 <strong>سعة التاكسي الأصفر:</strong><br>• 4 ركاب كحد أقصى<br>• يتسع لـ 4-5 حقائب كبيرة / 3-4 حقائب يد.",
+            istInfo: "• مدة الرحلة: حوالي 45 - 60 دقيقة.<br>• يجب حجز التاكسي <strong>قبل 3.5 ساعة على الأقل</strong> من موعد الطيران.",
+            sawInfo: "• مدة الرحلة: حوالي 60 - 90 دقيقة.<br>• يجب حجز التاكسي <strong>قبل 4 ساعات على الأقل</strong> من موعد الطيران.",
             formTitle: "🚕 طلب تاكسي أصفر",
             lblNa: "الاسم الكامل:",
             lblRm: "رقم الغرفة:",
@@ -267,6 +327,8 @@
             lblDt: "تاريخ ووقت طلب التاكسي:",
             lblPy: "طريقة الدفع:",
             lblTotalTitle: "المبلغ الإجمالي المقدر:",
+            guideHeader: "🗺️ كراكوي ودليل المدينة",
+            guideSub: "أماكن للزيارة حول الفندق:",
             reviewTitle: "💬 آراء الضيوف",
             reviewSub: "شاركنا تجربتك:",
             lblReviewerName: "الاسم / البلد:",
@@ -289,6 +351,7 @@
 
         const t = translations[lang];
         document.getElementById('subTitle').innerText = t.subTitle;
+        document.getElementById('capBox').innerHTML = t.capBox;
         document.getElementById('istInfo').innerHTML = t.istInfo;
         document.getElementById('sawInfo').innerHTML = t.sawInfo;
         document.getElementById('formTitle').innerText = t.formTitle;
@@ -299,6 +362,8 @@
         document.getElementById('lblDt').innerText = t.lblDt;
         document.getElementById('lblPy').innerText = t.lblPy;
         document.getElementById('lblTotalTitle').innerText = t.lblTotalTitle;
+        document.getElementById('guideHeader').innerText = t.guideHeader;
+        document.getElementById('guideSub').innerText = t.guideSub;
         document.getElementById('reviewTitle').innerText = t.reviewTitle;
         document.getElementById('reviewSub').innerText = t.reviewSub;
         document.getElementById('lblReviewerName').innerText = t.lblReviewerName;
