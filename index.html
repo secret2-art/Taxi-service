@@ -14,15 +14,10 @@
         .header h1 { font-size: 20px; color: #f2a900; margin-bottom: 5px; }
         .header p { font-size: 13px; color: #aaa; }
         
-        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .lang-picker { display: flex; gap: 6px; }
-        .lang-btn { background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 5px 10px; border-radius: 20px; cursor: pointer; font-size: 11px; transition: 0.2s; }
+        .lang-picker { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; }
+        .lang-btn { background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 12px; transition: 0.2s; }
         .lang-btn.active { background: #f2a900; color: #000; font-weight: bold; border-color: #f2a900; }
         
-        /* Müzik Oynatıcı Butonu */
-        .music-btn { background: #2a2a2a; border: 1px solid #f2a900; color: #f2a900; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 11px; font-weight: bold; display: flex; align-items: center; gap: 5px; }
-        .music-btn.playing { background: #f2a900; color: #000; }
-
         .trust-box { background: #1b2e1e; border: 1px solid #25D366; padding: 10px 12px; border-radius: 8px; font-size: 12px; color: #25D366; margin-bottom: 15px; text-align: center; font-weight: bold; line-height: 1.4; }
 
         .card { background: #262626; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 4px solid #f2a900; }
@@ -51,6 +46,10 @@
         .guide-desc { font-size: 11px; color: #aaa; margin-top: 2px; }
         .guide-link { color: #f2a900; font-size: 12px; text-decoration: none; font-weight: bold; }
         
+        /* Genişletme/Büyütme Kutusu */
+        .more-guides { display: none; }
+        .btn-expand { background: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 10px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; margin-top: 5px; margin-bottom: 10px; transition: 0.2s; }
+
         /* Yorumlar Listesi */
         .review-item { background: #181818; padding: 10px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid #0088cc; }
         .review-author { font-size: 13px; font-weight: bold; color: #f2a900; }
@@ -68,25 +67,14 @@
 </head>
 <body>
 
-<!-- STROMAE - PAPAOUTAI INSTRUMENTAL KAYNAĞI -->
-<audio id="bgMusic" loop>
-    <source src="https://cdns.freetousesound.com/tracks-samples/Stromae_Papaoutai_Instrumental.mp3" onerror="this.src='https://dl.dropboxusercontent.com/scl/fi/v62334m04l95a1p53moxq/Stromae-Papaoutai-Instrumental.mp3?rlkey=9p0t8k0l2g9l3n1k2l3m4n5o6'" type="audio/mpeg">
-    <source src="https://actions.google.com/sounds/v1/ambiences/coffee_shop.ogg" type="audio/ogg">
-</audio>
-
 <div class="container" id="mainContainer">
     
-    <!-- ÜST BAR: DİL VE MÜZİK -->
-    <div class="top-bar">
-        <div class="lang-picker">
-            <button class="lang-btn active" onclick="setLang('tr')">TR</button>
-            <button class="lang-btn" onclick="setLang('en')">EN</button>
-            <button class="lang-btn" onclick="setLang('ru')">RU</button>
-            <button class="lang-btn" onclick="setLang('ar')">AR</button>
-        </div>
-        <button class="music-btn" id="musicToggleBtn" onclick="toggleMusic()">
-            🎵 <span id="musicText">Stromae Müziği Aç</span>
-        </button>
+    <!-- DİL SEÇİMİ -->
+    <div class="lang-picker">
+        <button class="lang-btn active" onclick="setLang('tr')">TR</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('ru')">RU</button>
+        <button class="lang-btn" onclick="setLang('ar')">AR</button>
     </div>
 
     <!-- BAŞLIK -->
@@ -191,6 +179,7 @@
         <h2 id="guideHeader">🗺️ Karaköy Gezilecek Yerler</h2>
         <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="guideSub">Otel çevresindeki meşhur noktalar ve harita konumları:</p>
         
+        <!-- İLK 3 MEŞHUR YER (SÜREKLİ GÖRÜNÜR) -->
         <div class="guide-item">
             <div>
                 <div class="guide-title" id="gt1">🏬 Galataport İstanbul</div>
@@ -215,39 +204,47 @@
             <a href="https://www.google.com/maps/search/?api=1&query=Galata+Tower" target="_blank" class="guide-link" id="gl3">Harita 📍</a>
         </div>
 
-        <div class="guide-item">
-            <div>
-                <div class="guide-title" id="gt4">☕ Fransız Geçidi & Kafeler</div>
-                <div class="guide-desc" id="gd4">Tarihi pasaj & nezih kafeler bölgesi (🚶 3 Dk)</div>
+        <!-- BÜYÜTÜLÜP AÇILABİLİR DİĞER YERLER -->
+        <div class="more-guides" id="moreGuidesList">
+            <div class="guide-item">
+                <div>
+                    <div class="guide-title" id="gt4">☕ Fransız Geçidi & Kafeler</div>
+                    <div class="guide-desc" id="gd4">Tarihi pasaj & nezih kafeler bölgesi (🚶 3 Dk)</div>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=French+Passage+Karakoy" target="_blank" class="guide-link" id="gl4">Harita 📍</a>
             </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=French+Passage+Karakoy" target="_blank" class="guide-link" id="gl4">Harita 📍</a>
+
+            <div class="guide-item">
+                <div>
+                    <div class="guide-title" id="gt5">🪜 Kamondo Merdivenleri</div>
+                    <div class="guide-desc" id="gd5">Tarihi ve meşhur fotoğraf noktası (🚶 5 Dk)</div>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Kamondo+Stairs" target="_blank" class="guide-link" id="gl5">Harita 📍</a>
+            </div>
+
+            <div class="guide-item">
+                <div>
+                    <div class="guide-title" id="gt6">🐟 Karaköy Balıkçılar Çarşısı</div>
+                    <div class="guide-desc" id="gd6">Taze balık-ekmek ve boğaz ortamı (🚶 4 Dk)</div>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Fish+Market" target="_blank" class="guide-link" id="gl6">Harita 📍</a>
+            </div>
+
+            <div class="guide-item" style="border-left-color: #25D366;">
+                <div>
+                    <div class="guide-title" id="gt7">🚃 T1 Karaköy Tramvay Durağı</div>
+                    <div class="guide-desc" id="gd7">Sultanahmet, Ayasofya & Kapalıçarşı'ya ulaşım (🚶 3 Dk)</div>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Tram+Station" target="_blank" class="guide-link" id="gl7">Harita 📍</a>
+            </div>
         </div>
 
-        <div class="guide-item">
-            <div>
-                <div class="guide-title" id="gt5">🪜 Kamondo Merdivenleri</div>
-                <div class="guide-desc" id="gd5">Tarihi ve meşhur fotoğraf noktası (🚶 5 Dk)</div>
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Kamondo+Stairs" target="_blank" class="guide-link" id="gl5">Harita 📍</a>
-        </div>
+        <!-- AÇMA / KAPAMA BUTONU -->
+        <button class="btn-expand" onclick="toggleGuides()" id="btnExpandGuides">
+            🔍 Tüm Gezilecek Yerleri Büyüt / Göster
+        </button>
 
-        <div class="guide-item">
-            <div>
-                <div class="guide-title" id="gt6">🐟 Karaköy Balıkçılar Çarşısı</div>
-                <div class="guide-desc" id="gd6">Taze balık-ekmek ve boğaz ortamı (🚶 4 Dk)</div>
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Fish+Market" target="_blank" class="guide-link" id="gl6">Harita 📍</a>
-        </div>
-
-        <div class="guide-item" style="border-left-color: #25D366;">
-            <div>
-                <div class="guide-title" id="gt7">🚃 T1 Karaköy Tramvay Durağı</div>
-                <div class="guide-desc" id="gd7">Sultanahmet, Ayasofya & Kapalıçarşı'ya ulaşım (🚶 3 Dk)</div>
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Tram+Station" target="_blank" class="guide-link" id="gl7">Harita 📍</a>
-        </div>
-
-        <a href="https://www.google.com/maps/search/?api=1&query=Triada+Hotel+Karakoy" target="_blank" class="btn-map" style="background:#222; color:#fff; border-color:#555; margin-top:10px;" id="btnHotelMap">
+        <a href="https://www.google.com/maps/search/?api=1&query=Triada+Hotel+Karakoy" target="_blank" class="btn-map" style="background:#222; color:#fff; border-color:#555; margin-top:5px;" id="btnHotelMap">
             🏨 Triada Hotel Karaköy Yol Tarifi
         </a>
     </div>
@@ -292,7 +289,6 @@
     const translations = {
         tr: {
             subTitle: "7/24 Sarı Taksi Çağırma Hizmeti",
-            musicText: "Stromae Müziği Aç",
             trustBox: "🛡️ %100 Güvenli & Sorunsuz Ulaşım Garantisi<br>Ödemenizi İster Taksiciye İster Otelde Yapabilirsiniz!",
             capBox: "🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>• Maksimum 4 Yolcu<br>• 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.",
             titleIst: "✈️ İstanbul Havalimanı (IST)",
@@ -320,6 +316,7 @@
             btnWsSend: "💬 WhatsApp ile Talebi Gönder",
             guideHeader: "🗺️ Karaköy Gezilecek Yerler",
             guideSub: "Otel çevresindeki meşhur noktalar ve harita konumları:",
+            btnExpandGuides: "🔍 Tüm Gezilecek Yerleri Büyüt / Göster",
             gt1: "🏬 Galataport İstanbul", gd1: "Sahil yürüyüşü, alışveriş & Boğaz manzarası (🚶 5 Dk)", gl1: "Harita 📍",
             gt2: "🥐 Karaköy Güllüoğlu", gd2: "Dünyaca ünlü tarihi baklavacı (🚶 2 Dk)", gl2: "Harita 📍",
             gt3: "🏰 Galata Kulesi", gd3: "Tarihi kule & panoramik İstanbul manzarası (🚶 10 Dk)", gl3: "Harita 📍",
@@ -338,7 +335,6 @@
         },
         en: {
             subTitle: "24/7 Yellow Taxi Request Service",
-            musicText: "Play Stromae Music",
             trustBox: "🛡️ 100% Safe & Hassle-Free Transfer Guarantee<br>Pay either to the taxi driver or at the hotel reception!",
             capBox: "🚖 <strong>Yellow Taxi Capacity:</strong><br>• Maximum 4 Passengers<br>• Fits 4-5 Large Suitcases / 3-4 Hand Luggage.",
             titleIst: "✈️ Istanbul Airport (IST)",
@@ -366,6 +362,7 @@
             btnWsSend: "💬 Send Request via WhatsApp",
             guideHeader: "🗺️ Karaköy Attractions & Places",
             guideSub: "Famous places around the hotel & map locations:",
+            btnExpandGuides: "🔍 Expand All Places To Visit",
             gt1: "🏬 Galataport Istanbul", gd1: "Seaside walk, shopping & Bosphorus view (🚶 5 Mins)", gl1: "Map 📍",
             gt2: "🥐 Karakoy Gulluoglu", gd2: "World famous historical baklava shop (🚶 2 Mins)", gl2: "Map 📍",
             gt3: "🏰 Galata Tower", gd3: "Historical tower & panoramic city view (🚶 10 Mins)", gl3: "Map 📍",
@@ -384,7 +381,6 @@
         },
         ru: {
             subTitle: "24/7 Заказ Желтого Такси",
-            musicText: "Музыка Stromae",
             trustBox: "🛡️ 100% Гарантия Безопасной Поездки<br>Оплачивайте водителю такси или на ресепшн отеля!",
             capBox: "🚖 <strong>Вместимость Желтого Такси:</strong><br>• Максимум 4 Пассажира<br>• Вмещает 4-5 больших чемоданов / 3-4 ручные клади.",
             titleIst: "✈️ Аэропорт Стамбула (IST)",
@@ -412,6 +408,7 @@
             btnWsSend: "💬 Отправить запрос в WhatsApp",
             guideHeader: "🗺️ Достопримечательности Каракёй",
             guideSub: "Популярные места рядом с отелем на карте:",
+            btnExpandGuides: "🔍 Показать все места на карте",
             gt1: "🏬 Галатапорт Стамбул", gd1: "Прогулки у моря, шопинг и вид на Босфор (🚶 5 мин)", gl1: "Карта 📍",
             gt2: "🥐 Каракёй Гюллюоглу", gd2: "Всемирно известная историческая пахлава (🚶 2 мин)", gl2: "Карта 📍",
             gt3: "🏰 Башня Галата", gd3: "Историческая башня и панорамный вид (🚶 10 мин)", gl3: "Карта 📍",
@@ -430,7 +427,6 @@
         },
         ar: {
             subTitle: "خدمة طلب التاكسي الأصفر 24/7",
-            musicText: "موسيقى Stromae",
             trustBox: "🛡️ ضمان نقل آمن وسلس 100%<br>ادفع إما لسيارة التاكسي أو في الفندق!",
             capBox: "🚖 <strong>سعة التاكسي الأصفر:</strong><br>• 4 ركاب كحد أقصى<br>• يتسع لـ 4-5 حقائب كبيرة / 3-4 حقائب يد.",
             titleIst: "✈️ مطار إسطنبول (IST)",
@@ -458,6 +454,7 @@
             btnWsSend: "💬 إرسال الطلب عبر WhatsApp",
             guideHeader: "🗺️ الأماكن السياحية في كراكوي",
             guideSub: "أشهر الأماكن حول الفندق والمواقع على الخريطة:",
+            btnExpandGuides: "🔍 عرض جميع الأماكن السياحية",
             gt1: "🏬 غالاتابورت إسطنبول", gd1: "المشي على البحر، التسوق وإطلالة البوسفور (🚶 5 دقائق)", gl1: "الخريطة 📍",
             gt2: "🥐 كراكوي غولو أوغلو", gd2: "أشهر محل بقلاوة تاريخي في العالم (🚶 دقيقتين)", gl2: "الخريطة 📍",
             gt3: "🏰 برج غالاتا", gd3: "برج تاريخي وإطلالة بانورامية (🚶 10 دقائق)", gl3: "الخريطة 📍",
@@ -476,25 +473,20 @@
         }
     };
 
-    let isPlaying = false;
-    function toggleMusic() {
-        const audio = document.getElementById('bgMusic');
-        const btn = document.getElementById('musicToggleBtn');
+    let isExpanded = false;
+    function toggleGuides() {
+        const list = document.getElementById('moreGuidesList');
+        const btn = document.getElementById('btnExpandGuides');
         const lang = document.querySelector('.lang-btn.active').innerText.toLowerCase();
-        
-        if(isPlaying) {
-            audio.pause();
-            isPlaying = false;
-            btn.classList.remove('playing');
-            document.getElementById('musicText').innerText = (lang === 'en') ? "Play Stromae Music" : (lang === 'ru') ? "Музыка Stromae" : (lang === 'ar') ? "موسيقى Stromae" : "Stromae Müziği Aç";
+
+        if(isExpanded) {
+            list.style.display = "none";
+            isExpanded = false;
+            btn.innerText = (lang === 'en') ? "🔍 Expand All Places To Visit" : (lang === 'ru') ? "🔍 Показать все места на карте" : (lang === 'ar') ? "🔍 عرض جميع الأماكن السياحية" : "🔍 Tüm Gezilecek Yerleri Büyüt / Göster";
         } else {
-            audio.play().then(() => {
-                isPlaying = true;
-                btn.classList.add('playing');
-                document.getElementById('musicText').innerText = (lang === 'en') ? "Pause Music" : (lang === 'ru') ? "Пауза" : (lang === 'ar') ? "إيقاف الموسيقى" : "Müziği Kapat";
-            }).catch(e => {
-                alert("Müzik çalınamadı. Tarayıcınız ses oynatmayı engelliyor olabilir.");
-            });
+            list.style.display = "block";
+            isExpanded = true;
+            btn.innerText = (lang === 'en') ? "▲ Show Less" : (lang === 'ru') ? "▲ Свернуть" : (lang === 'ar') ? "▲ إخفاء الأماكن" : "▲ Daha Az Göster / Küçült";
         }
     }
 
