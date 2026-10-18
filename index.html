@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triada Hotel Karaköy - Sarı Taksi & Şehir Rehberi</title>
+    <title>Triada Hotel Karaköy - Sarı Taksi Hizmeti</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #121212; color: #f5f5f5; padding: 15px; padding-bottom: 90px; display: flex; justify-content: center; }
@@ -18,6 +18,8 @@
         .lang-btn { background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 12px; transition: 0.2s; }
         .lang-btn.active { background: #f2a900; color: #000; font-weight: bold; border-color: #f2a900; }
         
+        .trust-box { background: #1b2e1e; border: 1px solid #25D366; padding: 10px 12px; border-radius: 8px; font-size: 12px; color: #25D366; margin-bottom: 15px; text-align: center; font-weight: bold; line-height: 1.4; }
+
         .card { background: #262626; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 4px solid #f2a900; }
         .card h2 { font-size: 16px; color: #f2a900; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
         .price { font-size: 20px; font-weight: bold; color: #fff; margin: 5px 0; }
@@ -78,6 +80,12 @@
         <p id="subTitle">7/24 Sarı Taksi Çağırma Hizmeti</p>
     </div>
 
+    <!-- GÜVEN KUTUSU -->
+    <div class="trust-box" id="trustBox">
+        🛡️ %100 Güvenli & Sorunsuz Ulaşım Garantisi<br>
+        Ödemenizi İster Taksiciye İster Otelde Yapabilirsiniz!
+    </div>
+
     <!-- ARAÇ KAPASİTE BİLGİSİ -->
     <div class="capacity-box" id="capBox">
         🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>
@@ -87,26 +95,26 @@
 
     <!-- İSTANBUL HAVALİMANI -->
     <div class="card">
-        <h2><span>✈️ İstanbul Havalimanı (IST)</span></h2>
+        <h2><span id="titleIst">✈️ İstanbul Havalimanı (IST)</span></h2>
         <div class="price">35 € / 2.000 ₺</div>
         <div class="card-info" id="istInfo">
             • Ulaşım süresi: Yaklaşık 45 - 60 dakika.<br>
             • Uçuştan <strong>en geç 3.5 saat önce</strong> taksi ayarlanmalıdır.
         </div>
-        <a href="https://www.google.com/maps/search/?api=1&query=Istanbul+Airport" target="_blank" class="btn-map">📍 IST Harita Konumu</a>
-        <a href="https://www.youtube.com/results?search_query=istanbul+airport+terminal+guide" target="_blank" class="btn-yt">▶ IST Yolcu Video Rehberi</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Istanbul+Airport" target="_blank" class="btn-map" id="mapBtnIst">📍 IST Harita Konumu</a>
+        <a href="https://www.youtube.com/results?search_query=istanbul+airport+terminal+guide" target="_blank" class="btn-yt" id="ytBtnIst">▶ IST Yolcu Video Rehberi</a>
     </div>
 
     <!-- SABİHA GÖKÇEN HAVALİMANI -->
     <div class="card">
-        <h2><span>✈️ Sabiha Gökçen Havalimanı (SAW)</span></h2>
+        <h2><span id="titleSaw">✈️ Sabiha Gökçen Havalimanı (SAW)</span></h2>
         <div class="price">40 € / 2.200 ₺</div>
         <div class="card-info" id="sawInfo">
             • Ulaşım süresi: Yaklaşık 60 - 90 dakika.<br>
             • Uçuştan <strong>en geç 4 saat önce</strong> taksi ayarlanmalıdır.
         </div>
-        <a href="https://www.google.com/maps/search/?api=1&query=Sabiha+Gokcen+Airport" target="_blank" class="btn-map">📍 SAW Harita Konumu</a>
-        <a href="https://www.youtube.com/results?search_query=sabiha+gokcen+airport+terminal+guide" target="_blank" class="btn-yt">▶ SAW Yolcu Video Rehberi</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Sabiha+Gokcen+Airport" target="_blank" class="btn-map" id="mapBtnSaw">📍 SAW Harita Konumu</a>
+        <a href="https://www.youtube.com/results?search_query=sabiha+gokcen+airport+terminal+guide" target="_blank" class="btn-yt" id="ytBtnSaw">▶ SAW Yolcu Video Rehberi</a>
     </div>
 
     <!-- REZERVALSYON FORMU -->
@@ -126,8 +134,8 @@
         <div class="form-group">
             <label id="lblAp">Havalimanı Seçin:</label>
             <select id="selAirport" onchange="updateCalc()">
-                <option value="IST">İstanbul Havalimanı (IST) - 35€ / 2000₺</option>
-                <option value="SAW">Sabiha Gökçen (SAW) - 40€ / 2200₺</option>
+                <option value="IST" id="optIst">İstanbul Havalimanı (IST) - 35€ / 2000₺</option>
+                <option value="SAW" id="optSaw">Sabiha Gökçen (SAW) - 40€ / 2200₺</option>
             </select>
         </div>
 
@@ -142,70 +150,88 @@
         </div>
 
         <div class="form-group">
-            <label id="lblPy">Ödeme Şekli:</label>
+            <label id="lblPy">Ödeme Yeri ve Şekli:</label>
             <select id="selPay" onchange="updateCalc()">
-                <option value="Cash">Nakit / Cash</option>
-                <option value="Card">Kredi Kartı / Credit Card (+%10)</option>
+                <option value="Driver-Cash" id="optPy1">Araçta Nakit (Taksiciye)</option>
+                <option value="Driver-Card" id="optPy2">Araçta Kredi Kartı (+%10)</option>
+                <option value="Hotel-Cash" id="optPy3">Otelde Nakit Ödeme</option>
+                <option value="Hotel-Card" id="optPy4">Otelde Kredi Kartı Ödeme (+%10)</option>
             </select>
         </div>
 
         <!-- HESAPLAMA ÖZETİ -->
         <div class="calc-summary">
-            <h3 id="lblTotalTitle">Tahmini Ödenecek Tutar:</h3>
+            <h3 id="lblTotalTitle">Ödenecek Net Fiyat:</h3>
             <div class="total-price" id="txtTotalPrice">35 € / 2.000 ₺</div>
         </div>
 
-        <button class="btn-ws" onclick="sendWhatsApp()">
+        <button class="btn-ws" onclick="sendWhatsApp()" id="btnWsSend">
             💬 WhatsApp ile Talebi Gönder
         </button>
     </div>
 
     <!-- KARAKÖY & İSTANBUL GEZİ REHBERİ -->
     <div class="card" style="border-left-color: #f2a900;">
-        <h2 id="guideHeader">🗺️ Karaköy & Gezi Rehberi</h2>
-        <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="guideSub">Otel çevresinde gezilecek yerler ve lezzet durakları:</p>
+        <h2 id="guideHeader">🗺️ Karaköy Gezilecek Yerler</h2>
+        <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="guideSub">Otel çevresindeki meşhur noktalar ve harita konumları:</p>
         
         <div class="guide-item">
             <div>
-                <div class="guide-title">🏬 Galataport İstanbul</div>
-                <div class="guide-desc">Sahil yürüyüşü, alışveriş & Boğaz manzarası (🚶 5 Dk)</div>
+                <div class="guide-title" id="gt1">🏬 Galataport İstanbul</div>
+                <div class="guide-desc" id="gd1">Sahil yürüyüşü, alışveriş & Boğaz manzarası (🚶 5 Dk)</div>
             </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Galataport+Istanbul" target="_blank" class="guide-link">Harita 📍</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Galataport+Istanbul" target="_blank" class="guide-link" id="gl1">Harita 📍</a>
         </div>
 
         <div class="guide-item">
             <div>
-                <div class="guide-title">🥐 Karaköy Güllüoğlu</div>
-                <div class="guide-desc">Dünyaca ünlü tarihi baklavacı (🚶 2 Dk)</div>
+                <div class="guide-title" id="gt2">🥐 Karaköy Güllüoğlu</div>
+                <div class="guide-desc" id="gd2">Dünyaca ünlü tarihi baklavacı (🚶 2 Dk)</div>
             </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Gulluoglu" target="_blank" class="guide-link">Harita 📍</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Gulluoglu" target="_blank" class="guide-link" id="gl2">Harita 📍</a>
         </div>
 
         <div class="guide-item">
             <div>
-                <div class="guide-title">🏰 Galata Kulesi</div>
-                <div class="guide-desc">Tarihi kule & panoramik İstanbul manzarası (🚶 10 Dk)</div>
+                <div class="guide-title" id="gt3">🏰 Galata Kulesi</div>
+                <div class="guide-desc" id="gd3">Tarihi kule & panoramik İstanbul manzarası (🚶 10 Dk)</div>
             </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Galata+Tower" target="_blank" class="guide-link">Harita 📍</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Galata+Tower" target="_blank" class="guide-link" id="gl3">Harita 📍</a>
         </div>
 
         <div class="guide-item">
             <div>
-                <div class="guide-title">☕ Fransız Geçidi & Kafeler</div>
-                <div class="guide-desc">Tarihi pasaj & nezih kafeler bölgesi (🚶 3 Dk)</div>
+                <div class="guide-title" id="gt4">☕ Fransız Geçidi & Kafeler</div>
+                <div class="guide-desc" id="gd4">Tarihi pasaj & nezih kafeler bölgesi (🚶 3 Dk)</div>
             </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=French+Passage+Karakoy" target="_blank" class="guide-link">Harita 📍</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=French+Passage+Karakoy" target="_blank" class="guide-link" id="gl4">Harita 📍</a>
+        </div>
+
+        <div class="guide-item">
+            <div>
+                <div class="guide-title" id="gt5">🪜 Kamondo Merdivenleri</div>
+                <div class="guide-desc" id="gd5">Tarihi ve meşhur fotoğraf noktası (🚶 5 Dk)</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kamondo+Stairs" target="_blank" class="guide-link" id="gl5">Harita 📍</a>
+        </div>
+
+        <div class="guide-item">
+            <div>
+                <div class="guide-title" id="gt6">🐟 Karaköy Balıkçılar Çarşısı</div>
+                <div class="guide-desc" id="gd6">Taze balık-ekmek ve boğaz ortamı (🚶 4 Dk)</div>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Fish+Market" target="_blank" class="guide-link" id="gl6">Harita 📍</a>
         </div>
 
         <div class="guide-item" style="border-left-color: #25D366;">
             <div>
-                <div class="guide-title">🚃 T1 Karaköy Tramvay Durağı</div>
-                <div class="guide-desc">Sultanahmet, Ayasofya & Kapalıçarşı'ya kolay ulaşım (🚶 3 Dk)</div>
+                <div class="guide-title" id="gt7">🚃 T1 Karaköy Tramvay Durağı</div>
+                <div class="guide-desc" id="gd7">Sultanahmet, Ayasofya & Kapalıçarşı'ya ulaşım (🚶 3 Dk)</div>
             </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Tram+Station" target="_blank" class="guide-link">Harita 📍</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Tram+Station" target="_blank" class="guide-link" id="gl7">Harita 📍</a>
         </div>
 
-        <a href="https://www.google.com/maps/search/?api=1&query=Triada+Hotel+Karakoy" target="_blank" class="btn-map" style="background:#222; color:#fff; border-color:#555; margin-top:10px;">
+        <a href="https://www.google.com/maps/search/?api=1&query=Triada+Hotel+Karakoy" target="_blank" class="btn-map" style="background:#222; color:#fff; border-color:#555; margin-top:10px;" id="btnHotelMap">
             🏨 Triada Hotel Karaköy Yol Tarifi
         </a>
     </div>
@@ -230,7 +256,7 @@
         <div style="margin-top: 20px;">
             <h3 style="font-size: 14px; color: #f2a900; margin-bottom: 10px;" id="lblAllReviews">Yapılan Yorumlar:</h3>
             <div id="reviewsList">
-                <!-- Yorumlar JavaScript ile buraya eklenecek -->
+                <!-- Yorumlar listelenecek -->
             </div>
         </div>
     </div>
@@ -242,7 +268,7 @@
 
 <!-- SABİT ALT BÖLÜM -->
 <div class="sticky-bar">
-    <a href="tel:+905014712020" class="sticky-btn sticky-call">📞 Hemen Ara</a>
+    <a href="tel:+905014712020" class="sticky-btn sticky-call" id="btnCallCall">📞 Hemen Ara</a>
     <a href="https://wa.me/905014712020" target="_blank" class="sticky-btn sticky-wa">💬 WhatsApp</a>
 </div>
 
@@ -250,91 +276,183 @@
     const translations = {
         tr: {
             subTitle: "7/24 Sarı Taksi Çağırma Hizmeti",
+            trustBox: "🛡️ %100 Güvenli & Sorunsuz Ulaşım Garantisi<br>Ödemenizi İster Taksiciye İster Otelde Yapabilirsiniz!",
             capBox: "🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>• Maksimum 4 Yolcu<br>• 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.",
+            titleIst: "✈️ İstanbul Havalimanı (IST)",
             istInfo: "• Ulaşım süresi: Yaklaşık 45 - 60 dakika.<br>• Uçuştan <strong>en geç 3.5 saat önce</strong> taksi ayarlanmalıdır.",
+            mapBtnIst: "📍 IST Harita Konumu",
+            ytBtnIst: "▶ IST Yolcu Video Rehberi",
+            titleSaw: "✈️ Sabiha Gökçen Havalimanı (SAW)",
             sawInfo: "• Ulaşım süresi: Yaklaşık 60 - 90 dakika.<br>• Uçuştan <strong>en geç 4 saat önce</strong> taksi ayarlanmalıdır.",
+            mapBtnSaw: "📍 SAW Harita Konumu",
+            ytBtnSaw: "▶ SAW Yolcu Video Rehberi",
             formTitle: "🚕 Sarı Taksi Çağır",
             lblNa: "Adınız Soyadınız:",
             lblRm: "Oda Numaranız:",
             lblAp: "Havalimanı Seçin:",
+            optIst: "İstanbul Havalimanı (IST) - 35€ / 2000₺",
+            optSaw: "Sabiha Gökçen (SAW) - 40€ / 2200₺",
             lblFlight: "Uçuş Kodu (İsteğe Bağlı):",
             lblDt: "Taksi İstediğiniz Tarih ve Saat:",
-            lblPy: "Ödeme Şekli:",
-            lblTotalTitle: "Tahmini Ödenecek Tutar:",
-            guideHeader: "🗺️ Karaköy & Gezi Rehberi",
-            guideSub: "Otel çevresinde gezilecek yerler ve lezzet durakları:",
+            lblPy: "Ödeme Yeri ve Şekli:",
+            optPy1: "Araçta Nakit (Taksiciye)",
+            optPy2: "Araçta Kredi Kartı (+%10)",
+            optPy3: "Otelde Nakit Ödeme",
+            optPy4: "Otelde Kredi Kartı Ödeme (+%10)",
+            lblTotalTitle: "Ödenecek Net Fiyat:",
+            btnWsSend: "💬 WhatsApp ile Talebi Gönder",
+            guideHeader: "🗺️ Karaköy Gezilecek Yerler",
+            guideSub: "Otel çevresindeki meşhur noktalar ve harita konumları:",
+            gt1: "🏬 Galataport İstanbul", gd1: "Sahil yürüyüşü, alışveriş & Boğaz manzarası (🚶 5 Dk)", gl1: "Harita 📍",
+            gt2: "🥐 Karaköy Güllüoğlu", gd2: "Dünyaca ünlü tarihi baklavacı (🚶 2 Dk)", gl2: "Harita 📍",
+            gt3: "🏰 Galata Kulesi", gd3: "Tarihi kule & panoramik İstanbul manzarası (🚶 10 Dk)", gl3: "Harita 📍",
+            gt4: "☕ Fransız Geçidi & Kafeler", gd4: "Tarihi pasaj & nezih kafeler bölgesi (🚶 3 Dk)", gl4: "Harita 📍",
+            gt5: "🪜 Kamondo Merdivenleri", gd5: "Tarihi ve meşhur fotoğraf noktası (🚶 5 Dk)", gl5: "Harita 📍",
+            gt6: "🐟 Karaköy Balıkçılar Çarşısı", gd6: "Taze balık-ekmek ve boğaz ortamı (🚶 4 Dk)", gl6: "Harita 📍",
+            gt7: "🚃 T1 Karaköy Tramvay Durağı", gd7: "Sultanahmet, Ayasofya & Kapalıçarşı'ya ulaşım (🚶 3 Dk)", gl7: "Harita 📍",
+            btnHotelMap: "🏨 Triada Hotel Karaköy Yol Tarifi",
             reviewTitle: "💬 Misafir Yorumları",
             reviewSub: "Deneyiminizi bizimle paylaşın:",
             lblReviewerName: "Adınız / Ülkeniz:",
             lblReviewText: "Yorumunuz:",
             btnSendReview: "Yorumu Gönder",
-            lblAllReviews: "Yapılan Yorumlar:"
+            lblAllReviews: "Yapılan Yorumlar:",
+            btnCallCall: "📞 Hemen Ara"
         },
         en: {
             subTitle: "24/7 Yellow Taxi Request Service",
+            trustBox: "🛡️ 100% Safe & Hassle-Free Transfer Guarantee<br>Pay either to the taxi driver or at the hotel reception!",
             capBox: "🚖 <strong>Yellow Taxi Capacity:</strong><br>• Maximum 4 Passengers<br>• Fits 4-5 Large Suitcases / 3-4 Hand Luggage.",
+            titleIst: "✈️ Istanbul Airport (IST)",
             istInfo: "• Travel time: Approx. 45 - 60 mins.<br>• Taxi must be arranged <strong>at least 3.5 hours before</strong> flight.",
+            mapBtnIst: "📍 IST Map Location",
+            ytBtnIst: "▶ IST Passenger Video Guide",
+            titleSaw: "✈️ Sabiha Gokcen Airport (SAW)",
             sawInfo: "• Travel time: Approx. 60 - 90 mins.<br>• Taxi must be arranged <strong>at least 4 hours before</strong> flight.",
+            mapBtnSaw: "📍 SAW Map Location",
+            ytBtnSaw: "▶ SAW Passenger Video Guide",
             formTitle: "🚕 Order Yellow Taxi",
             lblNa: "Full Name:",
             lblRm: "Room Number:",
             lblAp: "Select Airport:",
+            optIst: "Istanbul Airport (IST) - 35€ / 2000₺",
+            optSaw: "Sabiha Gokcen (SAW) - 40€ / 2200₺",
             lblFlight: "Flight Code (Optional):",
             lblDt: "Taxi Pickup Date & Time:",
-            lblPy: "Payment Method:",
-            lblTotalTitle: "Estimated Total Price:",
-            guideHeader: "🗺️ Karaköy & City Guide",
-            guideSub: "Places to visit and local tastes around hotel:",
+            lblPy: "Payment Location & Method:",
+            optPy1: "Cash in Taxi (to Driver)",
+            optPy2: "Credit Card in Taxi (+10%)",
+            optPy3: "Cash at Hotel Reception",
+            optPy4: "Credit Card at Hotel (+10%)",
+            lblTotalTitle: "Fixed Price To Pay:",
+            btnWsSend: "💬 Send Request via WhatsApp",
+            guideHeader: "🗺️ Karaköy Attractions & Places",
+            guideSub: "Famous places around the hotel & map locations:",
+            gt1: "🏬 Galataport Istanbul", gd1: "Seaside walk, shopping & Bosphorus view (🚶 5 Mins)", gl1: "Map 📍",
+            gt2: "🥐 Karakoy Gulluoglu", gd2: "World famous historical baklava shop (🚶 2 Mins)", gl2: "Map 📍",
+            gt3: "🏰 Galata Tower", gd3: "Historical tower & panoramic city view (🚶 10 Mins)", gl3: "Map 📍",
+            gt4: "☕ French Passage & Cafes", gd4: "Historic arcade & cozy cafe area (🚶 3 Mins)", gl4: "Map 📍",
+            gt5: "🪜 Kamondo Stairs", gd5: "Famous historical photo spot (🚶 5 Mins)", gl5: "Map 📍",
+            gt6: "🐟 Karakoy Fish Market", gd6: "Fresh fish sandwiches & Bosphorus vibe (🚶 4 Mins)", gl6: "Map 📍",
+            gt7: "🚃 T1 Karakoy Tram Station", gd7: "Easy access to Hagia Sophia & Grand Bazaar (🚶 3 Mins)", gl7: "Map 📍",
+            btnHotelMap: "🏨 Triada Hotel Karaköy Directions",
             reviewTitle: "💬 Guest Reviews",
             reviewSub: "Share your experience with us:",
             lblReviewerName: "Your Name / Country:",
             lblReviewText: "Your Comment:",
             btnSendReview: "Submit Review",
-            lblAllReviews: "All Reviews:"
+            lblAllReviews: "All Guest Reviews:",
+            btnCallCall: "📞 Call Now"
         },
         ru: {
             subTitle: "24/7 Заказ Желтого Такси",
+            trustBox: "🛡️ 100% Гарантия Безопасной Поездки<br>Оплачивайте водителю такси или на ресепшн отеля!",
             capBox: "🚖 <strong>Вместимость Желтого Такси:</strong><br>• Максимум 4 Пассажира<br>• Вмещает 4-5 больших чемоданов / 3-4 ручные клади.",
+            titleIst: "✈️ Аэропорт Стамбула (IST)",
             istInfo: "• Время в пути: около 45-60 минут.<br>• Такси необходимо заказать <strong>минимум за 3.5 часа</strong> до вылета.",
+            mapBtnIst: "📍 IST Карта",
+            ytBtnIst: "▶ Видео-гид по аэропорту IST",
+            titleSaw: "✈️ Аэропорт Сабиха Гёкчен (SAW)",
             sawInfo: "• Время в пути: около 60-90 минут.<br>• Такси необходимо заказать <strong>минимум за 4 часа</strong> до вылета.",
+            mapBtnSaw: "📍 SAW Карта",
+            ytBtnSaw: "▶ Видео-гид по аэропорту SAW",
             formTitle: "🚕 Заказать Желтое Такси",
             lblNa: "Имя и Фамилия:",
             lblRm: "Номер комнаты:",
             lblAp: "Выберите аэропорт:",
+            optIst: "Аэропорт Стамбула (IST) - 35€ / 2000₺",
+            optSaw: "Сабиха Гёкчен (SAW) - 40€ / 2200₺",
             lblFlight: "Номер рейса (необязательно):",
             lblDt: "Дата и время подачи такси:",
-            lblPy: "Способ оплаты:",
-            lblTotalTitle: "Итоговая стоимость:",
-            guideHeader: "🗺️ Каракёй и Путеводитель",
-            guideSub: "Места для посещения рядом с отелем:",
+            lblPy: "Место и способ оплаты:",
+            optPy1: "Наличными водителю",
+            optPy2: "Картой в такси (+10%)",
+            optPy3: "Наличными в отеле",
+            optPy4: "Картой в отеле (+10%)",
+            lblTotalTitle: "Фиксированная цена:",
+            btnWsSend: "💬 Отправить запрос в WhatsApp",
+            guideHeader: "🗺️ Достопримечательности Каракёй",
+            guideSub: "Популярные места рядом с отелем на карте:",
+            gt1: "🏬 Галатапорт Стамбул", gd1: "Прогулки у моря, шопинг и вид на Босфор (🚶 5 мин)", gl1: "Карта 📍",
+            gt2: "🥐 Каракёй Гюллюоглу", gd2: "Всемирно известная историческая пахлава (🚶 2 мин)", gl2: "Карта 📍",
+            gt3: "🏰 Башня Галата", gd3: "Историческая башня и панорамный вид (🚶 10 мин)", gl3: "Карта 📍",
+            gt4: "☕ Французский пассаж", gd4: "Исторический пассаж и уютные кафе (🚶 3 мин)", gl4: "Карта 📍",
+            gt5: "🪜 Лестница Камондо", gd5: "Знаменитое историческое место для фото (🚶 5 мин)", gl5: "Карта 📍",
+            gt6: "🐟 Рыбный рынок Каракёй", gd6: "Свежая рыба в хлебе и атмосфера Босфора (🚶 4 мин)", gl6: "Карта 📍",
+            gt7: "🚃 Трамвай T1 Каракёй", gd7: "Быстрый проезд к Святой Софии и Гранд-Базару (🚶 3 мин)", gl7: "Карта 📍",
+            btnHotelMap: "🏨 Маршрут к Triada Hotel Karaköy",
             reviewTitle: "💬 Отзывы Гостей",
             reviewSub: "Поделитесь своим опытом:",
             lblReviewerName: "Ваше имя / Страна:",
             lblReviewText: "Ваш комментарий:",
             btnSendReview: "Отправить отзыв",
-            lblAllReviews: "Все отзывы:"
+            lblAllReviews: "Все отзывы:",
+            btnCallCall: "📞 Позвонить"
         },
         ar: {
             subTitle: "خدمة طلب التاكسي الأصفر 24/7",
+            trustBox: "🛡️ ضمان نقل آمن وسلس 100%<br>ادفع إما لسيارة التاكسي أو في الفندق!",
             capBox: "🚖 <strong>سعة التاكسي الأصفر:</strong><br>• 4 ركاب كحد أقصى<br>• يتسع لـ 4-5 حقائب كبيرة / 3-4 حقائب يد.",
+            titleIst: "✈️ مطار إسطنبول (IST)",
             istInfo: "• مدة الرحلة: حوالي 45 - 60 دقيقة.<br>• يجب حجز التاكسي <strong>قبل 3.5 ساعة على الأقل</strong> من موعد الطيران.",
+            mapBtnIst: "📍 موقع خريطة IST",
+            ytBtnIst: "▶ فيديو دليل الركاب IST",
+            titleSaw: "✈️ مطار صبيحة كوكجن (SAW)",
             sawInfo: "• مدة الرحلة: حوالي 60 - 90 دقيقة.<br>• يجب حجز التاكسي <strong>قبل 4 ساعات على الأقل</strong> من موعد الطيران.",
+            mapBtnSaw: "📍 موقع خريطة SAW",
+            ytBtnSaw: "▶ فيديو دليل الركاب SAW",
             formTitle: "🚕 طلب تاكسي أصفر",
             lblNa: "الاسم الكامل:",
             lblRm: "رقم الغرفة:",
             lblAp: "اختر المطار:",
+            optIst: "مطار إسطنبول (IST) - 35€ / 2000₺",
+            optSaw: "مطار صبيحة (SAW) - 40€ / 2200₺",
             lblFlight: "رمز الطيران (اختياري):",
             lblDt: "تاريخ ووقت طلب التاكسي:",
-            lblPy: "طريقة الدفع:",
-            lblTotalTitle: "المبلغ الإجمالي المقدر:",
-            guideHeader: "🗺️ كراكوي ودليل المدينة",
-            guideSub: "أماكن للزيارة حول الفندق:",
+            lblPy: "مكان وطريقة الدفع:",
+            optPy1: "نقداً في التاكسي",
+            optPy2: "بطاقة في التاكسي (+10%)",
+            optPy3: "نقداً في الفندق",
+            optPy4: "بطاقة في الفندق (+10%)",
+            lblTotalTitle: "السعر الثابت المقدر:",
+            btnWsSend: "💬 إرسال الطلب عبر WhatsApp",
+            guideHeader: "🗺️ الأماكن السياحية في كراكوي",
+            guideSub: "أشهر الأماكن حول الفندق والمواقع على الخريطة:",
+            gt1: "🏬 غالاتابورت إسطنبول", gd1: "المشي على البحر، التسوق وإطلالة البوسفور (🚶 5 دقائق)", gl1: "الخريطة 📍",
+            gt2: "🥐 كراكوي غولو أوغلو", gd2: "أشهر محل بقلاوة تاريخي في العالم (🚶 دقيقتين)", gl2: "الخريطة 📍",
+            gt3: "🏰 برج غالاتا", gd3: "برج تاريخي وإطلالة بانورامية (🚶 10 دقائق)", gl3: "الخريطة 📍",
+            gt4: "☕ الممر الفرنسي والمقاهي", gd4: "ممر تاريخي ومقاهي راقية (🚶 3 دقائق)", gl4: "الخريطة 📍",
+            gt5: "🪜 أدراج كاموندو", gd5: "موقع تصوير تاريخي شهير (🚶 5 دقائق)", gl5: "الخريطة 📍",
+            gt6: "🐟 سوق السمك في كراكوي", gd6: "ساندويتشات السمك الطازجة وأجواء البوسفور (🚶 4 دقائق)", gl6: "الخريطة 📍",
+            gt7: "🚃 محطة ترام كراكوي T1", gd7: "وصول سهل إلى آيا صوفيا والسوق المغلق (🚶 3 دقائق)", gl7: "الخريطة 📍",
+            btnHotelMap: "🏨 الاتجاهات إلى فندق تريادا كراكوي",
             reviewTitle: "💬 آراء الضيوف",
             reviewSub: "شاركنا تجربتك:",
             lblReviewerName: "الاسم / البلد:",
             lblReviewText: "تعليقك:",
             btnSendReview: "إرسال التقييم",
-            lblAllReviews: "جميع التقييمات:"
+            lblAllReviews: "جميع التقييمات:",
+            btnCallCall: "📞 اتصل الآن"
         }
     };
 
@@ -350,26 +468,16 @@
         }
 
         const t = translations[lang];
-        document.getElementById('subTitle').innerText = t.subTitle;
-        document.getElementById('capBox').innerHTML = t.capBox;
-        document.getElementById('istInfo').innerHTML = t.istInfo;
-        document.getElementById('sawInfo').innerHTML = t.sawInfo;
-        document.getElementById('formTitle').innerText = t.formTitle;
-        document.getElementById('lblNa').innerText = t.lblNa;
-        document.getElementById('lblRm').innerText = t.lblRm;
-        document.getElementById('lblAp').innerText = t.lblAp;
-        document.getElementById('lblFlight').innerText = t.lblFlight;
-        document.getElementById('lblDt').innerText = t.lblDt;
-        document.getElementById('lblPy').innerText = t.lblPy;
-        document.getElementById('lblTotalTitle').innerText = t.lblTotalTitle;
-        document.getElementById('guideHeader').innerText = t.guideHeader;
-        document.getElementById('guideSub').innerText = t.guideSub;
-        document.getElementById('reviewTitle').innerText = t.reviewTitle;
-        document.getElementById('reviewSub').innerText = t.reviewSub;
-        document.getElementById('lblReviewerName').innerText = t.lblReviewerName;
-        document.getElementById('lblReviewText').innerText = t.lblReviewText;
-        document.getElementById('btnSendReview').innerText = t.btnSendReview;
-        document.getElementById('lblAllReviews').innerText = t.lblAllReviews;
+        for(let key in t) {
+            let el = document.getElementById(key);
+            if(el) {
+                if(key.includes('Info') || key === 'capBox' || key === 'trustBox') {
+                    el.innerHTML = t[key];
+                } else {
+                    el.innerText = t[key];
+                }
+            }
+        }
     }
 
     function updateCalc() {
@@ -377,10 +485,12 @@
         const pay = document.getElementById('selPay').value;
         let priceStr = "";
 
+        const isCard = pay.includes('Card');
+
         if(ap === "IST") {
-            priceStr = (pay === "Card") ? "38.5 € / 2.200 ₺" : "35 € / 2.000 ₺";
+            priceStr = isCard ? "38.5 € / 2.200 ₺" : "35 € / 2.000 ₺";
         } else {
-            priceStr = (pay === "Card") ? "44 € / 2.420 ₺" : "40 € / 2.200 ₺";
+            priceStr = isCard ? "44 € / 2.420 ₺" : "40 € / 2.200 ₺";
         }
 
         document.getElementById('txtTotalPrice').innerText = priceStr;
@@ -392,7 +502,7 @@
         const airport = document.getElementById('selAirport').value;
         const flight = document.getElementById('txtFlight').value || "Belirtilmedi";
         const time = document.getElementById('txtTime').value;
-        const pay = document.getElementById('selPay').value;
+        const pay = document.getElementById('selPay').selectedOptions[0].text;
         const totalPrice = document.getElementById('txtTotalPrice').innerText;
 
         if(!name || !room || !time) {
@@ -400,7 +510,7 @@
             return;
         }
 
-        const msg = `Merhaba İlham (Triada Hotel Karaköy),\n\n🚖 Sarı Taksi Talebi:\n👤 İsim: ${name}\n🔑 Oda No: ${room}\n✈️ Havalimanı: ${airport}\n✈️ Uçuş Kodu: ${flight}\n📅 Tarih/Saat: ${time}\n💳 Ödeme Şekli: ${pay}\n💰 Toplam Tutar: ${totalPrice}`;
+        const msg = `Merhaba İlham (Triada Hotel Karaköy),\n\n🚖 Sarı Taksi Talebi:\n👤 İsim: ${name}\n🔑 Oda No: ${room}\n✈️ Havalimanı: ${airport}\n✈️ Uçuş Kodu: ${flight}\n📅 Tarih/Saat: ${time}\n💳 Ödeme: ${pay}\n💰 Net Tutar: ${totalPrice}`;
         
         const waNumber = "905014712020"; 
         const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
@@ -408,12 +518,17 @@
         window.open(url, '_blank');
     }
 
-    // YEREL YORUM SİSTEMİ MANTIĞI
+    // GENEL MÜŞTERİ YORUMLARI
+    const defaultReviews = [
+        { name: "John Smith (UK)", text: "Punctual, safe and very smooth ride to Istanbul Airport. Thanks Ilham!" },
+        { name: "Anna Ivanova (RU)", text: "Отличный сервис! Быстро, комфортно и без проблем доехали до SAW." },
+        { name: "Mohammed Al-Ahmad (SA)", text: "خدمة ممتازة وسريعة جداً. شكراً إلهام على المساعدة." },
+        { name: "David & Sarah (DE)", text: "Super taxi service directly arranged from Triada Hotel. Highly recommended!" }
+    ];
+
     function loadReviews() {
-        let reviews = JSON.parse(localStorage.getItem('taxi_reviews')) || [
-            { name: "John Smith (UK)", text: "Zamanında geldi, çok güvenli ve konforlu bir yolculuktu. Teşekkürler İlham!" },
-            { name: "Anna Ivanova (RU)", text: "Отличный сервис! Очень помогли с трансфером в аэропорт." }
-        ];
+        let saved = JSON.parse(localStorage.getItem('taxi_reviews')) || [];
+        let reviews = [...saved, ...defaultReviews];
         
         let html = "";
         reviews.forEach(r => {
@@ -434,13 +549,9 @@
             return;
         }
 
-        let reviews = JSON.parse(localStorage.getItem('taxi_reviews')) || [
-            { name: "John Smith (UK)", text: "Zamanında geldi, çok güvenli ve konforlu bir yolculuktu. Teşekkürler İlham!" },
-            { name: "Anna Ivanova (RU)", text: "Отличный сервис! Очень помогли с трансфером в аэропорт." }
-        ];
-
-        reviews.unshift({ name: name, text: text });
-        localStorage.setItem('taxi_reviews', JSON.stringify(reviews));
+        let saved = JSON.parse(localStorage.getItem('taxi_reviews')) || [];
+        saved.unshift({ name: name, text: text });
+        localStorage.setItem('taxi_reviews', JSON.stringify(saved));
 
         document.getElementById('txtReviewer').value = "";
         document.getElementById('txtComment').value = "";
