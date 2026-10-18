@@ -14,10 +14,15 @@
         .header h1 { font-size: 20px; color: #f2a900; margin-bottom: 5px; }
         .header p { font-size: 13px; color: #aaa; }
         
-        .lang-picker { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; }
-        .lang-btn { background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 12px; transition: 0.2s; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .lang-picker { display: flex; gap: 6px; }
+        .lang-btn { background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 5px 10px; border-radius: 20px; cursor: pointer; font-size: 11px; transition: 0.2s; }
         .lang-btn.active { background: #f2a900; color: #000; font-weight: bold; border-color: #f2a900; }
         
+        /* Müzik Oynatıcı Butonu */
+        .music-btn { background: #2a2a2a; border: 1px solid #f2a900; color: #f2a900; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 11px; font-weight: bold; display: flex; align-items: center; gap: 5px; }
+        .music-btn.playing { background: #f2a900; color: #000; }
+
         .trust-box { background: #1b2e1e; border: 1px solid #25D366; padding: 10px 12px; border-radius: 8px; font-size: 12px; color: #25D366; margin-bottom: 15px; text-align: center; font-weight: bold; line-height: 1.4; }
 
         .card { background: #262626; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 4px solid #f2a900; }
@@ -63,14 +68,24 @@
 </head>
 <body>
 
+<!-- ARKA PLAN MÜZİK KAYNAĞI (Telifmeyen Sakin İstanbul / Caz Melodisi) -->
+<audio id="bgMusic" loop>
+    <source src="https://actions.google.com/sounds/v1/ambiences/coffee_shop.ogg" type="audio/ogg">
+</audio>
+
 <div class="container" id="mainContainer">
     
-    <!-- DİL SEÇİMİ -->
-    <div class="lang-picker">
-        <button class="lang-btn active" onclick="setLang('tr')">TR</button>
-        <button class="lang-btn" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" onclick="setLang('ru')">RU</button>
-        <button class="lang-btn" onclick="setLang('ar')">AR</button>
+    <!-- ÜST BAR: DİL VE MÜZİK -->
+    <div class="top-bar">
+        <div class="lang-picker">
+            <button class="lang-btn active" onclick="setLang('tr')">TR</button>
+            <button class="lang-btn" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" onclick="setLang('ru')">RU</button>
+            <button class="lang-btn" onclick="setLang('ar')">AR</button>
+        </div>
+        <button class="music-btn" id="musicToggleBtn" onclick="toggleMusic()">
+            🎵 <span id="musicText">Müziği Aç</span>
+        </button>
     </div>
 
     <!-- BAŞLIK -->
@@ -276,6 +291,7 @@
     const translations = {
         tr: {
             subTitle: "7/24 Sarı Taksi Çağırma Hizmeti",
+            musicText: "Müziği Aç",
             trustBox: "🛡️ %100 Güvenli & Sorunsuz Ulaşım Garantisi<br>Ödemenizi İster Taksiciye İster Otelde Yapabilirsiniz!",
             capBox: "🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>• Maksimum 4 Yolcu<br>• 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.",
             titleIst: "✈️ İstanbul Havalimanı (IST)",
@@ -321,6 +337,7 @@
         },
         en: {
             subTitle: "24/7 Yellow Taxi Request Service",
+            musicText: "Play Music",
             trustBox: "🛡️ 100% Safe & Hassle-Free Transfer Guarantee<br>Pay either to the taxi driver or at the hotel reception!",
             capBox: "🚖 <strong>Yellow Taxi Capacity:</strong><br>• Maximum 4 Passengers<br>• Fits 4-5 Large Suitcases / 3-4 Hand Luggage.",
             titleIst: "✈️ Istanbul Airport (IST)",
@@ -366,6 +383,7 @@
         },
         ru: {
             subTitle: "24/7 Заказ Желтого Такси",
+            musicText: "Музыка",
             trustBox: "🛡️ 100% Гарантия Безопасной Поездки<br>Оплачивайте водителю такси или на ресепшн отеля!",
             capBox: "🚖 <strong>Вместимость Желтого Такси:</strong><br>• Максимум 4 Пассажира<br>• Вмещает 4-5 больших чемоданов / 3-4 ручные клади.",
             titleIst: "✈️ Аэропорт Стамбула (IST)",
@@ -411,6 +429,7 @@
         },
         ar: {
             subTitle: "خدمة طلب التاكسي الأصفر 24/7",
+            musicText: "تشغيل الموسيقى",
             trustBox: "🛡️ ضمان نقل آمن وسلس 100%<br>ادفع إما لسيارة التاكسي أو في الفندق!",
             capBox: "🚖 <strong>سعة التاكسي الأصفر:</strong><br>• 4 ركاب كحد أقصى<br>• يتسع لـ 4-5 حقائب كبيرة / 3-4 حقائب يد.",
             titleIst: "✈️ مطار إسطنبول (IST)",
@@ -455,6 +474,28 @@
             btnCallCall: "📞 اتصل الآن"
         }
     };
+
+    let isPlaying = false;
+    function toggleMusic() {
+        const audio = document.getElementById('bgMusic');
+        const btn = document.getElementById('musicToggleBtn');
+        const lang = document.querySelector('.lang-btn.active').innerText.toLowerCase();
+        
+        if(isPlaying) {
+            audio.pause();
+            isPlaying = false;
+            btn.classList.remove('playing');
+            document.getElementById('musicText').innerText = (lang === 'en') ? "Play Music" : (lang === 'ru') ? "Музыка" : (lang === 'ar') ? "تشغيل الموسيقى" : "Müziği Aç";
+        } else {
+            audio.play().then(() => {
+                isPlaying = true;
+                btn.classList.add('playing');
+                document.getElementById('musicText').innerText = (lang === 'en') ? "Pause Music" : (lang === 'ru') ? "Пауза" : (lang === 'ar') ? "إيقاف الموسيقى" : "Müziği Kapat";
+            }).catch(e => {
+                alert("Müzik çalınamadı.");
+            });
+        }
+    }
 
     function setLang(lang) {
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
@@ -518,7 +559,6 @@
         window.open(url, '_blank');
     }
 
-    // GENEL MÜŞTERİ YORUMLARI
     const defaultReviews = [
         { name: "John Smith (UK)", text: "Punctual, safe and very smooth ride to Istanbul Airport. Thanks Ilham!" },
         { name: "Anna Ivanova (RU)", text: "Отличный сервис! Быстро, комфортно и без проблем доехали до SAW." },
