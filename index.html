@@ -27,7 +27,8 @@
 
         .form-group { margin-bottom: 12px; }
         label { font-size: 12px; color: #ccc; display: block; margin-bottom: 4px; }
-        input, select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #444; background: #121212; color: #fff; font-size: 14px; }
+        input, select, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #444; background: #121212; color: #fff; font-size: 14px; }
+        textarea { resize: vertical; height: 80px; }
         
         .calc-summary { background: #2d2612; border: 1px solid #f2a900; padding: 12px; border-radius: 8px; text-align: center; margin-top: 15px; }
         .calc-summary h3 { font-size: 13px; color: #aaa; font-weight: normal; }
@@ -36,6 +37,11 @@
         .btn-ws { background-color: #25D366; color: white; border: none; width: 100%; padding: 14px; border-radius: 30px; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 15px; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); }
         .btn-map { background-color: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 10px; border-radius: 30px; font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; text-decoration: none; }
         
+        /* Yorumlar Listesi */
+        .review-item { background: #181818; padding: 10px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid #0088cc; }
+        .review-author { font-size: 13px; font-weight: bold; color: #f2a900; }
+        .review-text { font-size: 12px; color: #ddd; margin-top: 4px; }
+
         /* Sabit Alt Bar */
         .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #181818; border-top: 1px solid #333; padding: 10px 20px; display: flex; gap: 10px; justify-content: center; z-index: 999; }
         .sticky-btn { flex: 1; max-width: 220px; padding: 10px; border-radius: 25px; text-decoration: none; font-size: 13px; font-weight: bold; text-align: center; display: flex; align-items: center; justify-content: center; gap: 6px; }
@@ -154,13 +160,29 @@
         </a>
     </div>
 
-    <!-- MÜŞTERİ YORUMLARI BÖLÜMÜ -->
+    <!-- YORUM YAZMA VE GÖRÜNTÜLEME ALANI -->
     <div class="card" style="border-left-color: #0088cc;">
-        <h2 style="color: #0088cc;" id="reviewTitle">💬 Müşteri Yorumları & Değerlendirmeler</h2>
-        <p style="font-size: 12px; color: #aaa; margin-bottom: 15px;" id="reviewSub">Daha önceki misafirlerimizin yorumlarını okuyabilir veya kendi deneyiminizi paylaşabilirsiniz.</p>
+        <h2 style="color: #0088cc;" id="reviewTitle">💬 Misafir Yorumları</h2>
+        <p style="font-size: 12px; color: #aaa; margin-bottom: 15px;" id="reviewSub">Deneyiminizi bizimle paylaşın:</p>
         
-        <!-- DISQUS YORUM ALANI -->
-        <div id="disqus_thread"></div>
+        <div class="form-group">
+            <label id="lblReviewerName">Adınız / Ülkeniz:</label>
+            <input type="text" id="txtReviewer" placeholder="Örn: David (UK)">
+        </div>
+        <div class="form-group">
+            <label id="lblReviewText">Yorumunuz:</label>
+            <textarea id="txtComment" placeholder="Harika bir hizmetti, teşekkürler İlham!"></textarea>
+        </div>
+        <button class="btn-ws" style="background-color: #0088cc; margin-top: 5px; padding: 10px;" onclick="addReview()" id="btnSendReview">
+            Yorumu Gönder
+        </button>
+
+        <div style="margin-top: 20px;">
+            <h3 style="font-size: 14px; color: #f2a900; margin-bottom: 10px;" id="lblAllReviews">Yapılan Yorumlar:</h3>
+            <div id="reviewsList">
+                <!-- Yorumlar burada listelenecek -->
+            </div>
+        </div>
     </div>
 
     <div class="footer">
@@ -188,8 +210,12 @@
             lblDt: "Taksi İstediğiniz Tarih ve Saat:",
             lblPy: "Ödeme Şekli:",
             lblTotalTitle: "Tahmini Ödenecek Tutar:",
-            reviewTitle: "💬 Müşteri Yorumları & Değerlendirmeler",
-            reviewSub: "Daha önceki misafirlerimizin yorumlarını okuyabilir veya kendi deneyiminizi paylaşabilirsiniz."
+            reviewTitle: "💬 Misafir Yorumları",
+            reviewSub: "Deneyiminizi bizimle paylaşın:",
+            lblReviewerName: "Adınız / Ülkeniz:",
+            lblReviewText: "Yorumunuz:",
+            btnSendReview: "Yorumu Gönder",
+            lblAllReviews: "Yapılan Yorumlar:"
         },
         en: {
             subTitle: "24/7 Yellow Taxi Request Service",
@@ -203,8 +229,12 @@
             lblDt: "Taxi Pickup Date & Time:",
             lblPy: "Payment Method:",
             lblTotalTitle: "Estimated Total Price:",
-            reviewTitle: "💬 Guest Reviews & Feedback",
-            reviewSub: "Read reviews from previous guests or leave your own feedback."
+            reviewTitle: "💬 Guest Reviews",
+            reviewSub: "Share your experience with us:",
+            lblReviewerName: "Your Name / Country:",
+            lblReviewText: "Your Comment:",
+            btnSendReview: "Submit Review",
+            lblAllReviews: "All Reviews:"
         },
         ru: {
             subTitle: "24/7 Заказ Желтого Такси",
@@ -219,7 +249,11 @@
             lblPy: "Способ оплаты:",
             lblTotalTitle: "Итоговая стоимость:",
             reviewTitle: "💬 Отзывы Гостей",
-            reviewSub: "Вы можете прочитать отзывы предыдущих гостей или оставить свой отзыв."
+            reviewSub: "Поделитесь своим опытом:",
+            lblReviewerName: "Ваше имя / Страна:",
+            lblReviewText: "Ваш комментарий:",
+            btnSendReview: "Отправить отзыв",
+            lblAllReviews: "Все отзывы:"
         },
         ar: {
             subTitle: "خدمة طلب التاكسي الأصفر 24/7",
@@ -233,8 +267,12 @@
             lblDt: "تاريخ ووقت طلب التاكسي:",
             lblPy: "طريقة الدفع:",
             lblTotalTitle: "المبلغ الإجمالي المقدر:",
-            reviewTitle: "💬 آراء وتقييمات الضيوف",
-            reviewSub: "يمكنك قراءة آراء الضيوف السابقين أو ترك تقييمك الخاص."
+            reviewTitle: "💬 آراء الضيوف",
+            reviewSub: "شاركنا تجربتك:",
+            lblReviewerName: "الاسم / البلد:",
+            lblReviewText: "تعليقك:",
+            btnSendReview: "إرسال التقييم",
+            lblAllReviews: "جميع التقييمات:"
         }
     };
 
@@ -263,6 +301,10 @@
         document.getElementById('lblTotalTitle').innerText = t.lblTotalTitle;
         document.getElementById('reviewTitle').innerText = t.reviewTitle;
         document.getElementById('reviewSub').innerText = t.reviewSub;
+        document.getElementById('lblReviewerName').innerText = t.lblReviewerName;
+        document.getElementById('lblReviewText').innerText = t.lblReviewText;
+        document.getElementById('btnSendReview').innerText = t.btnSendReview;
+        document.getElementById('lblAllReviews').innerText = t.lblAllReviews;
     }
 
     function updateCalc() {
@@ -301,17 +343,49 @@
         window.open(url, '_blank');
     }
 
-    // DISQUS YORUM ENTEGRASYONU
-    var disqus_config = function () {
-        this.page.url = "https://secret2-art.github.io/Taxi-service/";
-        this.page.identifier = "triada-taxi-service";
-    };
-    (function() {
-        var d = document, s = d.createElement('script');
-        s.src = 'https://triada-taxi.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+    // YEREL YORUM SİSTEMİ MANTIĞI
+    function loadReviews() {
+        let reviews = JSON.parse(localStorage.getItem('taxi_reviews')) || [
+            { name: "John Smith (UK)", text: "Zamanında geldi, çok güvenli ve konforlu bir yolculuktu. Teşekkürler İlham!" },
+            { name: "Anna Ivanova (RU)", text: "Отличный сервис! Очень помогли с трансфером в аэропорт." }
+        ];
+        
+        let html = "";
+        reviews.forEach(r => {
+            html += `<div class="review-item">
+                <div class="review-author">⭐ ${r.name}</div>
+                <div class="review-text">${r.text}</div>
+            </div>`;
+        });
+        document.getElementById('reviewsList').innerHTML = html;
+    }
+
+    function addReview() {
+        const name = document.getElementById('txtReviewer').value;
+        const text = document.getElementById('txtComment').value;
+
+        if(!name || !text) {
+            alert("Lütfen adınızı ve yorumunuzu yazın.");
+            return;
+        }
+
+        let reviews = JSON.parse(localStorage.getItem('taxi_reviews')) || [
+            { name: "John Smith (UK)", text: "Zamanında geldi, çok güvenli ve konforlu bir yolculuktu. Teşekkürler İlham!" },
+            { name: "Anna Ivanova (RU)", text: "Отличный сервис! Очень помогли с трансфером в аэропорт." }
+        ];
+
+        reviews.unshift({ name: name, text: text });
+        localStorage.setItem('taxi_reviews', JSON.stringify(reviews));
+
+        document.getElementById('txtReviewer').value = "";
+        document.getElementById('txtComment').value = "";
+        loadReviews();
+        alert("Yorumunuz başarıyla eklendi, teşekkürler!");
+    }
+
+    window.onload = function() {
+        loadReviews();
+    }
 </script>
 
 </body>
