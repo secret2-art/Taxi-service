@@ -65,6 +65,11 @@
         .shop-price { font-size: 14px; font-weight: bold; color: #25D366; margin-top: 2px; }
         .shop-btn { background: #25D366; color: #fff; border: none; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; text-decoration: none; }
 
+        /* Tıklanabilir Özel İstek Kutusu */
+        .custom-request-box { background: #1a1a1a; border: 1px dashed #f2a900; border-radius: 8px; padding: 12px; margin-top: 10px; cursor: pointer; transition: 0.2s; }
+        .custom-request-header { display: flex; justify-content: space-between; align-items: center; font-size: 13px; font-weight: bold; color: #f2a900; }
+        .custom-request-content { display: none; margin-top: 10px; font-size: 12px; color: #ccc; line-height: 1.5; border-top: 1px solid #333; padding-top: 10px; }
+
         /* Genişletme/Büyütme Kutusu */
         .more-guides { display: none; }
         .btn-expand { background: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 10px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; margin-top: 5px; margin-bottom: 10px; transition: 0.2s; }
@@ -208,7 +213,7 @@
         </div>
     </div>
 
-    <!-- 2. SIRADA: OTEL BİNALARI SEKSİYONU (Doğru Sıralama İle) -->
+    <!-- 2. SIRADA: OTEL BİNALARI SEKSİYONU -->
     <div class="card" id="buildingsSec" style="border-left-color: #f2a900;">
         <h2 id="titleBuildings">🏢 Triada Hotel Binalarımız</h2>
         <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="subBuildings">Otel binalarımızın konumlarına tek tıkla ulaşın:</p>
@@ -277,6 +282,18 @@
                 <div class="shop-price">250 ₺</div>
             </div>
             <a href="https://wa.me/905014712020?text=Merhaba,%20Semsiye%20almak%20istiyorum." target="_blank" class="shop-btn" id="btnBuy4">Sipariş Et 💬</a>
+        </div>
+
+        <!-- AÇILIR / KAPANIR ÖZEL İSTEK KUTUSU -->
+        <div class="custom-request-box" onclick="toggleCustomRequest()">
+            <div class="custom-request-header">
+                <span id="crHeader">🎁 Özel İstek & Diğer Talepleriniz</span>
+                <span id="crArrow">▼</span>
+            </div>
+            <div class="custom-request-content" id="crContent">
+                <p id="crText">Gece market ihtiyaçları, kişisel bakım/hijyen ürünleri, özel siparişleriniz veya aklınıza gelen her türlü acil talep için 7/24 WhatsApp'tan bize yazabilirsiniz. Bellboy ekibimiz kapınıza kadar getirsin!</p>
+                <a href="https://wa.me/905014712020?text=Merhaba,%20ozel%20bir%20talebim%20var." target="_blank" class="shop-btn" style="display:block; text-align:center; margin-top:10px; padding:10px;" id="btnCustomWa">💬 WhatsApp ile İstekte Bulun</a>
+            </div>
         </div>
     </div>
 
@@ -373,6 +390,21 @@
         document.getElementById('menuOverlay').classList.remove('active');
     }
 
+    let isCustomOpen = false;
+    function toggleCustomRequest() {
+        const content = document.getElementById('crContent');
+        const arrow = document.getElementById('crArrow');
+        if(isCustomOpen) {
+            content.style.display = "none";
+            arrow.innerText = "▼";
+            isCustomOpen = false;
+        } else {
+            content.style.display = "block";
+            arrow.innerText = "▲";
+            isCustomOpen = true;
+        }
+    }
+
     const translations = {
         tr: {
             subTitle: "7/24 Sarı Taksi & Bellboy Destek Hizmetleri",
@@ -393,6 +425,9 @@
             sp2Title: "🔌 Şarj Başlığı & Dönüştürücü", sp2Desc: "Priz adaptör dönüştürücü (Converter)", btnBuy2: "Sipariş Et 💬",
             sp3Title: "⚡ Hızlı Şarj Kablosu", sp3Desc: "Type-C veya Lightning Şarj Kablosu", btnBuy3: "Sipariş Et 💬",
             sp4Title: "☂️ Yağmur Şemsiyesi", sp4Desc: "Kaliteli kişisel şemsiye", btnBuy4: "Sipariş Et 💬",
+            crHeader: "🎁 Özel İstek & Diğer Talepleriniz",
+            crText: "Gece market ihtiyaçları, kişisel bakım/hijyen ürünleri, özel siparişleriniz veya aklınıza gelen her türlü acil talep için 7/24 WhatsApp'tan bize yazabilirsiniz. Bellboy ekibimiz kapınıza kadar getirsin!",
+            btnCustomWa: "💬 WhatsApp ile İstekte Bulun",
             trustBox: "🛡️ %100 Güvenli & Sorunsuz Ulaşım Garantisi<br>Ödemenizi İster Nakit İster Kartla Taksicide Yapabilirsiniz!",
             capBox: "🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>• Maksimum 4 Yolcu<br>• 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.",
             titleIst: "✈️ İstanbul Havalimanı (IST)",
@@ -437,6 +472,9 @@
             sp2Title: "🔌 Charging Adapter Converter", sp2Desc: "Universal socket converter", btnBuy2: "Order Now 💬",
             sp3Title: "⚡ Fast Charging Cable", sp3Desc: "Type-C or Lightning Cable", btnBuy3: "Order Now 💬",
             sp4Title: "☂️ Rain Umbrella", sp4Desc: "High quality personal umbrella", btnBuy4: "Order Now 💬",
+            crHeader: "🎁 Special Requests & Custom Orders",
+            crText: "For late-night market items, personal care/hygiene products, or any special requests, feel free to text us on WhatsApp 24/7. Our Bellboy team will deliver it directly to your room!",
+            btnCustomWa: "💬 Send Custom Request via WhatsApp",
             trustBox: "🛡️ 100% Safe & Hassle-Free Transfer Guarantee<br>Pay either in Cash or by Credit Card to the driver!",
             capBox: "🚖 <strong>Yellow Taxi Capacity:</strong><br>• Maximum 4 Passengers<br>• Fits 4-5 Large Suitcases / 3-4 Hand Luggage.",
             titleIst: "✈️ Istanbul Airport (IST)",
@@ -481,6 +519,9 @@
             sp2Title: "🔌 Адаптер-Переходник", sp2Desc: "Переходник для розеток", btnBuy2: "Заказать 💬",
             sp3Title: "⚡ Зарядный Кабель", sp3Desc: "Type-C или Lightning Кабель", btnBuy3: "Заказать 💬",
             sp4Title: "☂️ Зонт от Дождя", sp4Desc: "Качественный личный зонт", btnBuy4: "Заказать 💬",
+            crHeader: "🎁 Особые Пожелания и Индивидуальные Заказы",
+            crText: "Для ночных покупок, средств личной гигиены или любых других особых запросов пишите нам в WhatsApp 24/7. Наша команда беллбоев доставит всё прямо к вашей двери!",
+            btnCustomWa: "💬 Написать запрос в WhatsApp",
             trustBox: "🛡️ 100% Гарантия Безопасной Поездки<br>Оплачивайте наличными или картой водителю такси!",
             capBox: "🚖 <strong>Вместимость Желтого Такси:</strong><br>• Максимум 4 Пассажира<br>• Вмещает 4-5 больших чемоданов / 3-4 ручные клади.",
             titleIst: "✈️ Аэропорт Стамбула (IST)",
@@ -525,6 +566,9 @@
             sp2Title: "🔌 محول رأس الشاحن", sp2Desc: "محول مقبس القابس العالمي", btnBuy2: "اطلب الآن 💬",
             sp3Title: "⚡ كابل شحن سريع", sp3Desc: "كابل Type-C أو Lightning", btnBuy3: "اطلب الآن 💬",
             sp4Title: "☂️ مظلة مطر", sp4Desc: "مظلة شخصية عالية الجودة", btnBuy4: "اطلب الآن 💬",
+            crHeader: "🎁 طلبات خاصة وخدمات إضافية",
+            crText: "لمستلزمات المتجر الليلية، منتجات العناية الشخصية، أو أي طلبات خاصة، يمكنك مراسلتنا عبر الواتساب على مدار 24 ساعة. سيقوم فريق البيلبوي بتوصيلها إلى غرفتك مباشرة!",
+            btnCustomWa: "💬 إرسال طلب خاص عبر WhatsApp",
             trustBox: "🛡️ ضمان نقل آمن وسلس 100%<br>ادفع إما نقداً أو بالبطاقة للسائق!",
             capBox: "🚖 <strong>سعة التاكسي الأصفر:</strong><br>• 4 ركاب كحد أقصى<br>• يتسع لـ 4-5 حقائب كبيرة / 3-4 حقائب يد.",
             titleIst: "✈️ مطار إسطنبول (IST)",
