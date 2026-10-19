@@ -3,19 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triada Hotel Karaköy - Sarı Taksi Hizmeti</title>
+    <title>Triada Hotel Karaköy - Sarı Taksi & Misafir Hizmetleri</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #121212; color: #f5f5f5; padding: 15px; padding-bottom: 90px; display: flex; justify-content: center; }
-        .container { max-width: 480px; width: 100%; background: #1e1e1e; border-radius: 16px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #333; }
+        .container { max-width: 480px; width: 100%; background: #1e1e1e; border-radius: 16px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid #333; position: relative; }
         
+        /* ÜST BAR VE HAMBURGER MENÜ */
+        .top-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .menu-btn { background: #2a2a2a; border: 1px solid #f2a900; color: #f2a900; font-size: 20px; padding: 4px 12px; border-radius: 8px; cursor: pointer; }
+        
+        /* KAYAR YAN MENÜ */
+        .side-menu { position: fixed; top: 0; left: -280px; width: 270px; height: 100%; background: #181818; border-right: 2px solid #f2a900; z-index: 10000; padding: 20px; transition: 0.3s; box-shadow: 5px 0 15px rgba(0,0,0,0.7); }
+        .side-menu.active { left: 0; }
+        .menu-close { background: none; border: none; color: #f2a900; font-size: 22px; float: right; cursor: pointer; }
+        .menu-title { font-size: 16px; color: #f2a900; font-weight: bold; margin-bottom: 20px; margin-top: 10px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        .menu-link { display: block; color: #fff; text-decoration: none; padding: 12px 0; font-size: 13px; border-bottom: 1px solid #262626; }
+        .menu-link:hover { color: #f2a900; }
+        .overlay { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; display:none; }
+        .overlay.active { display:block; }
+
         .badge { background: #2a2a2a; color: #f2a900; border: 1px solid #f2a900; font-size: 11px; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 10px; font-weight: bold; }
         .header { text-align: center; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 15px; }
         .header h1 { font-size: 20px; color: #f2a900; margin-bottom: 5px; }
         .header p { font-size: 13px; color: #aaa; }
         
-        .lang-picker { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; }
-        .lang-btn { background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 12px; transition: 0.2s; }
+        .lang-picker { display: flex; justify-content: center; gap: 6px; }
+        .lang-btn { background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 5px 10px; border-radius: 20px; cursor: pointer; font-size: 11px; transition: 0.2s; }
         .lang-btn.active { background: #f2a900; color: #000; font-weight: bold; border-color: #f2a900; }
         
         .trust-box { background: #1b2e1e; border: 1px solid #25D366; padding: 10px 12px; border-radius: 8px; font-size: 12px; color: #25D366; margin-bottom: 15px; text-align: center; font-weight: bold; line-height: 1.4; }
@@ -41,12 +55,17 @@
         .btn-map { background-color: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 10px; border-radius: 30px; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; text-decoration: none; }
         .btn-yt { background-color: #bb0000; color: #fff; border: none; width: 100%; padding: 9px; border-radius: 30px; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px; text-decoration: none; }
 
-        /* Rehber Liste Stili */
+        /* Rehber & Market Liste Stili */
         .guide-item { background: #1a1a1a; padding: 10px; border-radius: 8px; margin-bottom: 8px; border-left: 3px solid #f2a900; display: flex; justify-content: space-between; align-items: center; }
         .guide-title { font-size: 13px; font-weight: bold; color: #fff; }
         .guide-desc { font-size: 11px; color: #aaa; margin-top: 2px; }
         .guide-link { color: #f2a900; font-size: 12px; text-decoration: none; font-weight: bold; }
         
+        /* Market Ürün Kartları */
+        .shop-item { background: #1a1a1a; padding: 12px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid #25D366; display: flex; justify-content: space-between; align-items: center; }
+        .shop-price { font-size: 14px; font-weight: bold; color: #25D366; margin-top: 2px; }
+        .shop-btn { background: #25D366; color: #fff; border: none; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; text-decoration: none; }
+
         /* Genişletme/Büyütme Kutuları */
         .more-guides, .more-reviews { display: none; }
         .btn-expand { background: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 10px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; margin-top: 5px; margin-bottom: 10px; transition: 0.2s; }
@@ -70,27 +89,118 @@
 </head>
 <body>
 
+<!-- KARARATMA KATMANI -->
+<div class="overlay" id="menuOverlay" onclick="closeMenu()"></div>
+
+<!-- SOL KAYAR MENÜ -->
+<div class="side-menu" id="sideMenu">
+    <button class="menu-close" onclick="closeMenu()">✕</button>
+    <div class="menu-title" id="menuTitle">🏢 Triada Hotel Menü</div>
+    
+    <a href="#buildingsSec" class="menu-link" onclick="closeMenu()" id="ml1">📍 Otel Binalarımız (Konumlar)</a>
+    <a href="#shopSec" class="menu-link" onclick="closeMenu()" id="ml2">🛒 Otel Resepsiyon Marketi</a>
+    <a href="#taxiSec" class="menu-link" onclick="closeMenu()" id="ml3">🚕 Sarı Taksi Çağır</a>
+    <a href="#guideSec" class="menu-link" onclick="closeMenu()" id="ml4">🗺️ Karaköy Gezi Rehberi</a>
+    <a href="#reviewsSec" class="menu-link" onclick="closeMenu()" id="ml5">💬 Misafir Yorumları</a>
+    <a href="https://wa.me/905014712020" target="_blank" class="menu-link" style="color:#25D366; font-weight:bold;" id="ml6">💬 Resepsiyon WhatsApp</a>
+</div>
+
 <div class="container" id="mainContainer">
     
-    <!-- DİL SEÇİMİ -->
-    <div class="lang-picker">
-        <button class="lang-btn active" onclick="setLang('tr')">TR</button>
-        <button class="lang-btn" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" onclick="setLang('ru')">RU</button>
-        <button class="lang-btn" onclick="setLang('ar')">AR</button>
+    <!-- ÜST BAR -->
+    <div class="top-header">
+        <button class="menu-btn" onclick="openMenu()">☰</button>
+        <div class="lang-picker">
+            <button class="lang-btn active" onclick="setLang('tr')">TR</button>
+            <button class="lang-btn" onclick="setLang('en')">EN</button>
+            <button class="lang-btn" onclick="setLang('ru')">RU</button>
+            <button class="lang-btn" onclick="setLang('ar')">AR</button>
+        </div>
     </div>
 
     <!-- BAŞLIK -->
     <div class="header">
         <div class="badge">⭐ Triada Hotel Guest Approved 5.0 ★</div>
         <h1>Triada Hotel Karaköy</h1>
-        <p id="subTitle">7/24 Sarı Taksi Çağırma Hizmeti</p>
+        <p id="subTitle">7/24 Sarı Taksi & Misafir Destek Hizmetleri</p>
     </div>
 
     <!-- GÜVEN KUTUSU -->
     <div class="trust-box" id="trustBox">
         🛡️ %100 Güvenli & Sorunsuz Ulaşım Garantisi<br>
         Ödemenizi İster Nakit İster Kartla Taksicide Yapabilirsiniz!
+    </div>
+
+    <!-- OTEL BİNALARI SEKSİYONU -->
+    <div class="card" id="buildingsSec" style="border-left-color: #f2a900;">
+        <h2 id="titleBuildings">🏢 Triada Hotel Binalarımız</h2>
+        <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="subBuildings">Otel binalarımızın konumlarına tek tıkla ulaşın:</p>
+        
+        <div class="guide-item">
+            <div>
+                <div class="guide-title" id="b1Title">🏨 Ana Bina (Main Building)</div>
+                <div class="guide-desc" id="b1Desc">Triada Hotel Karaköy Merkez Bina</div>
+            </div>
+            <a href="https://maps.google.com/?cid=16349782730457908562&entry=gps&g_st=ac" target="_blank" class="guide-link">Harita 📍</a>
+        </div>
+
+        <div class="guide-item">
+            <div>
+                <div class="guide-title" id="b2Title">🏢 Ek Bina (Annex 1)</div>
+                <div class="guide-desc" id="b2Desc">Triada Hotel Annex Building 1</div>
+            </div>
+            <a href="https://maps.app.goo.gl/dVAUehD18cSLg6Cg8?g_st=ac" target="_blank" class="guide-link">Harita 📍</a>
+        </div>
+
+        <div class="guide-item">
+            <div>
+                <div class="guide-title" id="b3Title">🏢 Ek Bina (Annex 2)</div>
+                <div class="guide-desc" id="b3Desc">Triada Hotel Annex Building 2</div>
+            </div>
+            <a href="https://maps.app.goo.gl/ekuJ6mV7aZAYTFrF9?g_st=ac" target="_blank" class="guide-link">Harita 📍</a>
+        </div>
+    </div>
+
+    <!-- OTEL RESEPSİYON SHOP / EK GELİR SEKSİYONU -->
+    <div class="card" id="shopSec" style="border-left-color: #25D366;">
+        <h2 style="color:#25D366;" id="titleShop">🛒 Resepsiyon Destek Marketi</h2>
+        <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="subShop">İhtiyacınız olan ürünleri resepsiyondan temin edebilirsiniz:</p>
+        
+        <div class="shop-item">
+            <div>
+                <div class="guide-title" id="sp1Title">💳 İstanbulkart (Ulaşım Kartı)</div>
+                <div class="guide-desc" id="sp1Desc">Tramvay, metro ve otobüs kullanımı için</div>
+                <div class="shop-price">300 ₺</div>
+            </div>
+            <a href="https://wa.me/905014712020?text=Merhaba,%20Istanbulkart%20almak%20istiyorum." target="_blank" class="shop-btn" id="btnBuy1">Sipariş Et 💬</a>
+        </div>
+
+        <div class="shop-item">
+            <div>
+                <div class="guide-title" id="sp2Title">🔌 Şarj Başlığı & Dönüştürücü</div>
+                <div class="guide-desc" id="sp2Desc">Priz adaptör dönüştürücü (Converter)</div>
+                <div class="shop-price">300 ₺</div>
+            </div>
+            <a href="https://wa.me/905014712020?text=Merhaba,%20Sarj%20donusturucu%20almak%20istiyorum." target="_blank" class="shop-btn" id="btnBuy2">Sipariş Et 💬</a>
+        </div>
+
+        <div class="shop-item">
+            <div>
+                <div class="guide-title" id="sp3Title">⚡ Hızlı Şarj Kablosu</div>
+                <div class="guide-desc" id="sp3Desc">Type-C veya Lightning Şarj Kablosu</div>
+                <div class="shop-price">200 ₺</div>
+            </div>
+            <a href="https://wa.me/905014712020?text=Merhaba,%20Sarj%20kablosu%20almak%20istiyorum." target="_blank" class="shop-btn" id="btnBuy3">Sipariş Et 💬</a>
+        </div>
+
+        <div class="shop-item">
+            <div>
+                <div class="guide-title" id="sp4Title">☂️ Yağmur Şemsiyesi</div>
+                <div class="guide-desc" id="sp4Desc">Kaliteli kişisel şemsiye</div>
+                <div class="shop-price">250 ₺</div>
+            </div>
+            <a href="https://wa.me/905014712020?text=Merhaba,%20Semsiye%20almak%20istiyorum." target="_blank" class="shop-btn" id="btnBuy4">Sipariş Et 💬</a>
+        </div>
     </div>
 
     <!-- ARAÇ KAPASİTE BİLGİSİ -->
@@ -125,7 +235,7 @@
     </div>
 
     <!-- REZERVALSYON FORMU -->
-    <div class="card" style="border-left-color: #25D366;">
+    <div class="card" id="taxiSec" style="border-left-color: #25D366;">
         <h2 style="color: #25D366;" id="formTitle">🚕 Sarı Taksi Çağır</h2>
         
         <div class="form-group">
@@ -177,7 +287,7 @@
     </div>
 
     <!-- KARAKÖY & İSTANBUL GEZİ REHBERİ -->
-    <div class="card" style="border-left-color: #f2a900;">
+    <div class="card" id="guideSec" style="border-left-color: #f2a900;">
         <h2 id="guideHeader">🗺️ Karaköy Gezilecek Yerler</h2>
         <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="guideSub">Otel çevresindeki meşhur noktalar ve harita konumları:</p>
         
@@ -249,7 +359,7 @@
     </div>
 
     <!-- YORUM YAZMA VE GÖRÜNTÜLEME ALANI -->
-    <div class="card" style="border-left-color: #0088cc;">
+    <div class="card" id="reviewsSec" style="border-left-color: #0088cc;">
         <h2 style="color: #0088cc;" id="reviewTitle">💬 Misafir Yorumları</h2>
         <p style="font-size: 12px; color: #aaa; margin-bottom: 15px;" id="reviewSub">Deneyiminizi bizimle paylaşın:</p>
         
@@ -289,35 +399,51 @@
 </div>
 
 <script>
+    function openMenu() {
+        document.getElementById('sideMenu').classList.add('active');
+        document.getElementById('menuOverlay').classList.add('active');
+    }
+    function closeMenu() {
+        document.getElementById('sideMenu').classList.remove('active');
+        document.getElementById('menuOverlay').classList.remove('active');
+    }
+
     const translations = {
         tr: {
-            subTitle: "7/24 Sarı Taksi Çağırma Hizmeti",
+            subTitle: "7/24 Sarı Taksi & Misafir Destek Hizmetleri",
+            menuTitle: "🏢 Triada Hotel Menü",
+            ml1: "📍 Otel Binalarımız (Konumlar)",
+            ml2: "🛒 Otel Resepsiyon Marketi",
+            ml3: "🚕 Sarı Taksi Çağır",
+            ml4: "🗺️ Karaköy Gezi Rehberi",
+            ml5: "💬 Misafir Yorumları",
+            ml6: "💬 Resepsiyon WhatsApp",
+            titleBuildings: "🏢 Triada Hotel Binalarımız",
+            subBuildings: "Otel binalarımızın konumlarına tek tıkla ulaşın:",
+            b1Title: "🏨 Ana Bina (Main Building)", b1Desc: "Triada Hotel Karaköy Merkez Bina",
+            b2Title: "🏢 Ek Bina (Annex 1)", b2Desc: "Triada Hotel Annex Building 1",
+            b3Title: "🏢 Ek Bina (Annex 2)", b3Desc: "Triada Hotel Annex Building 2",
+            titleShop: "🛒 Resepsiyon Destek Marketi",
+            subShop: "İhtiyacınız olan ürünleri resepsiyondan temin edebilirsiniz:",
+            sp1Title: "💳 İstanbulkart (Ulaşım Kartı)", sp1Desc: "Tramvay, metro ve otobüs kullanımı için", btnBuy1: "Sipariş Et 💬",
+            sp2Title: "🔌 Şarj Başlığı & Dönüştürücü", sp2Desc: "Priz adaptör dönüştürücü (Converter)", btnBuy2: "Sipariş Et 💬",
+            sp3Title: "⚡ Hızlı Şarj Kablosu", sp3Desc: "Type-C veya Lightning Şarj Kablosu", btnBuy3: "Sipariş Et 💬",
+            sp4Title: "☂️ Yağmur Şemsiyesi", sp4Desc: "Kaliteli kişisel şemsiye", btnBuy4: "Sipariş Et 💬",
             trustBox: "🛡️ %100 Güvenli & Sorunsuz Ulaşım Garantisi<br>Ödemenizi İster Nakit İster Kartla Taksicide Yapabilirsiniz!",
             capBox: "🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>• Maksimum 4 Yolcu<br>• 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.",
             titleIst: "✈️ İstanbul Havalimanı (IST)",
             istInfo: "• Ulaşım süresi: Yaklaşık 45 - 60 dakika.<br>• Uçuştan <strong>en geç 3.5 saat önce</strong> taksi ayarlanmalıdır.",
-            mapBtnIst: "📍 IST Harita Konumu",
-            ytBtnIst: "▶ IST Yolcu Video Rehberi",
+            mapBtnIst: "📍 IST Harita Konumu", ytBtnIst: "▶ IST Yolcu Video Rehberi",
             titleSaw: "✈️ Sabiha Gökçen Havalimanı (SAW)",
             sawInfo: "• Ulaşım süresi: Yaklaşık 60 - 90 dakika.<br>• Uçuştan <strong>en geç 4 saat önce</strong> taksi ayarlanmalıdır.",
-            mapBtnSaw: "📍 SAW Harita Konumu",
-            ytBtnSaw: "▶ SAW Yolcu Video Rehberi",
+            mapBtnSaw: "📍 SAW Harita Konumu", ytBtnSaw: "▶ SAW Yolcu Video Rehberi",
             formTitle: "🚕 Sarı Taksi Çağır",
-            lblNa: "Adınız Soyadınız:",
-            lblRm: "Oda Numaranız:",
-            lblAp: "Havalimanı Seçin:",
-            optIst: "İstanbul Havalimanı (IST) - 35€ / 2000₺",
-            optSaw: "Sabiha Gökçen (SAW) - 40€ / 2200₺",
-            lblFlight: "Uçuş Kodu (İsteğe Bağlı):",
-            lblDt: "Taksi İstediğiniz Tarih ve Saat:",
-            lblPy: "Ödeme Yeri ve Şekli:",
-            optPy1: "Araçta Nakit (Taksiciye)",
-            optPy2: "Araçta Kredi Kartı (+%10)",
-            optPy3: "Otelde Nakit Ödeme",
-            lblTotalTitle: "Ödenecek Net Fiyat:",
-            btnWsSend: "💬 WhatsApp ile Talebi Gönder",
-            guideHeader: "🗺️ Karaköy Gezilecek Yerler",
-            guideSub: "Otel çevresindeki meşhur noktalar ve harita konumları:",
+            lblNa: "Adınız Soyadınız:", lblRm: "Oda Numaranız:", lblAp: "Havalimanı Seçin:",
+            optIst: "İstanbul Havalimanı (IST) - 35€ / 2000₺", optSaw: "Sabiha Gökçen (SAW) - 40€ / 2200₺",
+            lblFlight: "Uçuş Kodu (İsteğe Bağlı):", lblDt: "Taksi İstediğiniz Tarih ve Saat:", lblPy: "Ödeme Yeri ve Şekli:",
+            optPy1: "Araçta Nakit (Taksiciye)", optPy2: "Araçta Kredi Kartı (+%10)", optPy3: "Otelde Nakit Ödeme",
+            lblTotalTitle: "Ödenecek Net Fiyat:", btnWsSend: "💬 WhatsApp ile Talebi Gönder",
+            guideHeader: "🗺️ Karaköy Gezilecek Yerler", guideSub: "Otel çevresindeki meşhur noktalar ve harita konumları:",
             btnExpandGuides: "🔍 Tüm Gezilecek Yerleri Büyüt / Göster",
             gt1: "🏬 Galataport İstanbul", gd1: "Sahil yürüyüşü, alışveriş & Boğaz manzarası (🚶 5 Dk)", gl1: "Harita 📍",
             gt2: "🥐 Karaköy Güllüoğlu", gd2: "Dünyaca ünlü tarihi baklavacı (🚶 2 Dk)", gl2: "Harita 📍",
@@ -327,45 +453,47 @@
             gt6: "🐟 Karaköy Balıkçılar Çarşısı", gd6: "Taze balık-ekmek ve boğaz ortamı (🚶 4 Dk)", gl6: "Harita 📍",
             gt7: "🚃 T1 Karaköy Tramvay Durağı", gd7: "Sultanahmet, Ayasofya & Kapalıçarşı'ya ulaşım (🚶 3 Dk)", gl7: "Harita 📍",
             btnHotelMap: "🏨 Triada Hotel Karaköy Yol Tarifi",
-            reviewTitle: "💬 Misafir Yorumları",
-            reviewSub: "Deneyiminizi bizimle paylaşın:",
-            lblReviewerName: "Adınız / Ülkeniz:",
-            lblReviewText: "Yorumunuz:",
-            phReviewer: "Örn: David (UK)",
-            phComment: "Harika bir hizmetti, teşekkürler İlham!",
-            btnSendReview: "Yorumu Gönder",
-            lblAllReviews: "Yapılan Yorumlar:",
-            btnExpandReviews: "🔍 Tüm Misafir Yorumlarını Büyüt / Göster",
-            btnCallCall: "📞 Hemen Ara"
+            reviewTitle: "💬 Misafir Yorumları", reviewSub: "Deneyiminizi bizimle paylaşın:",
+            lblReviewerName: "Adınız / Ülkeniz:", lblReviewText: "Yorumunuz:",
+            phReviewer: "Örn: David (UK)", phComment: "Harika bir hizmetti, teşekkürler İlham!",
+            btnSendReview: "Yorumu Gönder", lblAllReviews: "Yapılan Yorumlar:",
+            btnExpandReviews: "🔍 Tüm Misafir Yorumlarını Büyüt / Göster", btnCallCall: "📞 Hemen Ara"
         },
         en: {
-            subTitle: "24/7 Yellow Taxi Request Service",
+            subTitle: "24/7 Yellow Taxi & Guest Services",
+            menuTitle: "🏢 Triada Hotel Menu",
+            ml1: "📍 Hotel Buildings (Locations)",
+            ml2: "🛒 Reception Guest Shop",
+            ml3: "🚕 Order Yellow Taxi",
+            ml4: "🗺️ Karaköy City Guide",
+            ml5: "💬 Guest Reviews",
+            ml6: "💬 Reception WhatsApp",
+            titleBuildings: "🏢 Triada Hotel Buildings",
+            subBuildings: "Direct map directions to our hotel buildings:",
+            b1Title: "🏨 Main Building", b1Desc: "Triada Hotel Karaköy Central",
+            b2Title: "🏢 Annex Building 1", b2Desc: "Triada Hotel Annex Building 1",
+            b3Title: "🏢 Annex Building 2", b3Desc: "Triada Hotel Annex Building 2",
+            titleShop: "🛒 Reception Guest Shop",
+            subShop: "Essential items available at reception:",
+            sp1Title: "💳 Istanbulkart (Transport Card)", sp1Desc: "For tram, metro and bus usage", btnBuy1: "Order Now 💬",
+            sp2Title: "🔌 Charging Adapter Converter", sp2Desc: "Universal socket converter", btnBuy2: "Order Now 💬",
+            sp3Title: "⚡ Fast Charging Cable", sp3Desc: "Type-C or Lightning Cable", btnBuy3: "Order Now 💬",
+            sp4Title: "☂️ Rain Umbrella", sp4Desc: "High quality personal umbrella", btnBuy4: "Order Now 💬",
             trustBox: "🛡️ 100% Safe & Hassle-Free Transfer Guarantee<br>Pay either in Cash or by Credit Card to the driver!",
             capBox: "🚖 <strong>Yellow Taxi Capacity:</strong><br>• Maximum 4 Passengers<br>• Fits 4-5 Large Suitcases / 3-4 Hand Luggage.",
             titleIst: "✈️ Istanbul Airport (IST)",
             istInfo: "• Travel time: Approx. 45 - 60 mins.<br>• Taxi must be arranged <strong>at least 3.5 hours before</strong> flight.",
-            mapBtnIst: "📍 IST Map Location",
-            ytBtnIst: "▶ IST Passenger Video Guide",
+            mapBtnIst: "📍 IST Map Location", ytBtnIst: "▶ IST Passenger Video Guide",
             titleSaw: "✈️ Sabiha Gokcen Airport (SAW)",
             sawInfo: "• Travel time: Approx. 60 - 90 mins.<br>• Taxi must be arranged <strong>at least 4 hours before</strong> flight.",
-            mapBtnSaw: "📍 SAW Map Location",
-            ytBtnSaw: "▶ SAW Passenger Video Guide",
+            mapBtnSaw: "📍 SAW Map Location", ytBtnSaw: "▶ SAW Passenger Video Guide",
             formTitle: "🚕 Order Yellow Taxi",
-            lblNa: "Full Name:",
-            lblRm: "Room Number:",
-            lblAp: "Select Airport:",
-            optIst: "Istanbul Airport (IST) - 35€ / 2000₺",
-            optSaw: "Sabiha Gokcen (SAW) - 40€ / 2200₺",
-            lblFlight: "Flight Code (Optional):",
-            lblDt: "Taxi Pickup Date & Time:",
-            lblPy: "Payment Location & Method:",
-            optPy1: "Cash in Taxi (to Driver)",
-            optPy2: "Credit Card in Taxi (+10%)",
-            optPy3: "Cash at Hotel Reception",
-            lblTotalTitle: "Fixed Price To Pay:",
-            btnWsSend: "💬 Send Request via WhatsApp",
-            guideHeader: "🗺️ Karaköy Attractions & Places",
-            guideSub: "Famous places around the hotel & map locations:",
+            lblNa: "Full Name:", lblRm: "Room Number:", lblAp: "Select Airport:",
+            optIst: "Istanbul Airport (IST) - 35€ / 2000₺", optSaw: "Sabiha Gokcen (SAW) - 40€ / 2200₺",
+            lblFlight: "Flight Code (Optional):", lblDt: "Taxi Pickup Date & Time:", lblPy: "Payment Location & Method:",
+            optPy1: "Cash in Taxi (to Driver)", optPy2: "Credit Card in Taxi (+10%)", optPy3: "Cash at Hotel Reception",
+            lblTotalTitle: "Fixed Price To Pay:", btnWsSend: "💬 Send Request via WhatsApp",
+            guideHeader: "🗺️ Karaköy Attractions & Places", guideSub: "Famous places around the hotel & map locations:",
             btnExpandGuides: "🔍 Expand All Places To Visit",
             gt1: "🏬 Galataport Istanbul", gd1: "Seaside walk, shopping & Bosphorus view (🚶 5 Mins)", gl1: "Map 📍",
             gt2: "🥐 Karakoy Gulluoglu", gd2: "World famous historical baklava shop (🚶 2 Mins)", gl2: "Map 📍",
@@ -375,45 +503,47 @@
             gt6: "🐟 Karakoy Fish Market", gd6: "Fresh fish sandwiches & Bosphorus vibe (🚶 4 Mins)", gl6: "Map 📍",
             gt7: "🚃 T1 Karakoy Tram Station", gd7: "Easy access to Hagia Sophia & Grand Bazaar (🚶 3 Mins)", gl7: "Map 📍",
             btnHotelMap: "🏨 Triada Hotel Karaköy Directions",
-            reviewTitle: "💬 Guest Reviews",
-            reviewSub: "Share your experience with us:",
-            lblReviewerName: "Your Name / Country:",
-            lblReviewText: "Your Comment:",
-            phReviewer: "e.g. David (UK)",
-            phComment: "Great service, thank you Ilham!",
-            btnSendReview: "Submit Review",
-            lblAllReviews: "All Guest Reviews:",
-            btnExpandReviews: "🔍 Expand All Guest Reviews",
-            btnCallCall: "📞 Call Now"
+            reviewTitle: "💬 Guest Reviews", reviewSub: "Share your experience with us:",
+            lblReviewerName: "Your Name / Country:", lblReviewText: "Your Comment:",
+            phReviewer: "e.g. David (UK)", phComment: "Great service, thank you Ilham!",
+            btnSendReview: "Submit Review", lblAllReviews: "All Guest Reviews:",
+            btnExpandReviews: "🔍 Expand All Guest Reviews", btnCallCall: "📞 Call Now"
         },
         ru: {
-            subTitle: "24/7 Заказ Желтого Такси",
+            subTitle: "24/7 Заказ Желтого Такси и Услуги",
+            menuTitle: "🏢 Меню Triada Hotel",
+            ml1: "📍 Здания Отеля (Карта)",
+            ml2: "🛒 Магазин на Ресепшн",
+            ml3: "🚕 Заказать Желтое Такси",
+            ml4: "🗺️ Путеводитель по Каракёй",
+            ml5: "💬 Отзывы Гостей",
+            ml6: "💬 WhatsApp Ресепшн",
+            titleBuildings: "🏢 Здания Triada Hotel",
+            subBuildings: "Прямые маршруты к нашим зданиям:",
+            b1Title: "🏨 Главный Корпус", b1Desc: "Triada Hotel Karaköy Главное здание",
+            b2Title: "🏢 Корпус Арт 1 (Annex 1)", b2Desc: "Triada Hotel Доп. корпус 1",
+            b3Title: "🏢 Корпус Арт 2 (Annex 2)", b3Desc: "Triada Hotel Доп. корпус 2",
+            titleShop: "🛒 Магазин на Ресепшн",
+            subShop: "Необходимые товары на стойке регистрации:",
+            sp1Title: "💳 Istanbulkart (Проездной)", sp1Desc: "Для трамвая, метро и автобуса", btnBuy1: "Заказать 💬",
+            sp2Title: "🔌 Адаптер-Переходник", sp2Desc: "Переходник для розеток", btnBuy2: "Заказать 💬",
+            sp3Title: "⚡ Зарядный Кабель", sp3Desc: "Type-C или Lightning Кабель", btnBuy3: "Заказать 💬",
+            sp4Title: "☂️ Зонт от Дождя", sp4Desc: "Качественный личный зонт", btnBuy4: "Заказать 💬",
             trustBox: "🛡️ 100% Гарантия Безопасной Поездки<br>Оплачивайте наличными или картой водителю такси!",
             capBox: "🚖 <strong>Вместимость Желтого Такси:</strong><br>• Максимум 4 Пассажира<br>• Вмещает 4-5 больших чемоданов / 3-4 ручные клади.",
             titleIst: "✈️ Аэропорт Стамбула (IST)",
             istInfo: "• Время в пути: около 45-60 минут.<br>• Такси необходимо заказать <strong>минимум за 3.5 часа</strong> до вылета.",
-            mapBtnIst: "📍 IST Карта",
-            ytBtnIst: "▶ Видео-гид по аэропорту IST",
+            mapBtnIst: "📍 IST Карта", ytBtnIst: "▶ Видео-гид по аэропорту IST",
             titleSaw: "✈️ Аэропорт Сабиха Гёкчен (SAW)",
             sawInfo: "• Время в пути: около 60-90 минут.<br>• Такси необходимо заказать <strong>минимум за 4 часа</strong> до вылета.",
-            mapBtnSaw: "📍 SAW Карта",
-            ytBtnSaw: "▶ Видео-гид по аэропорту SAW",
+            mapBtnSaw: "📍 SAW Карта", ytBtnSaw: "▶ Видео-гид по аэропорту SAW",
             formTitle: "🚕 Заказать Желтое Такси",
-            lblNa: "Имя и Фамилия:",
-            lblRm: "Номер комнаты:",
-            lblAp: "Выберите аэропорт:",
-            optIst: "Аэропорт Стамбула (IST) - 35€ / 2000₺",
-            optSaw: "Сабиха Гёкчен (SAW) - 40€ / 2200₺",
-            lblFlight: "Номер рейса (необязательно):",
-            lblDt: "Дата и время подачи такси:",
-            lblPy: "Место и способ оплаты:",
-            optPy1: "Наличными водителю",
-            optPy2: "Картой в такси (+10%)",
-            optPy3: "Наличными в отеле",
-            lblTotalTitle: "Фиксированная цена:",
-            btnWsSend: "💬 Отправить запрос в WhatsApp",
-            guideHeader: "🗺️ Достопримечательности Каракёй",
-            guideSub: "Популярные места рядом с отелем на карте:",
+            lblNa: "Имя и Фамилия:", lblRm: "Номер комнаты:", lblAp: "Выберите аэропорт:",
+            optIst: "Аэропорт Стамбула (IST) - 35€ / 2000₺", optSaw: "Сабиха Гёкчен (SAW) - 40€ / 2200₺",
+            lblFlight: "Номер рейса (необязательно):", lblDt: "Дата и время подачи такси:", lblPy: "Место и способ оплаты:",
+            optPy1: "Наличными водителю", optPy2: "Картой в такси (+10%)", optPy3: "Наличными в отеле",
+            lblTotalTitle: "Фиксированная цена:", btnWsSend: "💬 Отправить запрос в WhatsApp",
+            guideHeader: "🗺️ Достопримечательности Каракёй", guideSub: "Популярные места рядом с отелем на карте:",
             btnExpandGuides: "🔍 Показать все места на карте",
             gt1: "🏬 Галатапорт Стамбул", gd1: "Прогулки у моря, шопинг и вид на Босфор (🚶 5 мин)", gl1: "Карта 📍",
             gt2: "🥐 Каракёй Гюллюоглу", gd2: "Всемирно известная историческая пахлава (🚶 2 мин)", gl2: "Карта 📍",
@@ -423,45 +553,47 @@
             gt6: "🐟 Рыбный рынок Каракёй", gd6: "Свежая рыба в хлебе и атмосфера Босфора (🚶 4 мин)", gl6: "Карта 📍",
             gt7: "🚃 Трамвай T1 Каракёй", gd7: "Быстрый проезд к Святой Софии и Гранд-Базару (🚶 3 мин)", gl7: "Карта 📍",
             btnHotelMap: "🏨 Маршрут к Triada Hotel Karaköy",
-            reviewTitle: "💬 Отзывы Гостей",
-            reviewSub: "Поделитесь своим опытом:",
-            lblReviewerName: "Ваше имя / Страна:",
-            lblReviewText: "Ваш комментарий:",
-            phReviewer: "например: Джон (UK)",
-            phComment: "Отличный сервис, спасибо Ильхам!",
-            btnSendReview: "Отправить отзыв",
-            lblAllReviews: "Все отзывы:",
-            btnExpandReviews: "🔍 Показать все отзывы гостей",
-            btnCallCall: "📞 Позвонить"
+            reviewTitle: "💬 Отзывы Гостей", reviewSub: "Поделитесь своим опытом:",
+            lblReviewerName: "Ваше имя / Страна:", lblReviewText: "Ваш комментарий:",
+            phReviewer: "например: Джон (UK)", phComment: "Отличный сервис, спасибо Ильхам!",
+            btnSendReview: "Отправить отзыв", lblAllReviews: "Все отзывы:",
+            btnExpandReviews: "🔍 Показать все отзывы гостей", btnCallCall: "📞 Позвонить"
         },
         ar: {
-            subTitle: "خدمة طلب التاكسي الأصفر 24/7",
+            subTitle: "خدمة طلب التاكسي الأصفر 24/7 والخدمات",
+            menuTitle: "🏢 قائمة فندق تريادا",
+            ml1: "📍 مباني الفندق (المواقع)",
+            ml2: "🛒 متجر الاستقبال",
+            ml3: "🚕 طلب تاكسي أصفر",
+            ml4: "🗺️ دليل كراكوي",
+            ml5: "💬 آراء الضيوف",
+            ml6: "💬 واتساب الاستقبال",
+            titleBuildings: "🏢 مباني فندق تريادا",
+            subBuildings: "اتجاهات الخريطة المباشرة لمباني الفندق:",
+            b1Title: "🏨 المبنى الرئيسي", b1Desc: "فندق تريادا كراكوي المبنى الرئيسي",
+            b2Title: "🏢 المبنى الفرعي 1", b2Desc: "Triada Hotel Annex Building 1",
+            b3Title: "🏢 المبنى الفرعي 2", b3Desc: "Triada Hotel Annex Building 2",
+            titleShop: "🛒 متجر الاستقبال للضيوف",
+            subShop: "المستلزمات المتوفرة في الاستقبال:",
+            sp1Title: "💳 إسطنبول كارت (كرت المواصلات)", sp1Desc: "للتنقل بالترام، المترو والباص", btnBuy1: "اطلب الآن 💬",
+            sp2Title: "🔌 محول رأس الشاحن", sp2Desc: "محول مقبس القابس العالمي", btnBuy2: "اطلب الآن 💬",
+            sp3Title: "⚡ كابل شحن سريع", sp3Desc: "كابل Type-C أو Lightning", btnBuy3: "اطلب الآن 💬",
+            sp4Title: "☂️ مظلة مطر", sp4Desc: "مظلة شخصية عالية الجودة", btnBuy4: "اطلب الآن 💬",
             trustBox: "🛡️ ضمان نقل آمن وسلس 100%<br>ادفع إما نقداً أو بالبطاقة للسائق!",
             capBox: "🚖 <strong>سعة التاكسي الأصفر:</strong><br>• 4 ركاب كحد أقصى<br>• يتسع لـ 4-5 حقائب كبيرة / 3-4 حقائب يد.",
             titleIst: "✈️ مطار إسطنبول (IST)",
             istInfo: "• مدة الرحلة: حوالي 45 - 60 دقيقة.<br>• يجب حجز التاكسي <strong>قبل 3.5 ساعة على الأقل</strong> من موعد الطيران.",
-            mapBtnIst: "📍 موقع خريطة IST",
-            ytBtnIst: "▶ فيديو دليل الركاب IST",
+            mapBtnIst: "📍 موقع خريطة IST", ytBtnIst: "▶ فيديو دليل الركاب IST",
             titleSaw: "✈️ مطار صبيحة كوكجن (SAW)",
             sawInfo: "• مدة الرحلة: حوالي 60 - 90 دقيقة.<br>• يجب حجز التاكسي <strong>قبل 4 ساعات على الأقل</strong> من موعد الطيران.",
-            mapBtnSaw: "📍 موقع خريطة SAW",
-            ytBtnSaw: "▶ فيديو دليل الركاب SAW",
+            mapBtnSaw: "📍 موقع خريطة SAW", ytBtnSaw: "▶ فيديو دليل الركاب SAW",
             formTitle: "🚕 طلب تاكسي أصفر",
-            lblNa: "الاسم الكامل:",
-            lblRm: "رقم الغرفة:",
-            lblAp: "اختر المطار:",
-            optIst: "مطار إسطنبول (IST) - 35€ / 2000₺",
-            optSaw: "مطار صبيحة (SAW) - 40€ / 2200₺",
-            lblFlight: "رمز الطيران (اختياري):",
-            lblDt: "تاريخ ووقت طلب التاكسي:",
-            lblPy: "مكان وطريقة الدفع:",
-            optPy1: "نقداً في التاكسي",
-            optPy2: "بطاقة في التاكسي (+10%)",
-            optPy3: "نقداً في الفندق",
-            lblTotalTitle: "السعر الثابت المقدر:",
-            btnWsSend: "💬 إرسال الطلب عبر WhatsApp",
-            guideHeader: "🗺️ الأماكن السياحية في كراكوي",
-            guideSub: "أشهر الأماكن حول الفندق والمواقع على الخريطة:",
+            lblNa: "الاسم الكامل:", lblRm: "رقم الغرفة:", lblAp: "اختر المطار:",
+            optIst: "مطار إسطنبول (IST) - 35€ / 2000₺", optSaw: "مطار صبيحة (SAW) - 40€ / 2200₺",
+            lblFlight: "رمز الطيران (اختياري):", lblDt: "تاريخ ووقت طلب التاكسي:", lblPy: "مكان وطريقة الدفع:",
+            optPy1: "نقداً في التاكسي", optPy2: "بطاقة في التاكسي (+10%)", optPy3: "نقداً في الفندق",
+            lblTotalTitle: "السعر الثابت المقدر:", btnWsSend: "💬 إرسال الطلب عبر WhatsApp",
+            guideHeader: "🗺️ الأماكن السياحية في كراكوي", guideSub: "أشهر الأماكن حول الفندق والمواقع على الخريطة:",
             btnExpandGuides: "🔍 عرض جميع الأماكن السياحية",
             gt1: "🏬 غالاتابورت إسطنبول", gd1: "المشي على البحر، التسوق وإطلالة البوسفور (🚶 5 دقائق)", gl1: "الخريطة 📍",
             gt2: "🥐 كراكوي غولو أوغلو", gd2: "أشهر محل بقلاوة تاريخي في العالم (🚶 دقيقتين)", gl2: "الخريطة 📍",
@@ -471,16 +603,11 @@
             gt6: "🐟 سوق السمك في كراكوي", gd6: "ساندويتشات السمك الطازجة وأجواء البوسفور (🚶 4 دقائق)", gl6: "الخريطة 📍",
             gt7: "🚃 محطة ترام كراكوي T1", gd7: "وصول سهل إلى آيا صوفيا والسوق المغلق (🚶 3 دقائق)", gl7: "الخريطة 📍",
             btnHotelMap: "🏨 الاتجاهات إلى فندق تريادا كراكوي",
-            reviewTitle: "💬 آراء الضيوف",
-            reviewSub: "شاركنا تجربتك:",
-            lblReviewerName: "الاسم / البلد:",
-            lblReviewText: "تعليقك:",
-            phReviewer: "مثال: أحمد (بريطانيا)",
-            phComment: "خدمة رائعة جداً، شكراً لك!",
-            btnSendReview: "إرسال التقييم",
-            lblAllReviews: "جميع التقييمات:",
-            btnExpandReviews: "🔍 عرض جميع تقييمات الضيوف",
-            btnCallCall: "📞 اتصل الآن"
+            reviewTitle: "💬 آراء الضيوف", reviewSub: "شاركنا تجربتك:",
+            lblReviewerName: "الاسم / البلد:", lblReviewText: "تعليقك:",
+            phReviewer: "مثال: أحمد (بريطانيا)", phComment: "خدمة رائعة جداً، شكراً لك!",
+            btnSendReview: "إرسال التقييم", lblAllReviews: "جميع التقييمات:",
+            btnExpandReviews: "🔍 عرض جميع تقييمات الضيوف", btnCallCall: "📞 اتصل الآن"
         }
     };
 
@@ -541,7 +668,6 @@
             }
         }
 
-        // Placeholder çevirileri
         document.getElementById('txtReviewer').placeholder = t.phReviewer;
         document.getElementById('txtComment').placeholder = t.phComment;
     }
