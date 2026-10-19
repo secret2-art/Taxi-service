@@ -34,6 +34,9 @@
         
         .trust-box { background: #1b2e1e; border: 1px solid #25D366; padding: 10px 12px; border-radius: 8px; font-size: 12px; color: #25D366; margin-bottom: 15px; text-align: center; font-weight: bold; line-height: 1.4; }
 
+        /* ESNEKLİK / GÜVENCE BİLGİ KUTUSU */
+        .flex-box { background: #2d2612; border: 1px dashed #f2a900; padding: 10px 12px; border-radius: 8px; font-size: 12px; color: #f2a900; margin-bottom: 15px; text-align: center; font-weight: 500; line-height: 1.4; }
+
         .card { background: #262626; border-radius: 12px; padding: 15px; margin-bottom: 15px; border-left: 4px solid #f2a900; }
         .card h2 { font-size: 16px; color: #f2a900; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
         .price { font-size: 20px; font-weight: bold; color: #fff; margin: 5px 0; }
@@ -164,6 +167,11 @@
         <div class="card" style="border-left-color: #25D366;">
             <h2 style="color: #25D366;" id="formTitle">🚕 Sarı Taksi Çağır</h2>
             
+            <!-- ESNEKLİK / DEĞİŞİKLİK BİLGİLENDİRMESİ -->
+            <div class="flex-box" id="flexBox">
+                🔄 Rezervasyonunuzu oluşturduktan sonra istediğiniz zaman tarih ve saati ücretsiz değiştirebilirsiniz!
+            </div>
+
             <div class="form-group">
                 <label id="lblNa">Adınız Soyadınız:</label>
                 <input type="text" id="txtName" placeholder="Örn: John Doe">
@@ -453,6 +461,7 @@
             crText: "Gece market ihtiyaçları, kişisel bakım/hijyen ürünleri, özel siparişleriniz veya aklınıza gelen her türlü acil talep için 7/24 WhatsApp'tan bize yazabilirsiniz. Bellboy ekibimiz kapınıza kadar getirsin!",
             btnCustomWa: "💬 WhatsApp ile İstekte Bulun",
             trustBox: "🛡️ %100 Güvenli & Sorunsuz Ulaşım Garantisi<br>Ödemenizi İster Nakit İster Kartla Taksicide Yapabilirsiniz!",
+            flexBox: "🔄 Rezervasyonunuzu oluşturduktan sonra istediğiniz zaman tarih ve saati ücretsiz değiştirebilirsiniz!",
             capBox: "🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>• Maksimum 4 Yolcu<br>• 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.",
             titleIst: "✈️ İstanbul Havalimanı (IST)",
             istInfo: "• Ulaşım süresi: Yaklaşık 45 - 60 dakika.<br>• Uçuştan <strong>en geç 3.5 saat önce</strong> taksi ayarlanmalıdır.",
@@ -503,6 +512,7 @@
             crText: "For late-night market items, personal care/hygiene products, or any special requests, feel free to text us on WhatsApp 24/7. Our Bellboy team will deliver it directly to your room!",
             btnCustomWa: "💬 Send Custom Request via WhatsApp",
             trustBox: "🛡️ 100% Safe & Hassle-Free Transfer Guarantee<br>Pay either in Cash or by Credit Card to the driver!",
+            flexBox: "🔄 You can freely change your date and time anytime after creating your reservation!",
             capBox: "🚖 <strong>Yellow Taxi Capacity:</strong><br>• Maximum 4 Passengers<br>• Fits 4-5 Large Suitcases / 3-4 Hand Luggage.",
             titleIst: "✈️ Istanbul Airport (IST)",
             istInfo: "• Travel time: Approx. 45 - 60 mins.<br>• Taxi must be arranged <strong>at least 3.5 hours before</strong> flight.",
@@ -553,6 +563,7 @@
             crText: "Для ночных покупок, средств личной гигиены или любых других особых запросов пишите нам в WhatsApp 24/7. Наша команда беллбоев доставит всё прямо к вашей двери!",
             btnCustomWa: "💬 Написать запрос в WhatsApp",
             trustBox: "🛡️ 100% Гарантия Безопасной Поездки<br>Оплачивайте наличными или картой водителю такси!",
+            flexBox: "🔄 Вы можете бесплатно изменить дату и время в любое время после создания бронирования!",
             capBox: "🚖 <strong>Вместимость Желтого Такси:</strong><br>• Максимум 4 Пассажира<br>• Вмещает 4-5 больших чемоданов / 3-4 ручные клади.",
             titleIst: "✈️ Аэропорт Стамбула (IST)",
             istInfo: "• Время в пути: около 45-60 минут.<br>• Такси необходимо заказать <strong>минимум за 3.5 часа</strong> до вылета.",
@@ -603,6 +614,7 @@
             crText: "لمستلزمات المتجر الليلية، منتجات العناية الشخصية، أو أي طلبات خاصة، يمكنك مراسلتنا عبر الواتساب على مدار 24 ساعة. سيقوم فريق البيلبوي بتوصيلها إلى غرفتك مباشرة!",
             btnCustomWa: "💬 إرسال طلب خاص عبر WhatsApp",
             trustBox: "🛡️ ضمان نقل آمن وسلس 100%<br>ادفع إما نقداً أو بالبطاقة للسائق!",
+            flexBox: "🔄 يمكنك تغيير التاريخ والوقت مجاناً في أي وقت بعد إنشاء الحجز الخاص بك!",
             capBox: "🚖 <strong>سعة التاكسي الأصفر:</strong><br>• 4 ركاب كحد أقصى<br>• يتسع لـ 4-5 حقائب كبيرة / 3-4 حقائب يد.",
             titleIst: "✈️ مطار إسطنبول (IST)",
             istInfo: "• مدة الرحلة: حوالي 45 - 60 دقيقة.<br>• يجب حجز التاكسي <strong>قبل 3.5 ساعة على الأقل</strong> من موعد الطيران.",
@@ -664,7 +676,7 @@
         for(let key in t) {
             let el = document.getElementById(key);
             if(el) {
-                if(key.includes('Info') || key === 'capBox' || key === 'trustBox') {
+                if(key.includes('Info') || key === 'capBox' || key === 'trustBox' || key === 'flexBox') {
                     el.innerHTML = t[key];
                 } else {
                     el.innerText = t[key];
@@ -710,9 +722,7 @@
 
         const msg = `🚖 YENİ SARI TAKSİ TALEBİ:\n👤 İsim: ${name}\n🔑 Oda No: ${room}\n🛫 Havalimanı: ${airport}\n🎫 Uçuş Kodu: ${flight}\n📅 Tarih/Saat: ${time}\n${payIcon} Ödeme: ${payText}\n💰 Net Tutar: ${totalPrice}`;
 
-        // Verdiğiniz WhatsApp hesap/QR bağlantısının numarası veya yönlendirmesi
-        // wa.me formatına entegre edildi: (QR linkinizdeki numarayı buraya doğrudan bağladık)
-        const targetNumber = "905014712020"; // İhtiyaca göre QR linkindeki asıl telefon numarasıyla güncellenebilir
+        const targetNumber = "905014712020";
         const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`;
         
         window.open(url, '_blank');
