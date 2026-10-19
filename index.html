@@ -11,17 +11,25 @@
         
         /* ÜST BAR VE HAMBURGER MENÜ */
         .top-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .menu-btn { background: #2a2a2a; border: 1px solid #f2a900; color: #f2a900; font-size: 20px; padding: 4px 12px; border-radius: 8px; cursor: pointer; }
+        .menu-btn { background: #2a2a2a; border: 1px solid #f2a900; color: #f2a900; font-size: 22px; padding: 6px 14px; border-radius: 8px; cursor: pointer; }
         
         /* KAYAR YAN MENÜ */
-        .side-menu { position: fixed; top: 0; left: -310px; width: 300px; height: 100%; background: #181818; border-right: 2px solid #f2a900; z-index: 10000; padding: 20px; transition: 0.3s; box-shadow: 5px 0 15px rgba(0,0,0,0.7); overflow-y: auto; }
+        .side-menu { position: fixed; top: 0; left: -320px; width: 310px; height: 100%; background: #181818; border-right: 2px solid #f2a900; z-index: 10000; padding: 20px; transition: 0.3s; box-shadow: 5px 0 15px rgba(0,0,0,0.7); overflow-y: auto; }
         .side-menu.active { left: 0; }
-        .menu-close { background: none; border: none; color: #f2a900; font-size: 22px; float: right; cursor: pointer; }
-        .menu-title { font-size: 16px; color: #f2a900; font-weight: bold; margin-bottom: 15px; margin-top: 10px; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        .menu-category { font-size: 12px; color: #f2a900; font-weight: bold; text-transform: uppercase; margin-top: 15px; margin-bottom: 5px; border-bottom: 1px dashed #444; padding-bottom: 3px; }
-        .menu-link { display: flex; justify-content: space-between; align-items: center; color: #fff; text-decoration: none; padding: 10px 0; font-size: 13px; border-bottom: 1px solid #262626; }
+        .menu-close { background: none; border: none; color: #f2a900; font-size: 26px; float: right; cursor: pointer; }
+        .menu-title { font-size: 18px; color: #f2a900; font-weight: bold; margin-bottom: 15px; margin-top: 5px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        
+        /* SABİT AÇIK LİNKLER */
+        .menu-category-fixed { font-size: 13px; color: #f2a900; font-weight: bold; text-transform: uppercase; margin-top: 15px; margin-bottom: 8px; border-bottom: 1px dashed #444; padding-bottom: 4px; }
+        .menu-link { display: flex; justify-content: space-between; align-items: center; color: #fff; text-decoration: none; padding: 12px 0; font-size: 14px; border-bottom: 1px solid #262626; font-weight: 500; }
         .menu-link:hover { color: #f2a900; }
-        .menu-subtext { font-size: 10px; color: #888; display: block; }
+        .menu-subtext { font-size: 11px; color: #aaa; display: block; margin-top: 2px; }
+
+        /* AKORDİYON / AÇILIR-KAPANIR BAŞLIKLAR */
+        .accordion-header { background: #242424; color: #f2a900; font-size: 14px; font-weight: bold; padding: 12px; border-radius: 8px; margin-top: 10px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; border: 1px solid #333; transition: 0.2s; }
+        .accordion-header:hover { background: #2d2d2d; border-color: #f2a900; }
+        .accordion-content { display: none; padding-left: 8px; margin-bottom: 10px; background: #1a1a1a; border-radius: 0 0 8px 8px; padding-right: 8px; }
+
         .overlay { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; display:none; }
         .overlay.active { display:block; }
 
@@ -31,7 +39,7 @@
         .header p { font-size: 13px; color: #aaa; }
         
         .lang-picker { display: flex; justify-content: center; gap: 6px; }
-        .lang-btn { background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 5px 10px; border-radius: 20px; cursor: pointer; font-size: 11px; transition: 0.2s; }
+        .lang-btn { background: #2a2a2a; border: 1px solid #444; color: #fff; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 12px; transition: 0.2s; }
         .lang-btn.active { background: #f2a900; color: #000; font-weight: bold; border-color: #f2a900; }
         
         .trust-box { background: #1b2e1e; border: 1px solid #25D366; padding: 10px 12px; border-radius: 8px; font-size: 12px; color: #25D366; margin-bottom: 15px; text-align: center; font-weight: bold; line-height: 1.4; }
@@ -45,7 +53,7 @@
         .capacity-box { background: #1a1a1a; padding: 12px; border-radius: 8px; font-size: 12px; color: #ddd; margin-bottom: 15px; border: 1px dashed #f2a900; line-height: 1.5; }
 
         .form-group { margin-bottom: 12px; }
-        label { font-size: 12px; color: #ccc; display: block; margin-bottom: 4px; }
+        label { font-size: 13px; color: #ccc; display: block; margin-bottom: 4px; }
         input, select { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #444; background: #121212; color: #fff; font-size: 14px; -webkit-appearance: none; }
         input[type="datetime-local"] { color-scheme: dark; }
         
@@ -54,19 +62,19 @@
         .calc-summary .total-price { font-size: 22px; color: #f2a900; font-weight: bold; margin-top: 4px; }
 
         .btn-ws { background-color: #25D366; color: white; border: none; width: 100%; padding: 14px; border-radius: 30px; font-size: 15px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 15px; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3); }
-        .btn-map { background-color: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 10px; border-radius: 30px; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; text-decoration: none; }
+        .btn-map { background-color: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 10px; border-radius: 30px; font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 10px; text-decoration: none; }
         .btn-yt { background-color: #bb0000; color: #fff; border: none; width: 100%; padding: 9px; border-radius: 30px; font-size: 12px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 8px; text-decoration: none; }
 
         /* Rehber & Market Liste Stili */
-        .guide-item { background: #1a1a1a; padding: 10px; border-radius: 8px; margin-bottom: 8px; border-left: 3px solid #f2a900; display: flex; justify-content: space-between; align-items: center; }
-        .guide-title { font-size: 13px; font-weight: bold; color: #fff; }
-        .guide-desc { font-size: 11px; color: #aaa; margin-top: 2px; }
-        .guide-link { color: #f2a900; font-size: 12px; text-decoration: none; font-weight: bold; }
+        .guide-item { background: #1a1a1a; padding: 12px; border-radius: 8px; margin-bottom: 8px; border-left: 3px solid #f2a900; display: flex; justify-content: space-between; align-items: center; }
+        .guide-title { font-size: 14px; font-weight: bold; color: #fff; }
+        .guide-desc { font-size: 12px; color: #aaa; margin-top: 2px; }
+        .guide-link { color: #f2a900; font-size: 13px; text-decoration: none; font-weight: bold; }
         
         /* Market Ürün Kartları */
         .shop-item { background: #1a1a1a; padding: 12px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid #25D366; display: flex; justify-content: space-between; align-items: center; }
         .shop-price { font-size: 14px; font-weight: bold; color: #25D366; margin-top: 2px; }
-        .shop-btn { background: #25D366; color: #fff; border: none; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; text-decoration: none; }
+        .shop-btn { background: #25D366; color: #fff; border: none; padding: 8px 14px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; text-decoration: none; }
 
         /* Tıklanabilir Özel İstek Kutusu */
         .custom-request-box { background: #1a1a1a; border: 1px dashed #f2a900; border-radius: 8px; padding: 12px; margin-top: 10px; cursor: pointer; transition: 0.2s; }
@@ -75,11 +83,11 @@
 
         /* Gizlenen / Genişletilen Alanlar */
         .more-items { display: none; }
-        .btn-expand { background: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 10px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; margin-top: 5px; margin-bottom: 10px; transition: 0.2s; }
+        .btn-expand { background: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 12px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; margin-top: 8px; margin-bottom: 10px; transition: 0.2s; }
 
         /* Sabit Alt Bar */
         .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #181818; border-top: 1px solid #333; padding: 10px 20px; display: flex; gap: 10px; justify-content: center; z-index: 999; }
-        .sticky-btn { flex: 1; max-width: 220px; padding: 10px; border-radius: 25px; text-decoration: none; font-size: 13px; font-weight: bold; text-align: center; display: flex; align-items: center; justify-content: center; gap: 6px; }
+        .sticky-btn { flex: 1; max-width: 220px; padding: 12px; border-radius: 25px; text-decoration: none; font-size: 14px; font-weight: bold; text-align: center; display: flex; align-items: center; justify-content: center; gap: 6px; }
         .sticky-call { background: #333; color: #fff; border: 1px solid #555; }
         .sticky-wa { background: #25D366; color: #fff; }
 
@@ -92,18 +100,19 @@
 <!-- KARARATMA KATMANI -->
 <div class="overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
-<!-- SOL KAYAR MENÜ (TÜM İHTİYAÇLAR BURADA) -->
+<!-- SOL KAYAR MENÜ -->
 <div class="side-menu" id="sideMenu">
     <button class="menu-close" onclick="closeMenu()">✕</button>
     <div class="menu-title" id="menuTitle">🏢 Triada Hotel Rehber Menü</div>
     
+    <!-- ANA SAYFA GEZİNTİ LİNKLERİ (SABİT AÇIK) -->
     <a href="#taxiSec" class="menu-link" onclick="closeMenu()"><span id="ml1">🚕 Sarı Taksi Çağır</span> 📍</a>
     <a href="#buildingsSec" class="menu-link" onclick="closeMenu()"><span id="ml2">📍 Otel Binalarımız (Konumlar)</span> 📍</a>
     <a href="#shopSec" class="menu-link" onclick="closeMenu()"><span id="ml3">🛒 Acil İhtiyaç Marketi</span> 📍</a>
     <a href="#guideSec" class="menu-link" onclick="closeMenu()"><span id="ml4">🗺️ Karaköy Gezi Rehberi</span> 📍</a>
     
-    <!-- ACİL HİZMETLER -->
-    <div class="menu-category" id="mcEmergency">🚨 Acil Hizmetler & Konumlar</div>
+    <!-- ACİL HİZMETLER & KONUMLAR (SABİT AÇIK) -->
+    <div class="menu-category-fixed" id="mcEmergency">🚨 Acil Hizmetler & Konumlar</div>
     <a href="https://maps.app.goo.gl/JFxu71nuaVbqgrmw7?g_st=ac" target="_blank" class="menu-link">
         <div>
             <span id="mEx">💱 Güvenilir Döviz Bürosu</span>
@@ -118,7 +127,7 @@
         </div>
         📍
     </a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Galataport+Istanbul+Parking" target="_blank" class="menu-link">
+    <a href="https://maps.app.goo.gl/F3ZvGWppxmUXPoneA?g_st=ac" target="_blank" class="menu-link">
         <div>
             <span id="mPk">🅿️ Galataport AVM Kapalı Otoparkı</span>
             <span class="menu-subtext">7/24 Güvenli kapalı otopark</span>
@@ -126,61 +135,77 @@
         📍
     </a>
 
-    <!-- YEME & İÇME -->
-    <div class="menu-category" id="mcFood">🥐 Yeme, İçme & Cafeler</div>
-    <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Gulluoglu" target="_blank" class="menu-link">
-        <div><span>🥐 Karaköy Güllüoğlu</span><span class="menu-subtext">Tarihi Baklavacı (🚶 2 Dk)</span></div>📍
-    </a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Tarihi+Karakoy+Balikcisi" target="_blank" class="menu-link">
-        <div><span>🐟 Tarihi Karaköy Balıkçısı</span><span class="menu-subtext">Taze Balık & Boğaz Manzarası</span></div>📍
-    </a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Lokantasi" target="_blank" class="menu-link">
-        <div><span>🍲 Karaköy Lokantası</span><span class="menu-subtext">Geleneksel Türk Mutfak lezzetleri</span></div>📍
-    </a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Espresso+Lab+Karakoy" target="_blank" class="menu-link">
-        <div><span>☕ Espresso Lab Karaköy</span><span class="menu-subtext">Kaliteli Kahve & Çalışma Alanı</span></div>📍
-    </a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Frankie+Galataport" target="_blank" class="menu-link">
-        <div><span>🍷 Galataport Roof Barlar</span><span class="menu-subtext">Teras Manzaralı Gece Mekanları</span></div>📍
-    </a>
+    <!-- AÇILIR-KAPANIR (AKORDİYON) BAŞLIKLAR -->
+    
+    <!-- 1. YEME & İÇME -->
+    <div class="accordion-header" onclick="toggleAcc('accFood')">
+        <span id="mcFood">🥐 Yeme, İçme & Cafeler</span> <span>▼</span>
+    </div>
+    <div class="accordion-content" id="accFood">
+        <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Gulluoglu" target="_blank" class="menu-link"><div><span>🥐 Karaköy Güllüoğlu</span><span class="menu-subtext">Tarihi Baklavacı (🚶 2 Dk)</span></div>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Tarihi+Karakoy+Balikcisi" target="_blank" class="menu-link"><div><span>🐟 Tarihi Karaköy Balıkçısı</span><span class="menu-subtext">Taze Balık & Manzara</span></div>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Lokantasi" target="_blank" class="menu-link"><div><span>🍲 Karaköy Lokantası</span><span class="menu-subtext">Geleneksel Türk Mutfağı</span></div>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Espresso+Lab+Karakoy" target="_blank" class="menu-link"><div><span>☕ Espresso Lab Karaköy</span><span class="menu-subtext">Kaliteli Kahve & Çalışma</span></div>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Frankie+Galataport" target="_blank" class="menu-link"><div><span>🍷 Galataport Roof Barlar</span><span class="menu-subtext">Teras Manzaralı Mekanlar</span></div>📍</a>
+    </div>
 
-    <!-- 1. YÜRÜME MESAFESİNDEKİ YERLER -->
-    <div class="menu-category" id="mcWalk">🚶 Yürüme Mesafesindeki Tarihi Yerler</div>
-    <a href="https://www.google.com/maps/search/?api=1&query=Galataport+Istanbul" target="_blank" class="menu-link"><span>🏬 Galataport İstanbul</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Galata+Tower" target="_blank" class="menu-link"><span>🏰 Galata Kulesi</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Kamondo+Stairs" target="_blank" class="menu-link"><span>🪜 Kamondo Merdivenleri</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Bankalar+Caddesi+Karakoy" target="_blank" class="menu-link"><span>🏛️ Bankalar Caddesi</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Galata+Bridge" target="_blank" class="menu-link"><span>🌉 Galata Köprüsü</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Kilic+Ali+Pasa+Hamami" target="_blank" class="menu-link"><span>♨️ Kılıç Ali Paşa Hamamı</span>📍</a>
+    <!-- 2. YÜRÜME MESAFESİNDEKİ YERLER -->
+    <div class="accordion-header" onclick="toggleAcc('accWalk')">
+        <span id="mcWalk">🚶 Yürüme Mesafesindeki Yerler</span> <span>▼</span>
+    </div>
+    <div class="accordion-content" id="accWalk">
+        <a href="https://www.google.com/maps/search/?api=1&query=Galataport+Istanbul" target="_blank" class="menu-link"><span>🏬 Galataport İstanbul</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Galata+Tower" target="_blank" class="menu-link"><span>🏰 Galata Kulesi</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Kamondo+Stairs" target="_blank" class="menu-link"><span>🪜 Kamondo Merdivenleri</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Bankalar+Caddesi+Karakoy" target="_blank" class="menu-link"><span>🏛️ Bankalar Caddesi</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Galata+Bridge" target="_blank" class="menu-link"><span>🌉 Galata Köprüsü</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Kilic+Ali+Pasa+Hamami" target="_blank" class="menu-link"><span>♨️ Kılıç Ali Paşa Hamamı</span>📍</a>
+    </div>
 
-    <!-- 2. MÜZELER VE SANAT -->
-    <div class="menu-category" id="mcMuseum">🎨 Müzeler & Sanat Merkezleri</div>
-    <a href="https://www.google.com/maps/search/?api=1&query=Istanbul+Modern" target="_blank" class="menu-link"><span>🖼️ İstanbul Modern</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=SALT+Galata" target="_blank" class="menu-link"><span>📚 SALT Galata</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Tophane-i+Amire" target="_blank" class="menu-link"><span>🏛️ Tophane-i Âmire</span>📍</a>
+    <!-- 3. MÜZELER VE SANAT -->
+    <div class="accordion-header" onclick="toggleAcc('accMuseum')">
+        <span id="mcMuseum">🎨 Müzeler & Sanat Merkezleri</span> <span>▼</span>
+    </div>
+    <div class="accordion-content" id="accMuseum">
+        <a href="https://www.google.com/maps/search/?api=1&query=Istanbul+Modern" target="_blank" class="menu-link"><span>🖼️ İstanbul Modern</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=SALT+Galata" target="_blank" class="menu-link"><span>📚 SALT Galata</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Tophane-i+Amire" target="_blank" class="menu-link"><span>🏛️ Tophane-i Âmire</span>📍</a>
+    </div>
 
-    <!-- 3. CAMİLER VE KİLİSELER -->
-    <div class="menu-category" id="mcReligion">🕌 Camiler & Tarihi Kiliseler</div>
-    <a href="https://www.google.com/maps/search/?api=1&query=Arap+Camii+Karakoy" target="_blank" class="menu-link"><span>🕌 Arap Camii (Gotik Mimari)</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Yeralti+Camii+Karakoy" target="_blank" class="menu-link"><span>🕌 Yeraltı Camii (Tarihi Mahzen)</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Saint+Benoit+Church+Karakoy" target="_blank" class="menu-link"><span>⛪ Saint Benoit Kilisesi</span>📍</a>
+    <!-- 4. CAMİLER VE KİLİSELER -->
+    <div class="accordion-header" onclick="toggleAcc('accReligion')">
+        <span id="mcReligion">🕌 Camiler & Tarihi Kiliseler</span> <span>▼</span>
+    </div>
+    <div class="accordion-content" id="accReligion">
+        <a href="https://www.google.com/maps/search/?api=1&query=Arap+Camii+Karakoy" target="_blank" class="menu-link"><span>🕌 Arap Camii (Gotik Mimari)</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Yeralti+Camii+Karakoy" target="_blank" class="menu-link"><span>🕌 Yeraltı Camii (Tarihi Mahzen)</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Saint+Benoit+Church+Karakoy" target="_blank" class="menu-link"><span>⛪ Saint Benoit Kilisesi</span>📍</a>
+    </div>
 
-    <!-- 4. TARİHİ YARIMADA -->
-    <div class="menu-category" id="mcOldCity">🚃 Tarihi Yarımada (Tramvay T1)</div>
-    <a href="https://www.google.com/maps/search/?api=1&query=Hagia+Sophia" target="_blank" class="menu-link"><span>🕌 Ayasofya-i Kebir Cami</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Blue+Mosque" target="_blank" class="menu-link"><span>🕌 Sultanahmet Camii</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Topkapi+Palace" target="_blank" class="menu-link"><span>👑 Topkapı Sarayı Müzesi</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Basilica+Cistern" target="_blank" class="menu-link"><span>💧 Yerebatan Sarnıcı</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Grand+Bazaar" target="_blank" class="menu-link"><span>🛍️ Kapalıçarşı (Grand Bazaar)</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Spice+Bazaar" target="_blank" class="menu-link"><span>🍵 Mısır Çarşısı</span>📍</a>
+    <!-- 5. TARİHİ YARIMADA -->
+    <div class="accordion-header" onclick="toggleAcc('accOldCity')">
+        <span id="mcOldCity">🚃 Tarihi Yarımada (Tramvay T1)</span> <span>▼</span>
+    </div>
+    <div class="accordion-content" id="accOldCity">
+        <a href="https://www.google.com/maps/search/?api=1&query=Hagia+Sophia" target="_blank" class="menu-link"><span>🕌 Ayasofya-i Kebir Cami</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Blue+Mosque" target="_blank" class="menu-link"><span>🕌 Sultanahmet Camii</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Topkapi+Palace" target="_blank" class="menu-link"><span>👑 Topkapı Sarayı Müzesi</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Basilica+Cistern" target="_blank" class="menu-link"><span>💧 Yerebatan Sarnıcı</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Grand+Bazaar" target="_blank" class="menu-link"><span>🛍️ Kapalıçarşı (Grand Bazaar)</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Spice+Bazaar" target="_blank" class="menu-link"><span>🍵 Mısır Çarşısı</span>📍</a>
+    </div>
 
-    <!-- 5. TAKSİM & BOĞAZ HATTI -->
-    <div class="menu-category" id="mcTaksim">🚕 Taksim & Boğaz Hattı</div>
-    <a href="https://www.google.com/maps/search/?api=1&query=Istiklal+Street" target="_blank" class="menu-link"><span>🚶 İstiklal Caddesi & Taksim</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Dolmabahce+Palace" target="_blank" class="menu-link"><span>🏛️ Dolmabahçe Sarayı</span>📍</a>
-    <a href="https://www.google.com/maps/search/?api=1&query=Ortakoy+Square" target="_blank" class="menu-link"><span>🕌 Ortaköy Meydanı & Camii</span>📍</a>
+    <!-- 6. TAKSİM & BOĞAZ HATTI -->
+    <div class="accordion-header" onclick="toggleAcc('accTaksim')">
+        <span id="mcTaksim">🚕 Taksim & Boğaz Hattı</span> <span>▼</span>
+    </div>
+    <div class="accordion-content" id="accTaksim">
+        <a href="https://www.google.com/maps/search/?api=1&query=Istiklal+Street" target="_blank" class="menu-link"><span>🚶 İstiklal Caddesi & Taksim</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Dolmabahce+Palace" target="_blank" class="menu-link"><span>🏛️ Dolmabahçe Sarayı</span>📍</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Ortakoy+Square" target="_blank" class="menu-link"><span>🕌 Ortaköy Meydanı & Camii</span>📍</a>
+    </div>
 
-    <a href="https://wa.me/905014712020" target="_blank" class="menu-link" style="color:#25D366; font-weight:bold; margin-top:20px;" id="ml5">💬 Bellboy Destek WhatsApp</a>
+    <a href="https://wa.me/905014712020" target="_blank" class="menu-link" style="color:#25D366; font-weight:bold; margin-top:20px; font-size:15px;" id="ml5">💬 Bellboy Destek WhatsApp</a>
 </div>
 
 <div class="container" id="mainContainer">
@@ -302,7 +327,7 @@
     <!-- 2. SIRADA: OTEL BİNALARI SEKSİYONU -->
     <div class="card" id="buildingsSec" style="border-left-color: #f2a900;">
         <h2 id="titleBuildings">🏢 Triada Hotel Binalarımız</h2>
-        <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="subBuildings">Otel binalarımızın konumlarına tek tıkla ulaşın:</p>
+        <p style="font-size:12px; color:#aaa; margin-bottom:12px;" id="subBuildings">Otel binalarımızın konumlarına tek tıkla ulaşın:</p>
         
         <div class="guide-item">
             <div>
@@ -332,7 +357,7 @@
     <!-- 3. SIRADA: ACİL İHTİYAÇ & DESTEK MARKETİ (İLK 3 ÜRÜN GÖZÜKÜR) -->
     <div class="card" id="shopSec" style="border-left-color: #25D366;">
         <h2 style="color:#25D366;" id="titleShop">🛒 Acil İhtiyaç & Destek Marketi</h2>
-        <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="subShop">İhtiyacınız olan ürünler kapınıza gelsin:</p>
+        <p style="font-size:12px; color:#aaa; margin-bottom:12px;" id="subShop">İhtiyacınız olan ürünler kapınıza gelsin:</p>
         
         <!-- BAŞTA GÖZÜKEN İLK 3 ÜRÜN -->
         <div class="shop-item">
@@ -394,7 +419,7 @@
     <!-- 4. SIRADA: İSTANBUL GEZİ REHBERİ (İLK 3 YER GÖZÜKÜR) -->
     <div class="card" id="guideSec" style="border-left-color: #f2a900;">
         <h2 id="guideHeader">🗺️ Popüler Gezilecek Yerler</h2>
-        <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="guideSub">Otelinize yakın en meşhur noktalar:</p>
+        <p style="font-size:12px; color:#aaa; margin-bottom:12px;" id="guideSub">Otelinize yakın en meşhur noktalar:</p>
         
         <!-- BAŞTA GÖZÜKEN İLK 3 YER -->
         <div class="guide-item">
@@ -478,6 +503,21 @@
         document.getElementById('menuOverlay').classList.remove('active');
     }
 
+    /* AKORDİYON AÇMA-KAPAMA İŞLEVİ */
+    function toggleAcc(id) {
+        const content = document.getElementById(id);
+        const header = content.previousElementSibling;
+        const arrow = header.querySelector('span:last-child');
+        
+        if (content.style.display === "block") {
+            content.style.display = "none";
+            arrow.innerText = "▼";
+        } else {
+            content.style.display = "block";
+            arrow.innerText = "▲";
+        }
+    }
+
     let isCustomOpen = false;
     function toggleCustomRequest() {
         const content = document.getElementById('crContent');
@@ -541,7 +581,7 @@
             mPh: "🏥 Yakın Eczane (Pharmacy)",
             mPk: "🅿️ Galataport AVM Kapalı Otoparkı",
             mcFood: "🥐 Yeme, İçme & Cafeler",
-            mcWalk: "🚶 Yürüme Mesafesindeki Tarihi Yerler",
+            mcWalk: "🚶 Yürüme Mesafesindeki Yerler",
             mcMuseum: "🎨 Müzeler & Sanat Merkezleri",
             mcReligion: "🕌 Camiler & Tarihi Kiliseler",
             mcOldCity: "🚃 Tarihi Yarımada (Tramvay T1)",
@@ -599,7 +639,7 @@
             mPh: "🏥 Nearby Pharmacy",
             mPk: "🅿️ Galataport Mall Parking",
             mcFood: "🥐 Dining, Food & Cafes",
-            mcWalk: "🚶 Walking Distance Attractions",
+            mcWalk: "🚶 Walking Distance Places",
             mcMuseum: "🎨 Museums & Art Centers",
             mcReligion: "🕌 Mosques & Historical Churches",
             mcOldCity: "🚃 Old City Peninsula (Tram T1)",
