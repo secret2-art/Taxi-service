@@ -689,14 +689,16 @@
         document.getElementById('txtTotalPrice').innerText = priceStr;
     }
 
-    /* TAKSİ REZERVASYONU - DOĞRUDAN WHATSAPP GRUBUNA YÖNLENDİRME (SİMGESİZ SADE METİN) */
+    /* TAKSİ REZERVASYONU - DÜZENLENMİŞ SİMGELER İLE WHATSAPP GRUBUNA YÖNLENDİRME */
     function sendWhatsAppGroup() {
         const name = document.getElementById('txtName').value;
         const room = document.getElementById('txtRoom').value;
         const airport = document.getElementById('selAirport').value;
         const flight = document.getElementById('txtFlight').value || "Belirtilmedi";
         const time = document.getElementById('txtTime').value;
-        const pay = document.getElementById('selPay').selectedOptions[0].text;
+        const paySelect = document.getElementById('selPay');
+        const payVal = paySelect.value;
+        const payText = paySelect.selectedOptions[0].text;
         const totalPrice = document.getElementById('txtTotalPrice').innerText;
 
         if(!name || !room || !time) {
@@ -704,7 +706,10 @@
             return;
         }
 
-        const details = `YENİ SARI TAKSİ TALEBİ:\nİsim: ${name}\nOda No: ${room}\nHavalimanı: ${airport}\nUçuş Kodu: ${flight}\nTarih/Saat: ${time}\nÖdeme: ${pay}\nNet Tutar: ${totalPrice}`;
+        // Ödeme türüne göre simge belirleme (Nakit ise 💸, Kart ise 💳)
+        const payIcon = payVal.includes('Card') ? "💳" : "💸";
+
+        const details = `🚖 YENİ SARI TAKSİ TALEBİ:\n👤 İsim: ${name}\n🔑 Oda No: ${room}\n🛫 Havalimanı: ${airport}\n🎫 Uçuş Kodu: ${flight}\n📅 Tarih/Saat: ${time}\n${payIcon} Ödeme: ${payText}\n💰 Net Tutar: ${totalPrice}`;
 
         navigator.clipboard.writeText(details).then(() => {
             alert("Taksi talebiniz kopyalandı! Açılan WhatsApp grubuna yapıştırıp (Paste) gönderebilirsiniz.");
