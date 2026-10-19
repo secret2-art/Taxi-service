@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triada Hotel Karaköy - Sarı Taksi & Misafir Hizmetleri</title>
+    <title>Triada Hotel Karaköy - Sarı Taksi & Bellboy Destek</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #121212; color: #f5f5f5; padding: 15px; padding-bottom: 90px; display: flex; justify-content: center; }
@@ -91,9 +91,9 @@
     
     <a href="#taxiSec" class="menu-link" onclick="closeMenu()" id="ml1">🚕 Sarı Taksi Çağır</a>
     <a href="#buildingsSec" class="menu-link" onclick="closeMenu()" id="ml2">📍 Otel Binalarımız (Konumlar)</a>
-    <a href="#shopSec" class="menu-link" onclick="closeMenu()" id="ml3">🛒 Otel Resepsiyon Marketi</a>
+    <a href="#shopSec" class="menu-link" onclick="closeMenu()" id="ml3">🛒 Acil İhtiyaç & Destek Marketi</a>
     <a href="#guideSec" class="menu-link" onclick="closeMenu()" id="ml4">🗺️ Karaköy Gezi Rehberi</a>
-    <a href="https://wa.me/905014712020" target="_blank" class="menu-link" style="color:#25D366; font-weight:bold;" id="ml5">💬 Resepsiyon WhatsApp</a>
+    <a href="https://wa.me/905014712020" target="_blank" class="menu-link" style="color:#25D366; font-weight:bold;" id="ml5">💬 Bellboy Destek WhatsApp</a>
 </div>
 
 <div class="container" id="mainContainer">
@@ -113,7 +113,7 @@
     <div class="header">
         <div class="badge">⭐ Triada Hotel Guest Approved 5.0 ★</div>
         <h1>Triada Hotel Karaköy</h1>
-        <p id="subTitle">7/24 Sarı Taksi & Misafir Destek Hizmetleri</p>
+        <p id="subTitle">7/24 Sarı Taksi & Bellboy Destek Hizmetleri</p>
     </div>
 
     <!-- GÜVEN KUTUSU -->
@@ -208,7 +208,7 @@
         </div>
     </div>
 
-    <!-- 2. SIRADA: OTEL BİNALARI SEKSİYONU -->
+    <!-- 2. SIRADA: OTEL BİNALARI SEKSİYONU (Doğru Sıralama İle) -->
     <div class="card" id="buildingsSec" style="border-left-color: #f2a900;">
         <h2 id="titleBuildings">🏢 Triada Hotel Binalarımız</h2>
         <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="subBuildings">Otel binalarımızın konumlarına tek tıkla ulaşın:</p>
@@ -223,25 +223,25 @@
 
         <div class="guide-item">
             <div>
-                <div class="guide-title" id="b2Title">🏢 Ek Bina (Annex 1)</div>
+                <div class="guide-title" id="b2Title">🏢 1. Ek Bina (Annex 1)</div>
                 <div class="guide-desc" id="b2Desc">Triada Hotel Annex Building 1</div>
             </div>
-            <a href="https://maps.app.goo.gl/dVAUehD18cSLg6Cg8?g_st=ac" target="_blank" class="guide-link">Harita 📍</a>
+            <a href="https://maps.app.goo.gl/ekuJ6mV7aZAYTFrF9?g_st=ac" target="_blank" class="guide-link">Harita 📍</a>
         </div>
 
         <div class="guide-item">
             <div>
-                <div class="guide-title" id="b3Title">🏢 Ek Bina (Annex 2)</div>
+                <div class="guide-title" id="b3Title">🏢 2. Ek Bina (Annex 2)</div>
                 <div class="guide-desc" id="b3Desc">Triada Hotel Annex Building 2</div>
             </div>
-            <a href="https://maps.app.goo.gl/ekuJ6mV7aZAYTFrF9?g_st=ac" target="_blank" class="guide-link">Harita 📍</a>
+            <a href="https://maps.app.goo.gl/dVAUehD18cSLg6Cg8?g_st=ac" target="_blank" class="guide-link">Harita 📍</a>
         </div>
     </div>
 
-    <!-- 3. SIRADA: OTEL RESEPSİYON SHOP / EK GELİR SEKSİYONU -->
+    <!-- 3. SIRADA: ACİL İHTİYAÇ & DESTEK MARKETİ -->
     <div class="card" id="shopSec" style="border-left-color: #25D366;">
-        <h2 style="color:#25D366;" id="titleShop">🛒 Resepsiyon Destek Marketi</h2>
-        <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="subShop">İhtiyacınız olan ürünleri resepsiyondan temin edebilirsiniz:</p>
+        <h2 style="color:#25D366;" id="titleShop">🛒 Acil İhtiyaç & Destek Marketi</h2>
+        <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="subShop">İhtiyacınız olan ürünler kapınıza gelsin:</p>
         
         <div class="shop-item">
             <div>
@@ -360,7 +360,7 @@
 <!-- SABİT ALT BÖLÜM -->
 <div class="sticky-bar">
     <a href="tel:+905014712020" class="sticky-btn sticky-call" id="btnCallCall">📞 Hemen Ara</a>
-    <a href="https://wa.me/905014712020" target="_blank" class="sticky-btn sticky-wa">💬 WhatsApp</a>
+    <a href="https://wa.me/905014712020" target="_blank" class="sticky-btn sticky-wa">💬 Bellboy WhatsApp</a>
 </div>
 
 <script>
@@ -375,20 +375,20 @@
 
     const translations = {
         tr: {
-            subTitle: "7/24 Sarı Taksi & Misafir Destek Hizmetleri",
+            subTitle: "7/24 Sarı Taksi & Bellboy Destek Hizmetleri",
             menuTitle: "🏢 Triada Hotel Menü",
             ml1: "🚕 Sarı Taksi Çağır",
             ml2: "📍 Otel Binalarımız (Konumlar)",
-            ml3: "🛒 Otel Resepsiyon Marketi",
+            ml3: "🛒 Acil İhtiyaç & Destek Marketi",
             ml4: "🗺️ Karaköy Gezi Rehberi",
-            ml5: "💬 Resepsiyon WhatsApp",
+            ml5: "💬 Bellboy Destek WhatsApp",
             titleBuildings: "🏢 Triada Hotel Binalarımız",
             subBuildings: "Otel binalarımızın konumlarına tek tıkla ulaşın:",
             b1Title: "🏨 Ana Bina (Main Building)", b1Desc: "Triada Hotel Karaköy Merkez Bina",
-            b2Title: "🏢 Ek Bina (Annex 1)", b2Desc: "Triada Hotel Annex Building 1",
-            b3Title: "🏢 Ek Bina (Annex 2)", b3Desc: "Triada Hotel Annex Building 2",
-            titleShop: "🛒 Resepsiyon Destek Marketi",
-            subShop: "İhtiyacınız olan ürünleri resepsiyondan temin edebilirsiniz:",
+            b2Title: "🏢 1. Ek Bina (Annex 1)", b2Desc: "Triada Hotel Annex Building 1",
+            b3Title: "🏢 2. Ek Bina (Annex 2)", b3Desc: "Triada Hotel Annex Building 2",
+            titleShop: "🛒 Acil İhtiyaç & Destek Marketi",
+            subShop: "İhtiyacınız olan ürünler kapınıza gelsin:",
             sp1Title: "💳 İstanbulkart (Ulaşım Kartı)", sp1Desc: "Tramvay, metro ve otobüs kullanımı için", btnBuy1: "Sipariş Et 💬",
             sp2Title: "🔌 Şarj Başlığı & Dönüştürücü", sp2Desc: "Priz adaptör dönüştürücü (Converter)", btnBuy2: "Sipariş Et 💬",
             sp3Title: "⚡ Hızlı Şarj Kablosu", sp3Desc: "Type-C veya Lightning Şarj Kablosu", btnBuy3: "Sipariş Et 💬",
@@ -419,20 +419,20 @@
             btnHotelMap: "🏨 Triada Hotel Karaköy Yol Tarifi", btnCallCall: "📞 Hemen Ara"
         },
         en: {
-            subTitle: "24/7 Yellow Taxi & Guest Services",
+            subTitle: "24/7 Yellow Taxi & Bellboy Support",
             menuTitle: "🏢 Triada Hotel Menu",
             ml1: "🚕 Order Yellow Taxi",
             ml2: "📍 Hotel Buildings (Locations)",
-            ml3: "🛒 Reception Guest Shop",
+            ml3: "🛒 Emergency & Support Shop",
             ml4: "🗺️ Karaköy City Guide",
-            ml5: "💬 Reception WhatsApp",
+            ml5: "💬 Bellboy Support WhatsApp",
             titleBuildings: "🏢 Triada Hotel Buildings",
             subBuildings: "Direct map directions to our hotel buildings:",
             b1Title: "🏨 Main Building", b1Desc: "Triada Hotel Karaköy Central",
-            b2Title: "🏢 Annex Building 1", b2Desc: "Triada Hotel Annex Building 1",
-            b3Title: "🏢 Annex Building 2", b3Desc: "Triada Hotel Annex Building 2",
-            titleShop: "🛒 Reception Guest Shop",
-            subShop: "Essential items available at reception:",
+            b2Title: "🏢 1st Annex Building", b2Desc: "Triada Hotel Annex Building 1",
+            b3Title: "🏢 2nd Annex Building", b3Desc: "Triada Hotel Annex Building 2",
+            titleShop: "🛒 Emergency & Support Shop",
+            subShop: "Essential items delivered to your door:",
             sp1Title: "💳 Istanbulkart (Transport Card)", sp1Desc: "For tram, metro and bus usage", btnBuy1: "Order Now 💬",
             sp2Title: "🔌 Charging Adapter Converter", sp2Desc: "Universal socket converter", btnBuy2: "Order Now 💬",
             sp3Title: "⚡ Fast Charging Cable", sp3Desc: "Type-C or Lightning Cable", btnBuy3: "Order Now 💬",
@@ -463,20 +463,20 @@
             btnHotelMap: "🏨 Triada Hotel Karaköy Directions", btnCallCall: "📞 Call Now"
         },
         ru: {
-            subTitle: "24/7 Заказ Желтого Такси и Услуги",
+            subTitle: "24/7 Заказ Такси и Поддержка Беллбоя",
             menuTitle: "🏢 Меню Triada Hotel",
             ml1: "🚕 Заказать Желтое Такси",
             ml2: "📍 Здания Отеля (Карта)",
-            ml3: "🛒 Магазин на Ресепшн",
+            ml3: "🛒 Магазин Первой Помощи",
             ml4: "🗺️ Путеводитель по Каракёй",
-            ml5: "💬 WhatsApp Ресепшн",
+            ml5: "💬 WhatsApp Поддержка",
             titleBuildings: "🏢 Здания Triada Hotel",
             subBuildings: "Прямые маршруты к нашим зданиям:",
             b1Title: "🏨 Главный Корпус", b1Desc: "Triada Hotel Karaköy Главное здание",
-            b2Title: "🏢 Корпус Арт 1 (Annex 1)", b2Desc: "Triada Hotel Доп. корпус 1",
-            b3Title: "🏢 Корпус Арт 2 (Annex 2)", b3Desc: "Triada Hotel Доп. корпус 2",
-            titleShop: "🛒 Магазин на Ресепшн",
-            subShop: "Необходимые товары на стойке регистрации:",
+            b2Title: "🏢 1-й Корпус (Annex 1)", b2Desc: "Triada Hotel Корпус 1",
+            b3Title: "🏢 2-й Корпус (Annex 2)", b3Desc: "Triada Hotel Корпус 2",
+            titleShop: "🛒 Магазин Первой Помощи",
+            subShop: "Необходимые товары с доставкой:",
             sp1Title: "💳 Istanbulkart (Проездной)", sp1Desc: "Для трамвая, метро и автобуса", btnBuy1: "Заказать 💬",
             sp2Title: "🔌 Адаптер-Переходник", sp2Desc: "Переходник для розеток", btnBuy2: "Заказать 💬",
             sp3Title: "⚡ Зарядный Кабель", sp3Desc: "Type-C или Lightning Кабель", btnBuy3: "Заказать 💬",
@@ -507,20 +507,20 @@
             btnHotelMap: "🏨 Маршрут к Triada Hotel Karaköy", btnCallCall: "📞 Позвонить"
         },
         ar: {
-            subTitle: "خدمة طلب التاكسي الأصفر 24/7 والخدمات",
+            subTitle: "خدمة طلب التاكسي ودعم بيلبوي 24/7",
             menuTitle: "🏢 قائمة فندق تريادا",
             ml1: "🚕 طلب تاكسي أصفر",
             ml2: "📍 مباني الفندق (المواقع)",
-            ml3: "🛒 متجر الاستقبال",
+            ml3: "🛒 متجر الاحتياجات الطارئة",
             ml4: "🗺️ دليل كراكوي",
-            ml5: "💬 واتساب الاستقبال",
+            ml5: "💬 واتساب دعم بيلبوي",
             titleBuildings: "🏢 مباني فندق تريادا",
             subBuildings: "اتجاهات الخريطة المباشرة لمباني الفندق:",
             b1Title: "🏨 المبنى الرئيسي", b1Desc: "فندق تريادا كراكوي المبنى الرئيسي",
-            b2Title: "🏢 المبنى الفرعي 1", b2Desc: "Triada Hotel Annex Building 1",
-            b3Title: "🏢 المبنى الفرعي 2", b3Desc: "Triada Hotel Annex Building 2",
-            titleShop: "🛒 متجر الاستقبال للضيوف",
-            subShop: "المستلزمات المتوفرة في الاستقبال:",
+            b2Title: "🏢 المبنى الفرعي الأول", b2Desc: "Triada Hotel Annex Building 1",
+            b3Title: "🏢 المبنى الفرعي الثاني", b3Desc: "Triada Hotel Annex Building 2",
+            titleShop: "🛒 متجر الاحتياجات الطارئة",
+            subShop: "المستلزمات الضرورية تصل إلى باب غرفتك:",
             sp1Title: "💳 إسطنبول كارت (كرت المواصلات)", sp1Desc: "للتنقل بالترام، المترو والباص", btnBuy1: "اطلب الآن 💬",
             sp2Title: "🔌 محول رأس الشاحن", sp2Desc: "محول مقبس القابس العالمي", btnBuy2: "اطلب الآن 💬",
             sp3Title: "⚡ كابل شحن سريع", sp3Desc: "كابل Type-C أو Lightning", btnBuy3: "اطلب الآن 💬",
@@ -623,7 +623,7 @@
             return;
         }
 
-        const msg = `Merhaba İlham (Triada Hotel Karaköy),\n\n🚖 Sarı Taksi Talebi:\n👤 İsim: ${name}\n🔑 Oda No: ${room}\n✈️ Havalimanı: ${airport}\n✈️ Uçuş Kodu: ${flight}\n📅 Tarih/Saat: ${time}\n💳 Ödeme: ${pay}\n💰 Net Tutar: ${totalPrice}`;
+        const msg = `Merhaba İlham (Triada Hotel Karaköy Bellboy Servisi),\n\n🚖 Sarı Taksi Talebi:\n👤 İsim: ${name}\n🔑 Oda No: ${room}\n✈️ Havalimanı: ${airport}\n✈️ Uçuş Kodu: ${flight}\n📅 Tarih/Saat: ${time}\n💳 Ödeme: ${pay}\n💰 Net Tutar: ${totalPrice}`;
         
         const waNumber = "905014712020"; 
         const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
