@@ -43,9 +43,8 @@
 
         .form-group { margin-bottom: 12px; }
         label { font-size: 12px; color: #ccc; display: block; margin-bottom: 4px; }
-        input, select, textarea { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #444; background: #121212; color: #fff; font-size: 14px; -webkit-appearance: none; }
+        input, select { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #444; background: #121212; color: #fff; font-size: 14px; -webkit-appearance: none; }
         input[type="datetime-local"] { color-scheme: dark; }
-        textarea { resize: vertical; height: 70px; }
         
         .calc-summary { background: #2d2612; border: 1px solid #f2a900; padding: 12px; border-radius: 8px; text-align: center; margin-top: 15px; }
         .calc-summary h3 { font-size: 13px; color: #aaa; font-weight: normal; }
@@ -66,16 +65,9 @@
         .shop-price { font-size: 14px; font-weight: bold; color: #25D366; margin-top: 2px; }
         .shop-btn { background: #25D366; color: #fff; border: none; padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; cursor: pointer; text-decoration: none; }
 
-        /* Genişletme/Büyütme Kutuları */
-        .more-guides, .more-reviews { display: none; }
+        /* Genişletme/Büyütme Kutusu */
+        .more-guides { display: none; }
         .btn-expand { background: #333; color: #f2a900; border: 1px solid #f2a900; width: 100%; padding: 10px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; margin-top: 5px; margin-bottom: 10px; transition: 0.2s; }
-
-        /* Yorumlar Listesi */
-        .review-item { background: #181818; padding: 12px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid #0088cc; }
-        .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
-        .review-author { font-size: 13px; font-weight: bold; color: #f2a900; }
-        .review-stars { color: #f2a900; font-size: 11px; }
-        .review-text { font-size: 12px; color: #ddd; line-height: 1.4; }
 
         /* Sabit Alt Bar */
         .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #181818; border-top: 1px solid #333; padding: 10px 20px; display: flex; gap: 10px; justify-content: center; z-index: 999; }
@@ -97,12 +89,11 @@
     <button class="menu-close" onclick="closeMenu()">✕</button>
     <div class="menu-title" id="menuTitle">🏢 Triada Hotel Menü</div>
     
-    <a href="#buildingsSec" class="menu-link" onclick="closeMenu()" id="ml1">📍 Otel Binalarımız (Konumlar)</a>
-    <a href="#shopSec" class="menu-link" onclick="closeMenu()" id="ml2">🛒 Otel Resepsiyon Marketi</a>
-    <a href="#taxiSec" class="menu-link" onclick="closeMenu()" id="ml3">🚕 Sarı Taksi Çağır</a>
+    <a href="#taxiSec" class="menu-link" onclick="closeMenu()" id="ml1">🚕 Sarı Taksi Çağır</a>
+    <a href="#buildingsSec" class="menu-link" onclick="closeMenu()" id="ml2">📍 Otel Binalarımız (Konumlar)</a>
+    <a href="#shopSec" class="menu-link" onclick="closeMenu()" id="ml3">🛒 Otel Resepsiyon Marketi</a>
     <a href="#guideSec" class="menu-link" onclick="closeMenu()" id="ml4">🗺️ Karaköy Gezi Rehberi</a>
-    <a href="#reviewsSec" class="menu-link" onclick="closeMenu()" id="ml5">💬 Misafir Yorumları</a>
-    <a href="https://wa.me/905014712020" target="_blank" class="menu-link" style="color:#25D366; font-weight:bold;" id="ml6">💬 Resepsiyon WhatsApp</a>
+    <a href="https://wa.me/905014712020" target="_blank" class="menu-link" style="color:#25D366; font-weight:bold;" id="ml5">💬 Resepsiyon WhatsApp</a>
 </div>
 
 <div class="container" id="mainContainer">
@@ -131,7 +122,93 @@
         Ödemenizi İster Nakit İster Kartla Taksicide Yapabilirsiniz!
     </div>
 
-    <!-- OTEL BİNALARI SEKSİYONU -->
+    <!-- 1. SIRADA: SARI TAKSİ HİZMETLERİ & REZERVASİYON FORMU -->
+    <div id="taxiSec">
+        <!-- İSTANBUL HAVALİMANI -->
+        <div class="card">
+            <h2><span id="titleIst">✈️ İstanbul Havalimanı (IST)</span></h2>
+            <div class="price">35 € / 2.000 ₺</div>
+            <div class="card-info" id="istInfo">
+                • Ulaşım süresi: Yaklaşık 45 - 60 dakika.<br>
+                • Uçuştan <strong>en geç 3.5 saat önce</strong> taksi ayarlanmalıdır.
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Istanbul+Airport" target="_blank" class="btn-map" id="mapBtnIst">📍 IST Harita Konumu</a>
+            <a href="https://www.youtube.com/results?search_query=istanbul+airport+terminal+guide" target="_blank" class="btn-yt" id="ytBtnIst">▶ IST Yolcu Video Rehberi</a>
+        </div>
+
+        <!-- SABİHA GÖKÇEN HAVALİMANI -->
+        <div class="card">
+            <h2><span id="titleSaw">✈️ Sabiha Gökçen Havalimanı (SAW)</span></h2>
+            <div class="price">40 € / 2.200 ₺</div>
+            <div class="card-info" id="sawInfo">
+                • Ulaşım süresi: Yaklaşık 60 - 90 dakika.<br>
+                • Uçuştan <strong>en geç 4 saat önce</strong> taksi ayarlanmalıdır.
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Sabiha+Gokcen+Airport" target="_blank" class="btn-map" id="mapBtnSaw">📍 SAW Harita Konumu</a>
+            <a href="https://www.youtube.com/results?search_query=sabiha+gokcen+airport+terminal+guide" target="_blank" class="btn-yt" id="ytBtnSaw">▶ SAW Yolcu Video Rehberi</a>
+        </div>
+
+        <!-- ARAÇ KAPASİTE BİLGİSİ -->
+        <div class="capacity-box" id="capBox">
+            🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>
+            • Maksimum 4 Yolcu<br>
+            • 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.
+        </div>
+
+        <!-- REZERVALSYON FORMU -->
+        <div class="card" style="border-left-color: #25D366;">
+            <h2 style="color: #25D366;" id="formTitle">🚕 Sarı Taksi Çağır</h2>
+            
+            <div class="form-group">
+                <label id="lblNa">Adınız Soyadınız:</label>
+                <input type="text" id="txtName" placeholder="Örn: John Doe">
+            </div>
+
+            <div class="form-group">
+                <label id="lblRm">Oda Numaranız:</label>
+                <input type="text" id="txtRoom" placeholder="Örn: 204">
+            </div>
+
+            <div class="form-group">
+                <label id="lblAp">Havalimanı Seçin:</label>
+                <select id="selAirport" onchange="updateCalc()">
+                    <option value="IST" id="optIst">İstanbul Havalimanı (IST) - 35€ / 2000₺</option>
+                    <option value="SAW" id="optSaw">Sabiha Gökçen (SAW) - 40€ / 2200₺</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label id="lblFlight">Uçuş Kodu (İsteğe Bağlı):</label>
+                <input type="text" id="txtFlight" placeholder="Örn: TK1982">
+            </div>
+
+            <div class="form-group">
+                <label id="lblDt">Taksi İstediğiniz Tarih ve Saat:</label>
+                <input type="datetime-local" id="txtTime">
+            </div>
+
+            <div class="form-group">
+                <label id="lblPy">Ödeme Yeri ve Şekli:</label>
+                <select id="selPay" onchange="updateCalc()">
+                    <option value="Driver-Cash" id="optPy1">Araçta Nakit (Taksiciye)</option>
+                    <option value="Driver-Card" id="optPy2">Araçta Kredi Kartı (+%10)</option>
+                    <option value="Hotel-Cash" id="optPy3">Otelde Nakit Ödeme</option>
+                </select>
+            </div>
+
+            <!-- HESAPLAMA ÖZETİ -->
+            <div class="calc-summary">
+                <h3 id="lblTotalTitle">Ödenecek Net Fiyat:</h3>
+                <div class="total-price" id="txtTotalPrice">35 € / 2.000 ₺</div>
+            </div>
+
+            <button class="btn-ws" onclick="sendWhatsApp()" id="btnWsSend">
+                💬 WhatsApp ile Talebi Gönder
+            </button>
+        </div>
+    </div>
+
+    <!-- 2. SIRADA: OTEL BİNALARI SEKSİYONU -->
     <div class="card" id="buildingsSec" style="border-left-color: #f2a900;">
         <h2 id="titleBuildings">🏢 Triada Hotel Binalarımız</h2>
         <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="subBuildings">Otel binalarımızın konumlarına tek tıkla ulaşın:</p>
@@ -161,7 +238,7 @@
         </div>
     </div>
 
-    <!-- OTEL RESEPSİYON SHOP / EK GELİR SEKSİYONU -->
+    <!-- 3. SIRADA: OTEL RESEPSİYON SHOP / EK GELİR SEKSİYONU -->
     <div class="card" id="shopSec" style="border-left-color: #25D366;">
         <h2 style="color:#25D366;" id="titleShop">🛒 Resepsiyon Destek Marketi</h2>
         <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="subShop">İhtiyacınız olan ürünleri resepsiyondan temin edebilirsiniz:</p>
@@ -203,90 +280,7 @@
         </div>
     </div>
 
-    <!-- ARAÇ KAPASİTE BİLGİSİ -->
-    <div class="capacity-box" id="capBox">
-        🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>
-        • Maksimum 4 Yolcu<br>
-        • 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.
-    </div>
-
-    <!-- İSTANBUL HAVALİMANI -->
-    <div class="card">
-        <h2><span id="titleIst">✈️ İstanbul Havalimanı (IST)</span></h2>
-        <div class="price">35 € / 2.000 ₺</div>
-        <div class="card-info" id="istInfo">
-            • Ulaşım süresi: Yaklaşık 45 - 60 dakika.<br>
-            • Uçuştan <strong>en geç 3.5 saat önce</strong> taksi ayarlanmalıdır.
-        </div>
-        <a href="https://www.google.com/maps/search/?api=1&query=Istanbul+Airport" target="_blank" class="btn-map" id="mapBtnIst">📍 IST Harita Konumu</a>
-        <a href="https://www.youtube.com/results?search_query=istanbul+airport+terminal+guide" target="_blank" class="btn-yt" id="ytBtnIst">▶ IST Yolcu Video Rehberi</a>
-    </div>
-
-    <!-- SABİHA GÖKÇEN HAVALİMANI -->
-    <div class="card">
-        <h2><span id="titleSaw">✈️ Sabiha Gökçen Havalimanı (SAW)</span></h2>
-        <div class="price">40 € / 2.200 ₺</div>
-        <div class="card-info" id="sawInfo">
-            • Ulaşım süresi: Yaklaşık 60 - 90 dakika.<br>
-            • Uçuştan <strong>en geç 4 saat önce</strong> taksi ayarlanmalıdır.
-        </div>
-        <a href="https://www.google.com/maps/search/?api=1&query=Sabiha+Gokcen+Airport" target="_blank" class="btn-map" id="mapBtnSaw">📍 SAW Harita Konumu</a>
-        <a href="https://www.youtube.com/results?search_query=sabiha+gokcen+airport+terminal+guide" target="_blank" class="btn-yt" id="ytBtnSaw">▶ SAW Yolcu Video Rehberi</a>
-    </div>
-
-    <!-- REZERVALSYON FORMU -->
-    <div class="card" id="taxiSec" style="border-left-color: #25D366;">
-        <h2 style="color: #25D366;" id="formTitle">🚕 Sarı Taksi Çağır</h2>
-        
-        <div class="form-group">
-            <label id="lblNa">Adınız Soyadınız:</label>
-            <input type="text" id="txtName" placeholder="Örn: John Doe">
-        </div>
-
-        <div class="form-group">
-            <label id="lblRm">Oda Numaranız:</label>
-            <input type="text" id="txtRoom" placeholder="Örn: 204">
-        </div>
-
-        <div class="form-group">
-            <label id="lblAp">Havalimanı Seçin:</label>
-            <select id="selAirport" onchange="updateCalc()">
-                <option value="IST" id="optIst">İstanbul Havalimanı (IST) - 35€ / 2000₺</option>
-                <option value="SAW" id="optSaw">Sabiha Gökçen (SAW) - 40€ / 2200₺</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label id="lblFlight">Uçuş Kodu (İsteğe Bağlı):</label>
-            <input type="text" id="txtFlight" placeholder="Örn: TK1982">
-        </div>
-
-        <div class="form-group">
-            <label id="lblDt">Taksi İstediğiniz Tarih ve Saat:</label>
-            <input type="datetime-local" id="txtTime">
-        </div>
-
-        <div class="form-group">
-            <label id="lblPy">Ödeme Yeri ve Şekli:</label>
-            <select id="selPay" onchange="updateCalc()">
-                <option value="Driver-Cash" id="optPy1">Araçta Nakit (Taksiciye)</option>
-                <option value="Driver-Card" id="optPy2">Araçta Kredi Kartı (+%10)</option>
-                <option value="Hotel-Cash" id="optPy3">Otelde Nakit Ödeme</option>
-            </select>
-        </div>
-
-        <!-- HESAPLAMA ÖZETİ -->
-        <div class="calc-summary">
-            <h3 id="lblTotalTitle">Ödenecek Net Fiyat:</h3>
-            <div class="total-price" id="txtTotalPrice">35 € / 2.000 ₺</div>
-        </div>
-
-        <button class="btn-ws" onclick="sendWhatsApp()" id="btnWsSend">
-            💬 WhatsApp ile Talebi Gönder
-        </button>
-    </div>
-
-    <!-- KARAKÖY & İSTANBUL GEZİ REHBERİ -->
+    <!-- 4. SIRADA: KARAKÖY & İSTANBUL GEZİ REHBERİ -->
     <div class="card" id="guideSec" style="border-left-color: #f2a900;">
         <h2 id="guideHeader">🗺️ Karaköy Gezilecek Yerler</h2>
         <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="guideSub">Otel çevresindeki meşhur noktalar ve harita konumları:</p>
@@ -358,35 +352,6 @@
         </a>
     </div>
 
-    <!-- YORUM YAZMA VE GÖRÜNTÜLEME ALANI -->
-    <div class="card" id="reviewsSec" style="border-left-color: #0088cc;">
-        <h2 style="color: #0088cc;" id="reviewTitle">💬 Misafir Yorumları</h2>
-        <p style="font-size: 12px; color: #aaa; margin-bottom: 15px;" id="reviewSub">Deneyiminizi bizimle paylaşın:</p>
-        
-        <div class="form-group">
-            <label id="lblReviewerName">Adınız / Ülkeniz:</label>
-            <input type="text" id="txtReviewer" placeholder="Örn: David (UK)">
-        </div>
-        <div class="form-group">
-            <label id="lblReviewText">Yorumunuz:</label>
-            <textarea id="txtComment" placeholder="Harika bir hizmetti, teşekkürler İlham!"></textarea>
-        </div>
-        <button class="btn-ws" style="background-color: #0088cc; margin-top: 5px; padding: 10px;" onclick="addReview()" id="btnSendReview">
-            Yorumu Gönder
-        </button>
-
-        <div style="margin-top: 20px;">
-            <h3 style="font-size: 14px; color: #f2a900; margin-bottom: 10px;" id="lblAllReviews">Yapılan Yorumlar:</h3>
-            
-            <div id="firstReviewsList"></div>
-            <div class="more-reviews" id="moreReviewsList"></div>
-
-            <button class="btn-expand" onclick="toggleReviews()" id="btnExpandReviews" style="border-color:#0088cc; color:#0088cc; margin-top:10px;">
-                🔍 Tüm Misafir Yorumlarını Büyüt / Göster
-            </button>
-        </div>
-    </div>
-
     <div class="footer">
         Bellboy Support Service - İlham Bekmetov
     </div>
@@ -412,12 +377,11 @@
         tr: {
             subTitle: "7/24 Sarı Taksi & Misafir Destek Hizmetleri",
             menuTitle: "🏢 Triada Hotel Menü",
-            ml1: "📍 Otel Binalarımız (Konumlar)",
-            ml2: "🛒 Otel Resepsiyon Marketi",
-            ml3: "🚕 Sarı Taksi Çağır",
+            ml1: "🚕 Sarı Taksi Çağır",
+            ml2: "📍 Otel Binalarımız (Konumlar)",
+            ml3: "🛒 Otel Resepsiyon Marketi",
             ml4: "🗺️ Karaköy Gezi Rehberi",
-            ml5: "💬 Misafir Yorumları",
-            ml6: "💬 Resepsiyon WhatsApp",
+            ml5: "💬 Resepsiyon WhatsApp",
             titleBuildings: "🏢 Triada Hotel Binalarımız",
             subBuildings: "Otel binalarımızın konumlarına tek tıkla ulaşın:",
             b1Title: "🏨 Ana Bina (Main Building)", b1Desc: "Triada Hotel Karaköy Merkez Bina",
@@ -452,22 +416,16 @@
             gt5: "🪜 Kamondo Merdivenleri", gd5: "Tarihi ve meşhur fotoğraf noktası (🚶 5 Dk)", gl5: "Harita 📍",
             gt6: "🐟 Karaköy Balıkçılar Çarşısı", gd6: "Taze balık-ekmek ve boğaz ortamı (🚶 4 Dk)", gl6: "Harita 📍",
             gt7: "🚃 T1 Karaköy Tramvay Durağı", gd7: "Sultanahmet, Ayasofya & Kapalıçarşı'ya ulaşım (🚶 3 Dk)", gl7: "Harita 📍",
-            btnHotelMap: "🏨 Triada Hotel Karaköy Yol Tarifi",
-            reviewTitle: "💬 Misafir Yorumları", reviewSub: "Deneyiminizi bizimle paylaşın:",
-            lblReviewerName: "Adınız / Ülkeniz:", lblReviewText: "Yorumunuz:",
-            phReviewer: "Örn: David (UK)", phComment: "Harika bir hizmetti, teşekkürler İlham!",
-            btnSendReview: "Yorumu Gönder", lblAllReviews: "Yapılan Yorumlar:",
-            btnExpandReviews: "🔍 Tüm Misafir Yorumlarını Büyüt / Göster", btnCallCall: "📞 Hemen Ara"
+            btnHotelMap: "🏨 Triada Hotel Karaköy Yol Tarifi", btnCallCall: "📞 Hemen Ara"
         },
         en: {
             subTitle: "24/7 Yellow Taxi & Guest Services",
             menuTitle: "🏢 Triada Hotel Menu",
-            ml1: "📍 Hotel Buildings (Locations)",
-            ml2: "🛒 Reception Guest Shop",
-            ml3: "🚕 Order Yellow Taxi",
+            ml1: "🚕 Order Yellow Taxi",
+            ml2: "📍 Hotel Buildings (Locations)",
+            ml3: "🛒 Reception Guest Shop",
             ml4: "🗺️ Karaköy City Guide",
-            ml5: "💬 Guest Reviews",
-            ml6: "💬 Reception WhatsApp",
+            ml5: "💬 Reception WhatsApp",
             titleBuildings: "🏢 Triada Hotel Buildings",
             subBuildings: "Direct map directions to our hotel buildings:",
             b1Title: "🏨 Main Building", b1Desc: "Triada Hotel Karaköy Central",
@@ -502,22 +460,16 @@
             gt5: "🪜 Kamondo Stairs", gd5: "Famous historical photo spot (🚶 5 Mins)", gl5: "Map 📍",
             gt6: "🐟 Karakoy Fish Market", gd6: "Fresh fish sandwiches & Bosphorus vibe (🚶 4 Mins)", gl6: "Map 📍",
             gt7: "🚃 T1 Karakoy Tram Station", gd7: "Easy access to Hagia Sophia & Grand Bazaar (🚶 3 Mins)", gl7: "Map 📍",
-            btnHotelMap: "🏨 Triada Hotel Karaköy Directions",
-            reviewTitle: "💬 Guest Reviews", reviewSub: "Share your experience with us:",
-            lblReviewerName: "Your Name / Country:", lblReviewText: "Your Comment:",
-            phReviewer: "e.g. David (UK)", phComment: "Great service, thank you Ilham!",
-            btnSendReview: "Submit Review", lblAllReviews: "All Guest Reviews:",
-            btnExpandReviews: "🔍 Expand All Guest Reviews", btnCallCall: "📞 Call Now"
+            btnHotelMap: "🏨 Triada Hotel Karaköy Directions", btnCallCall: "📞 Call Now"
         },
         ru: {
             subTitle: "24/7 Заказ Желтого Такси и Услуги",
             menuTitle: "🏢 Меню Triada Hotel",
-            ml1: "📍 Здания Отеля (Карта)",
-            ml2: "🛒 Магазин на Ресепшн",
-            ml3: "🚕 Заказать Желтое Такси",
+            ml1: "🚕 Заказать Желтое Такси",
+            ml2: "📍 Здания Отеля (Карта)",
+            ml3: "🛒 Магазин на Ресепшн",
             ml4: "🗺️ Путеводитель по Каракёй",
-            ml5: "💬 Отзывы Гостей",
-            ml6: "💬 WhatsApp Ресепшн",
+            ml5: "💬 WhatsApp Ресепшн",
             titleBuildings: "🏢 Здания Triada Hotel",
             subBuildings: "Прямые маршруты к нашим зданиям:",
             b1Title: "🏨 Главный Корпус", b1Desc: "Triada Hotel Karaköy Главное здание",
@@ -552,22 +504,16 @@
             gt5: "🪜 Лестница Камондо", gd5: "Знаменитое историческое место для фото (🚶 5 мин)", gl5: "Карта 📍",
             gt6: "🐟 Рыбный рынок Каракёй", gd6: "Свежая рыба в хлебе и атмосфера Босфора (🚶 4 мин)", gl6: "Карта 📍",
             gt7: "🚃 Трамвай T1 Каракёй", gd7: "Быстрый проезд к Святой Софии и Гранд-Базару (🚶 3 мин)", gl7: "Карта 📍",
-            btnHotelMap: "🏨 Маршрут к Triada Hotel Karaköy",
-            reviewTitle: "💬 Отзывы Гостей", reviewSub: "Поделитесь своим опытом:",
-            lblReviewerName: "Ваше имя / Страна:", lblReviewText: "Ваш комментарий:",
-            phReviewer: "например: Джон (UK)", phComment: "Отличный сервис, спасибо Ильхам!",
-            btnSendReview: "Отправить отзыв", lblAllReviews: "Все отзывы:",
-            btnExpandReviews: "🔍 Показать все отзывы гостей", btnCallCall: "📞 Позвонить"
+            btnHotelMap: "🏨 Маршрут к Triada Hotel Karaköy", btnCallCall: "📞 Позвонить"
         },
         ar: {
             subTitle: "خدمة طلب التاكسي الأصفر 24/7 والخدمات",
             menuTitle: "🏢 قائمة فندق تريادا",
-            ml1: "📍 مباني الفندق (المواقع)",
-            ml2: "🛒 متجر الاستقبال",
-            ml3: "🚕 طلب تاكسي أصفر",
+            ml1: "🚕 طلب تاكسي أصفر",
+            ml2: "📍 مباني الفندق (المواقع)",
+            ml3: "🛒 متجر الاستقبال",
             ml4: "🗺️ دليل كراكوي",
-            ml5: "💬 آراء الضيوف",
-            ml6: "💬 واتساب الاستقبال",
+            ml5: "💬 واتساب الاستقبال",
             titleBuildings: "🏢 مباني فندق تريادا",
             subBuildings: "اتجاهات الخريطة المباشرة لمباني الفندق:",
             b1Title: "🏨 المبنى الرئيسي", b1Desc: "فندق تريادا كراكوي المبنى الرئيسي",
@@ -602,12 +548,7 @@
             gt5: "🪜 أدراج كاموندو", gd5: "موقع تصوير تاريخي شهير (🚶 5 دقائق)", gl5: "الخريطة 📍",
             gt6: "🐟 سوق السمك في كراكوي", gd6: "ساندويتشات السمك الطازجة وأجواء البوسفور (🚶 4 دقائق)", gl6: "الخريطة 📍",
             gt7: "🚃 محطة ترام كراكوي T1", gd7: "وصول سهل إلى آيا صوفيا والسوق المغلق (🚶 3 دقائق)", gl7: "الخريطة 📍",
-            btnHotelMap: "🏨 الاتجاهات إلى فندق تريادا كراكوي",
-            reviewTitle: "💬 آراء الضيوف", reviewSub: "شاركنا تجربتك:",
-            lblReviewerName: "الاسم / البلد:", lblReviewText: "تعليقك:",
-            phReviewer: "مثال: أحمد (بريطانيا)", phComment: "خدمة رائعة جداً، شكراً لك!",
-            btnSendReview: "إرسال التقييم", lblAllReviews: "جميع التقييمات:",
-            btnExpandReviews: "🔍 عرض جميع تقييمات الضيوف", btnCallCall: "📞 اتصل الآن"
+            btnHotelMap: "🏨 الاتجاهات إلى فندق تريادا كراكوي", btnCallCall: "📞 اتصل الآن"
         }
     };
 
@@ -625,23 +566,6 @@
             list.style.display = "block";
             isExpandedGuides = true;
             btn.innerText = (lang === 'en') ? "▲ Show Less" : (lang === 'ru') ? "▲ Свернуть" : (lang === 'ar') ? "▲ إخفاء الأماكن" : "▲ Daha Az Göster / Küçült";
-        }
-    }
-
-    let isExpandedReviews = false;
-    function toggleReviews() {
-        const list = document.getElementById('moreReviewsList');
-        const btn = document.getElementById('btnExpandReviews');
-        const lang = document.querySelector('.lang-btn.active').innerText.toLowerCase();
-
-        if(isExpandedReviews) {
-            list.style.display = "none";
-            isExpandedReviews = false;
-            btn.innerText = (lang === 'en') ? "🔍 Expand All Guest Reviews" : (lang === 'ru') ? "🔍 Показать все отзывы гостей" : (lang === 'ar') ? "🔍 عرض جميع تقييمات الضيوف" : "🔍 Tüm Misafir Yorumlarını Büyüt / Göster";
-        } else {
-            list.style.display = "block";
-            isExpandedReviews = true;
-            btn.innerText = (lang === 'en') ? "▲ Show Less Reviews" : (lang === 'ru') ? "▲ Свернуть отзывы" : (lang === 'ar') ? "▲ إخفاء التقييمات" : "▲ Daha Az Yorum Göster / Küçült";
         }
     }
 
@@ -667,9 +591,6 @@
                 }
             }
         }
-
-        document.getElementById('txtReviewer').placeholder = t.phReviewer;
-        document.getElementById('txtComment').placeholder = t.phComment;
     }
 
     function updateCalc() {
@@ -710,63 +631,6 @@
         window.open(url, '_blank');
     }
 
-    const defaultReviews = [
-        { name: "John Smith (United Kingdom 🇬🇧)", text: "Punctual, safe and very smooth ride to Istanbul Airport. Thanks Ilham!" },
-        { name: "Елена Смирнова (Russia 🇷🇺)", text: "Отличный сервис! Водитель приехал вовремя, машина чистая. Спасибо Ильхаму за организацию трансфера." },
-        { name: "محمد العتيبي (Saudi Arabia 🇸🇦)", text: "خدمة ممتازة وسريعة جداً إلى مطار صبيحة. شكراً إلهام على المساعدة والاهتمام." },
-        { name: "Michael & Sarah Weber (Germany 🇩🇪)", text: "Super Taxi-Service direkt vom Triada Hotel. Pünktlich, fair und sehr freundlich!" },
-        { name: "Jean-Pierre Dubois (France 🇫🇷)", text: "Service impeccable pour l'aéroport d'Istanbul. Chauffeur très pro, merci Ilham !" },
-        { name: "Carlos Mendoza (Spain 🇪🇸)", text: "Excelente servicio de traslado al aeropuerto. Muy puntual y confiable." },
-        { name: "Marco Rossi (Italy 🇮🇹)", text: "Servizio taxi perfetto e senza stress. Ilham è stato utilissimo per il nostro volo di ritorno!" },
-        { name: "أحمد القاسمي (UAE 🇦🇪)", text: "خدمة راقية جداً وسيارة نظيفة. ننصح بالتعامل معهم في فندق تريادا." }
-    ];
-
-    function loadReviews() {
-        let saved = JSON.parse(localStorage.getItem('taxi_reviews')) || [];
-        let reviews = [...saved, ...defaultReviews];
-        
-        let firstHtml = "";
-        let moreHtml = "";
-
-        reviews.forEach((r, index) => {
-            let itemHtml = `<div class="review-item">
-                <div class="review-header">
-                    <span class="review-author">${r.name}</span>
-                    <span class="review-stars">★★★★★</span>
-                </div>
-                <div class="review-text">${r.text}</div>
-            </div>`;
-
-            if(index < 3) {
-                firstHtml += itemHtml;
-            } else {
-                moreHtml += itemHtml;
-            }
-        });
-
-        document.getElementById('firstReviewsList').innerHTML = firstHtml;
-        document.getElementById('moreReviewsList').innerHTML = moreHtml;
-    }
-
-    function addReview() {
-        const name = document.getElementById('txtReviewer').value;
-        const text = document.getElementById('txtComment').value;
-
-        if(!name || !text) {
-            alert("Lütfen adınızı ve yorumunuzu yazın.");
-            return;
-        }
-
-        let saved = JSON.parse(localStorage.getItem('taxi_reviews')) || [];
-        saved.unshift({ name: name, text: text });
-        localStorage.setItem('taxi_reviews', JSON.stringify(saved));
-
-        document.getElementById('txtReviewer').value = "";
-        document.getElementById('txtComment').value = "";
-        loadReviews();
-        alert("Yorumunuz başarıyla eklendi, teşekkürler!");
-    }
-
     function setDefaultDateTime() {
         const now = new Date();
         now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
@@ -775,7 +639,6 @@
 
     window.onload = function() {
         setDefaultDateTime();
-        loadReviews();
     }
 </script>
 
