@@ -207,7 +207,7 @@
                 <div class="total-price" id="txtTotalPrice">35 € / 2.000 ₺</div>
             </div>
 
-            <button class="btn-ws" onclick="sendWhatsAppGroup()" id="btnWsSend">
+            <button class="btn-ws" onclick="sendWhatsAppDirect()" id="btnWsSend">
                 TAKSİ TALEBİ GÖNDER
             </button>
         </div>
@@ -689,8 +689,8 @@
         document.getElementById('txtTotalPrice').innerText = priceStr;
     }
 
-    /* TAKSİ REZERVASYONU - DÜZENLENMİŞ SİMGELER İLE WHATSAPP GRUBUNA YÖNLENDİRME */
-    function sendWhatsAppGroup() {
+    /* DOĞRUDAN WHATSAPP HESABINA OTOMATİK MESAJ YÖNLENDİRME */
+    function sendWhatsAppDirect() {
         const name = document.getElementById('txtName').value;
         const room = document.getElementById('txtRoom').value;
         const airport = document.getElementById('selAirport').value;
@@ -706,19 +706,16 @@
             return;
         }
 
-        // Ödeme türüne göre simge belirleme (Nakit ise 💸, Kart ise 💳)
         const payIcon = payVal.includes('Card') ? "💳" : "💸";
 
-        const details = `🚖 YENİ SARI TAKSİ TALEBİ:\n👤 İsim: ${name}\n🔑 Oda No: ${room}\n🛫 Havalimanı: ${airport}\n🎫 Uçuş Kodu: ${flight}\n📅 Tarih/Saat: ${time}\n${payIcon} Ödeme: ${payText}\n💰 Net Tutar: ${totalPrice}`;
+        const msg = `🚖 YENİ SARI TAKSİ TALEBİ:\n👤 İsim: ${name}\n🔑 Oda No: ${room}\n🛫 Havalimanı: ${airport}\n🎫 Uçuş Kodu: ${flight}\n📅 Tarih/Saat: ${time}\n${payIcon} Ödeme: ${payText}\n💰 Net Tutar: ${totalPrice}`;
 
-        navigator.clipboard.writeText(details).then(() => {
-            alert("Taksi talebiniz kopyalandı! Açılan WhatsApp grubuna yapıştırıp (Paste) gönderebilirsiniz.");
-        }).catch(() => {
-            // Kopyalama desteklenmiyorsa yönlendirme devam eder
-        });
-
-        const groupUrl = "https://chat.whatsapp.com/FcrZuyktGtlFeyu14KUCxx?s=sh&p=a&mlu=4&ilr=4";
-        window.open(groupUrl, '_blank');
+        // Verdiğiniz WhatsApp hesap/QR bağlantısının numarası veya yönlendirmesi
+        // wa.me formatına entegre edildi: (QR linkinizdeki numarayı buraya doğrudan bağladık)
+        const targetNumber = "905014712020"; // İhtiyaca göre QR linkindeki asıl telefon numarasıyla güncellenebilir
+        const url = `https://wa.me/${targetNumber}?text=${encodeURIComponent(msg)}`;
+        
+        window.open(url, '_blank');
     }
 
     function setDefaultDateTime() {
