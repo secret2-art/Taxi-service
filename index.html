@@ -208,7 +208,7 @@
             </div>
 
             <button class="btn-ws" onclick="sendWhatsAppGroup()" id="btnWsSend">
-                💬 WhatsApp Grubuna Talebi Gönder
+                💬 Taksi Talebi Gönder
             </button>
         </div>
     </div>
@@ -465,7 +465,7 @@
             optIst: "İstanbul Havalimanı (IST) - 35€ / 2000₺", optSaw: "Sabiha Gökçen (SAW) - 40€ / 2200₺",
             lblFlight: "Uçuş Kodu (İsteğe Bağlı):", lblDt: "Taksi İstediğiniz Tarih ve Saat:", lblPy: "Ödeme Yeri ve Şekli:",
             optPy1: "Araçta Nakit (Taksiciye)", optPy2: "Araçta Kredi Kartı (+%10)", optPy3: "Otelde Nakit Ödeme",
-            lblTotalTitle: "Ödenecek Net Fiyat:", btnWsSend: "💬 WhatsApp Grubuna Talebi Gönder",
+            lblTotalTitle: "Ödenecek Net Fiyat:", btnWsSend: "💬 Taksi Talebi Gönder",
             guideHeader: "🗺️ İstanbul Gezilecek Popüler Yerler", guideSub: "Otelinize yakın meşhur tarihi noktalar ve harita konumları:",
             btnExpandGuides: "🔍 Tüm Gezilecek Yerleri Büyüt / Göster",
             gt1: "🏬 Galataport İstanbul", gd1: "Sahil yürüyüşü, alışveriş & Boğaz manzarası (🚶 5 Dk)", gl1: "Harita 📍",
@@ -515,7 +515,7 @@
             optIst: "Istanbul Airport (IST) - 35€ / 2000₺", optSaw: "Sabiha Gokcen (SAW) - 40€ / 2200₺",
             lblFlight: "Flight Code (Optional):", lblDt: "Taxi Pickup Date & Time:", lblPy: "Payment Location & Method:",
             optPy1: "Cash in Taxi (to Driver)", optPy2: "Credit Card in Taxi (+10%)", optPy3: "Cash at Hotel Reception",
-            lblTotalTitle: "Fixed Price To Pay:", btnWsSend: "💬 Send Request to WhatsApp Group",
+            lblTotalTitle: "Fixed Price To Pay:", btnWsSend: "💬 Send Taxi Request",
             guideHeader: "🗺️ Popular Attractions in Istanbul", guideSub: "Famous places around the hotel & map locations:",
             btnExpandGuides: "🔍 Expand All Places To Visit",
             gt1: "🏬 Galataport Istanbul", gd1: "Seaside walk, shopping & Bosphorus view (🚶 5 Mins)", gl1: "Map 📍",
@@ -565,7 +565,7 @@
             optIst: "Аэропорт Стамбула (IST) - 35€ / 2000₺", optSaw: "Сабиха Гёкчен (SAW) - 40€ / 2200₺",
             lblFlight: "Номер рейса (необязательно):", lblDt: "Дата и время подачи такси:", lblPy: "Место и способ оплаты:",
             optPy1: "Наличными водителю", optPy2: "Картой в такси (+10%)", optPy3: "Наличными в отеле",
-            lblTotalTitle: "Фиксированная цена:", btnWsSend: "💬 Отправить запрос в группу WhatsApp",
+            lblTotalTitle: "Фиксированная цена:", btnWsSend: "💬 Отправить запрос на такси",
             guideHeader: "🗺️ Популярные Места Стамбула", guideSub: "Популярные места рядом с отелем на карте:",
             btnExpandGuides: "🔍 Показать все места на карте",
             gt1: "🏬 Галатапорт Стамбул", gd1: "Прогулки у моря, шопинг и вид на Босфор (🚶 5 мин)", gl1: "Карта 📍",
@@ -615,7 +615,7 @@
             optIst: "مطار إسطنبول (IST) - 35€ / 2000₺", optSaw: "مطار صبيحة (SAW) - 40€ / 2200₺",
             lblFlight: "رمز الطيران (اختياري):", lblDt: "تاريخ ووقت طلب التاكسي:", lblPy: "مكان وطريقة الدفع:",
             optPy1: "نقداً في التاكسي", optPy2: "بطاقة في التاكسي (+10%)", optPy3: "نقداً في الفندق",
-            lblTotalTitle: "السعر الثابت المقدر:", btnWsSend: "💬 إرسال الطلب إلى مجموعة WhatsApp",
+            lblTotalTitle: "السعر الثابت المقدر:", btnWsSend: "💬 إرسال طلب التاكسي",
             guideHeader: "🗺️ أشهر الأماكن السياحية في إسطنبول", guideSub: "أشهر الأماكن حول الفندق والمواقع على الخريطة:",
             btnExpandGuides: "🔍 عرض جميع الأماكن السياحية",
             gt1: "🏬 غالاتابورت إسطنبول", gd1: "المشي على البحر، التسوق وإطلالة البوسفور (🚶 5 دقائق)", gl1: "الخريطة 📍",
@@ -707,9 +707,9 @@
         const details = `🚖 YENİ SARI TAKSİ TALEBİ:\n👤 İsim: ${name}\n🔑 Oda No: ${room}\n✈️ Havalimanı: ${airport}\n✈️ Uçuş Kodu: ${flight}\n📅 Tarih/Saat: ${time}\n💳 Ödeme: ${pay}\n💰 Net Tutar: ${totalPrice}`;
 
         navigator.clipboard.writeText(details).then(() => {
-            alert("Sipariş bilgileriniz kopyalandı! Açılan WhatsApp grubuna yapıştırıp gönderebilirsiniz.");
+            alert("Taksi talebiniz kopyalandı! Açılan WhatsApp grubuna yapıştırıp (Paste) gönderebilirsiniz.");
         }).catch(() => {
-            // Kopyalama desteklenmiyorsa sessizce devam eder
+            // Kopyalama desteklenmiyorsa yönlendirme devam eder
         });
 
         const groupUrl = "https://chat.whatsapp.com/FcrZuyktGtlFeyu14KUCxx?s=sh&p=a&mlu=4&ilr=4";
