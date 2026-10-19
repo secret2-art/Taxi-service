@@ -207,7 +207,7 @@
                 <div class="total-price" id="txtTotalPrice">35 € / 2.000 ₺</div>
             </div>
 
-            <button class="btn-ws" onclick="sendWhatsApp()" id="btnWsSend">
+            <button class="btn-ws" onclick="sendWhatsAppTaxi()" id="btnWsSend">
                 💬 WhatsApp ile Talebi Gönder
             </button>
         </div>
@@ -243,7 +243,7 @@
         </div>
     </div>
 
-    <!-- 3. SIRADA: ACİL İHTİYAÇ & DESTEK MARKETİ (GÜNCELLENMİŞ FİYATLAR) -->
+    <!-- 3. SIRADA: ACİL İHTİYAÇ & DESTEK MARKETİ -->
     <div class="card" id="shopSec" style="border-left-color: #25D366;">
         <h2 style="color:#25D366;" id="titleShop">🛒 Acil İhtiyaç & Destek Marketi</h2>
         <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="subShop">İhtiyacınız olan ürünler kapınıza gelsin:</p>
@@ -297,7 +297,7 @@
         </div>
     </div>
 
-    <!-- 4. SIRADA: ZENGİNLEŞTİRİLMİŞ İSTANBUL GEZİ REHBERİ -->
+    <!-- 4. SIRADA: İSTANBUL GEZİ REHBERİ -->
     <div class="card" id="guideSec" style="border-left-color: #f2a900;">
         <h2 id="guideHeader">🗺️ İstanbul Gezilecek Popüler Yerler</h2>
         <p style="font-size:11px; color:#aaa; margin-bottom:12px;" id="guideSub">Otelinize yakın meşhur tarihi noktalar ve harita konumları:</p>
@@ -326,11 +326,10 @@
             <a href="https://www.google.com/maps/search/?api=1&query=Galata+Tower" target="_blank" class="guide-link" id="gl3">Harita 📍</a>
         </div>
 
-        <!-- DİĞER MEŞHUR TURİSTİK NOKTALAR -->
         <div class="more-guides" id="moreGuidesList">
             <div class="guide-item">
                 <div>
-                    <div class="guide-title" id="gt4">🕌 Ayasofya-i Kebir Camii & Sultanahmet</div>
+                    <div class="guide-title" id="gt4">🕌 Ayasofya & Sultanahmet</div>
                     <div class="guide-desc" id="gd4">Tarihi yarımadanın kalbi (🚃 Tramvay ile 10 Dk)</div>
                 </div>
                 <a href="https://www.google.com/maps/search/?api=1&query=Hagia+Sophia" target="_blank" class="guide-link" id="gl4">Harita 📍</a>
@@ -339,15 +338,15 @@
             <div class="guide-item">
                 <div>
                     <div class="guide-title" id="gt5">🛍️ Kapalıçarşı (Grand Bazaar)</div>
-                    <div class="guide-desc" id="gd5">Dünyanın en eski ve büyük tarihi çarşısı (🚃 Tramvay ile 12 Dk)</div>
+                    <div class="guide-desc" id="gd5">Tarihi alışveriş çarşısı (🚃 Tramvay ile 12 Dk)</div>
                 </div>
                 <a href="https://www.google.com/maps/search/?api=1&query=Grand+Bazaar+Istanbul" target="_blank" class="guide-link" id="gl5">Harita 📍</a>
             </div>
 
             <div class="guide-item">
                 <div>
-                    <div class="guide-title" id="gt6">🍵 Mısır Çarşısı (Spice Bazaar) & Eminönü</div>
-                    <div class="guide-desc" id="gd6">Baharatçılar çarşısı & Balık-Ekmek (🚶 Yürüyerek 12 Dk)</div>
+                    <div class="guide-title" id="gt6">🍵 Mısır Çarşısı & Eminönü</div>
+                    <div class="guide-desc" id="gd6">Baharatçılar & Balık-Ekmek (🚶 12 Dk)</div>
                 </div>
                 <a href="https://www.google.com/maps/search/?api=1&query=Spice+Bazaar+Istanbul" target="_blank" class="guide-link" id="gl6">Harita 📍</a>
             </div>
@@ -355,23 +354,23 @@
             <div class="guide-item">
                 <div>
                     <div class="guide-title" id="gt7">🏛️ Dolmabahçe Sarayı</div>
-                    <div class="guide-desc" id="gd7">Osmanlı imparatorluk sarayı & boğaz kıyısı (🚕 Taksi ile 7 Dk)</div>
+                    <div class="guide-desc" id="gd7">Osmanlı sarayı & Boğaz sahili (🚕 Taksi ile 7 Dk)</div>
                 </div>
                 <a href="https://www.google.com/maps/search/?api=1&query=Dolmabahce+Palace" target="_blank" class="guide-link" id="gl7">Harita 📍</a>
             </div>
 
             <div class="guide-item">
                 <div>
-                    <div class="guide-title" id="gt8">🚶 Istiklal Caddesi & Taksim Meydanı</div>
-                    <div class="guide-desc" id="gd8">Alışveriş, kafeler, tarihi tramvay ve gece hayatı (🚶 15 Dk)</div>
+                    <div class="guide-title" id="gt8">🚶 Istiklal Caddesi & Taksim</div>
+                    <div class="guide-desc" id="gd8">Alışveriş, kafeler & gece hayatı (🚶 15 Dk)</div>
                 </div>
                 <a href="https://www.google.com/maps/search/?api=1&query=Istiklal+Street" target="_blank" class="guide-link" id="gl8">Harita 📍</a>
             </div>
 
             <div class="guide-item">
                 <div>
-                    <div class="guide-title" id="gt9">💧 Yerebatan Sarnıcı (Basilica Cistern)</div>
-                    <div class="guide-desc" id="gd9">Gizemli tarihi yeraltı su sarnıcı (🚃 Tramvay ile 10 Dk)</div>
+                    <div class="guide-title" id="gt9">💧 Yerebatan Sarnıcı</div>
+                    <div class="guide-desc" id="gd9">Tarihi yeraltı su sarnıcı (🚃 Tramvay ile 10 Dk)</div>
                 </div>
                 <a href="https://www.google.com/maps/search/?api=1&query=Basilica+Cistern" target="_blank" class="guide-link" id="gl9">Harita 📍</a>
             </div>
@@ -379,7 +378,7 @@
             <div class="guide-item" style="border-left-color: #25D366;">
                 <div>
                     <div class="guide-title" id="gt10">🚃 T1 Karaköy Tramvay Durağı</div>
-                    <div class="guide-desc" id="gd10">Sultanahmet, Ayasofya & Kapalıçarşı'ya kolay ulaşım (🚶 3 Dk)</div>
+                    <div class="guide-desc" id="gd10">Sultanahmet & Kapalıçarşı'ya ulaşım (🚶 3 Dk)</div>
                 </div>
                 <a href="https://www.google.com/maps/search/?api=1&query=Karakoy+Tram+Station" target="_blank" class="guide-link" id="gl10">Harita 📍</a>
             </div>
@@ -690,7 +689,8 @@
         document.getElementById('txtTotalPrice').innerText = priceStr;
     }
 
-    function sendWhatsApp() {
+    /* TAKSİ REZERVASYONU - WHATSAPP GRUP LİNKİ EKLEMESİ İLE */
+    function sendWhatsAppTaxi() {
         const name = document.getElementById('txtName').value;
         const room = document.getElementById('txtRoom').value;
         const airport = document.getElementById('selAirport').value;
@@ -704,7 +704,9 @@
             return;
         }
 
-        const msg = `Merhaba İlham (Triada Hotel Karaköy Bellboy Servisi),\n\n🚖 Sarı Taksi Talebi:\n👤 İsim: ${name}\n🔑 Oda No: ${room}\n✈️ Havalimanı: ${airport}\n✈️ Uçuş Kodu: ${flight}\n📅 Tarih/Saat: ${time}\n💳 Ödeme: ${pay}\n💰 Net Tutar: ${totalPrice}`;
+        const groupUrl = "https://chat.whatsapp.com/FcrZuyktGtlFeyu14KUCxx?s=sh&p=a&mlu=4&ilr=4";
+
+        const msg = `Merhaba İlham (Triada Hotel Karaköy Bellboy Servisi),\n\n🚖 YENİ SARI TAKSİ TALEBİ:\n👤 İsim: ${name}\n🔑 Oda No: ${room}\n✈️ Havalimanı: ${airport}\n✈️ Uçuş Kodu: ${flight}\n📅 Tarih/Saat: ${time}\n💳 Ödeme: ${pay}\n💰 Net Tutar: ${totalPrice}\n\n👥 Taksi Ekip Grubu: ${groupUrl}`;
         
         const waNumber = "905014712020"; 
         const url = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
