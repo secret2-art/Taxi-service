@@ -252,7 +252,7 @@
 
     <!-- GÜVEN KUTUSU -->
     <div class="trust-box" id="trustBox">
-        🛡️ %100 Güvenli & Sorunsuz Ulaşım Garantisi<br>
+        🛡️ %100 Güvenli, Ekonomik & Sabit Fiyat Garantisi<br>
         Ödemenizi İster Nakit İster Kartla Taksicide Yapabilirsiniz!
     </div>
 
@@ -261,7 +261,7 @@
         <!-- İSTANBUL HAVALİMANI -->
         <div class="card">
             <h2><span id="titleIst">✈️ İstanbul Havalimanı (IST)</span></h2>
-            <div class="price">35 € / 2.000 ₺</div>
+            <div class="price">1.800 ₺ <span style="font-size:12px; color:#25D366; font-weight:normal;">(Sabit Fiyat / Fixed Price)</span></div>
             <div class="card-info" id="istInfo">
                 • Ulaşım süresi: Yaklaşık 45 - 60 dakika.<br>
                 • Uçuştan <strong>en geç 3.5 saat önce</strong> taksi ayarlanmalıdır.
@@ -273,7 +273,7 @@
         <!-- SABİHA GÖKÇEN HAVALİMANI -->
         <div class="card">
             <h2><span id="titleSaw">✈️ Sabiha Gökçen Havalimanı (SAW)</span></h2>
-            <div class="price">40 € / 2.200 ₺</div>
+            <div class="price">2.000 ₺ <span style="font-size:12px; color:#25D366; font-weight:normal;">(Sabit Fiyat / Fixed Price)</span></div>
             <div class="card-info" id="sawInfo">
                 • Ulaşım süresi: Yaklaşık 60 - 90 dakika.<br>
                 • Uçuştan <strong>en geç 4 saat önce</strong> taksi ayarlanmalıdır.
@@ -284,9 +284,7 @@
 
         <!-- ARAÇ KAPASİTE BİLGİSİ -->
         <div class="capacity-box" id="capBox">
-            🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>
-            • Maksimum 4 Yolcu<br>
-            • 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.
+            🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>• Maksimum 4 Yolcu<br>• 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.
         </div>
 
         <!-- REZERVALSYON FORMU -->
@@ -310,8 +308,8 @@
             <div class="form-group">
                 <label id="lblAp">Havalimanı Seçin:</label>
                 <select id="selAirport" onchange="updateCalc()">
-                    <option value="IST" id="optIst">İstanbul Havalimanı (IST) - 35€ / 2000₺</option>
-                    <option value="SAW" id="optSaw">Sabiha Gökçen (SAW) - 40€ / 2200₺</option>
+                    <option value="IST" id="optIst">İstanbul Havalimanı (IST) - 1.800 ₺</option>
+                    <option value="SAW" id="optSaw">Sabiha Gökçen (SAW) - 2.000 ₺</option>
                 </select>
             </div>
 
@@ -337,7 +335,7 @@
             <!-- HESAPLAMA ÖZETİ -->
             <div class="calc-summary">
                 <h3 id="lblTotalTitle">Ödenecek Net Fiyat:</h3>
-                <div class="total-price" id="txtTotalPrice">35 € / 2.000 ₺</div>
+                <div class="total-price" id="txtTotalPrice">1.800 ₺</div>
             </div>
 
             <button class="btn-ws" onclick="sendWhatsAppDirect()" id="btnWsSend">
@@ -626,7 +624,7 @@
             crHeader: "🎁 Özel İstek & Diğer Talepleriniz",
             crText: "Gece market ihtiyaçları, kişisel bakım/hijyen ürünleri, özel siparişleriniz veya aklınıza gelen her türlü acil talep için 7/24 WhatsApp'tan bize yazabilirsiniz. Bellboy ekibimiz kapınıza kadar getirsin!",
             btnCustomWa: "💬 WhatsApp ile İstekte Bulun",
-            trustBox: "🛡️ %100 Güvenli & Sorunsuz Ulaşım Garantisi<br>Ödemenizi İster Nakit İster Kartla Taksicide Yapabilirsiniz!",
+            trustBox: "🛡️ %100 Güvenli, Ekonomik & Sabit Fiyat Garantisi<br>Ödemenizi İster Nakit İster Kartla Taksicide Yapabilirsiniz!",
             flexBox: "🔄 Rezervasyonunuzu oluşturduktan sonra istediğiniz zaman tarih ve saati ücretsiz değiştirebilirsiniz!",
             capBox: "🚖 <strong>Sarı Taksi Kapasitesi:</strong><br>• Maksimum 4 Yolcu<br>• 4-5 Büyük Valiz / 3-4 El Çantası sığabilir.",
             titleIst: "✈️ İstanbul Havalimanı (IST)",
@@ -637,7 +635,7 @@
             mapBtnSaw: "📍 SAW Harita Konumu", ytBtnSaw: "▶ SAW Yolcu Video Rehberi",
             formTitle: "🚕 Sarı Taksi Çağır",
             lblNa: "Adınız Soyadınız:", lblRm: "Oda Numaranız:", lblAp: "Havalimanı Seçin:",
-            optIst: "İstanbul Havalimanı (IST) - 35€ / 2000₺", optSaw: "Sabiha Gökçen (SAW) - 40€ / 2200₺",
+            optIst: "İstanbul Havalimanı (IST) - 1.800 ₺", optSaw: "Sabiha Gökçen (SAW) - 2.000 ₺",
             lblFlight: "Uçuş Kodu (İsteğe Bağlı):", lblDt: "Taksi İstediğiniz Tarih ve Saat:", lblPy: "Ödeme Yeri ve Şekli:",
             optPy1: "Araçta Nakit (Taksiciye)", optPy2: "Araçta Kredi Kartı (+%10)", optPy3: "Otelde Nakit Ödeme",
             lblTotalTitle: "Ödenecek Net Fiyat:", btnWsSend: "TAKSİ TALEBİ GÖNDER",
@@ -687,7 +685,7 @@
             crHeader: "🎁 Special Requests & Custom Orders",
             crText: "For late-night market items, personal care/hygiene products, or any special requests, feel free to text us on WhatsApp 24/7. Our Bellboy team will deliver it directly to your room!",
             btnCustomWa: "💬 Send Custom Request via WhatsApp",
-            trustBox: "🛡️ 100% Safe & Hassle-Free Transfer Guarantee<br>Pay either in Cash or by Credit Card to the driver!",
+            trustBox: "🛡️ 100% Safe, Economical & Fixed Price Guarantee<br>Pay either in Cash or by Credit Card to the driver!",
             flexBox: "🔄 You can freely change your date and time anytime after creating your reservation!",
             capBox: "🚖 <strong>Yellow Taxi Capacity:</strong><br>• Maximum 4 Passengers<br>• Fits 4-5 Large Suitcases / 3-4 Hand Luggage.",
             titleIst: "✈️ Istanbul Airport (IST)",
@@ -698,7 +696,7 @@
             mapBtnSaw: "📍 SAW Map Location", ytBtnSaw: "▶ SAW Passenger Video Guide",
             formTitle: "🚕 Order Yellow Taxi",
             lblNa: "Full Name:", lblRm: "Room Number:", lblAp: "Select Airport:",
-            optIst: "Istanbul Airport (IST) - 35€ / 2000₺", optSaw: "Sabiha Gokcen (SAW) - 40€ / 2200₺",
+            optIst: "Istanbul Airport (IST) - 1.800 ₺", optSaw: "Sabiha Gokcen (SAW) - 2.000 ₺",
             lblFlight: "Flight Code (Optional):", lblDt: "Taxi Pickup Date & Time:", lblPy: "Payment Location & Method:",
             optPy1: "Cash in Taxi (to Driver)", optPy2: "Credit Card in Taxi (+10%)", optPy3: "Cash at Hotel Reception",
             lblTotalTitle: "Fixed Price To Pay:", btnWsSend: "SEND TAXI REQUEST",
@@ -748,7 +746,7 @@
             crHeader: "🎁 Особые Пожелания и Индивидуальные Заказы",
             crText: "Для ночных покупок, средств личной гигиены или любых других особых запросов пишите нам в WhatsApp 24/7. Наша команда беллбоев доставит всё прямо к вашей двери!",
             btnCustomWa: "💬 Написать запрос в WhatsApp",
-            trustBox: "🛡️ 100% Гарантия Безопасной Поездки<br>Оплачивайте наличными или картой водителю такси!",
+            trustBox: "🛡️ 100% Безопасность, Экономия и Фиксированная Цена<br>Оплачивайте наличными или картой водителю такси!",
             flexBox: "🔄 Вы можете бесплатно изменить дату и время в любое время после создания бронирования!",
             capBox: "🚖 <strong>Вместимость Желтого Такси:</strong><br>• Максимум 4 Пассажира<br>• Вмещает 4-5 больших чемоданов / 3-4 ручные клади.",
             titleIst: "✈️ Аэропорт Стамбула (IST)",
@@ -759,7 +757,7 @@
             mapBtnSaw: "📍 SAW Карта", ytBtnSaw: "▶ Видео-гид по аэропорту SAW",
             formTitle: "🚕 Заказать Желтое Такси",
             lblNa: "Имя и Фамилия:", lblRm: "Номер комнаты:", lblAp: "Выберите аэропорт:",
-            optIst: "Аэропорт Стамбула (IST) - 35€ / 2000₺", optSaw: "Сабиха Гёкчен (SAW) - 40€ / 2200₺",
+            optIst: "Аэропорт Стамбула (IST) - 1.800 ₺", optSaw: "Сабиха Гёкчен (SAW) - 2.000 ₺",
             lblFlight: "Номер рейса (необязательно):", lblDt: "Дата и время подачи такси:", lblPy: "Место и способ оплаты:",
             optPy1: "Наличными водителю", optPy2: "Картой в такси (+10%)", optPy3: "Наличными в отеле",
             lblTotalTitle: "Фиксированная цена:", btnWsSend: "ОТПРАВИТЬ ЗАПРОС НА ТАКСИ",
@@ -809,7 +807,7 @@
             crHeader: "🎁 طلبات خاصة وخدمات إضافية",
             crText: "لمستلزمات المتجر الليلية، منتجات العناية الشخصية، أو أي طلبات خاصة، يمكنك مراسلتنا عبر الواتساب على مدار 24 ساعة. سيقوم فريق البيلبوي بتوصيلها إلى غرفتك مباشرة!",
             btnCustomWa: "💬 إرسال طلب خاص عبر WhatsApp",
-            trustBox: "🛡️ ضمان نقل آمن وسلس 100%<br>ادفع إما نقداً أو بالبطاقة للسائق!",
+            trustBox: "🛡️ ضمان أمان 100%، توفير وسعر ثابت ومحدد<br>ادفع إما نقداً أو بالبطاقة للسائق!",
             flexBox: "🔄 يمكنك تغيير التاريخ والوقت مجاناً في أي وقت بعد إنشاء الحجز الخاص بك!",
             capBox: "🚖 <strong>سعة التاكسي الأصفر:</strong><br>• 4 ركاب كحد أقصى<br>• يتسع لـ 4-5 حقائب كبيرة / 3-4 حقائب يد.",
             titleIst: "✈️ مطار إسطنبول (IST)",
@@ -820,7 +818,7 @@
             mapBtnSaw: "📍 SAW موقع خريطة", ytBtnSaw: "▶ فيديو دليل الركاب SAW",
             formTitle: "🚕 طلب تاكسي أصفر",
             lblNa: "الاسم الكامل:", lblRm: "رقم الغرفة:", lblAp: "اختر المطار:",
-            optIst: "مطار إسطنبول (IST) - 35€ / 2000₺", optSaw: "مطار صبيحة (SAW) - 40€ / 2200₺",
+            optIst: "مطار إسطنبول (IST) - 1.800 ₺", optSaw: "مطار صبيحة (SAW) - 2.000 ₺",
             lblFlight: "رمز الطيران (اختياري):", lblDt: "تاريخ ووقت طلب التاكسي:", lblPy: "مكان وطريقة الدفع:",
             optPy1: "نقداً في التاكسي", optPy2: "بطاقة في التاكسي (+10%)", optPy3: "نقداً في الفندق",
             lblTotalTitle: "السعر الثابت المقدر:", btnWsSend: "إرسال طلب التاكسي",
@@ -868,9 +866,9 @@
         const isCard = pay.includes('Card');
 
         if(ap === "IST") {
-            priceStr = isCard ? "38.5 € / 2.200 ₺" : "35 € / 2.000 ₺";
+            priceStr = isCard ? "1.980 ₺" : "1.800 ₺";
         } else {
-            priceStr = isCard ? "44 € / 2.420 ₺" : "40 € / 2.200 ₺";
+            priceStr = isCard ? "2.200 ₺" : "2.000 ₺";
         }
 
         document.getElementById('txtTotalPrice').innerText = priceStr;
